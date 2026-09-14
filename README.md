@@ -24,7 +24,9 @@ Herhangi bir şey yüklemeden web sürümüne anında erişin:
 - **📋 Hazır Topluluk Şablonları (Presets):** Her sınıf için optimize edilmiş 3'er hazır dağıtım: *AFK Hızlı Farm (AoE)*, *Boss Avcısı (Tek Hedef DPS)* ve *Dengeli Hayatta Kalma*.
 - **🔗 Tek Tıkla Build Paylaşımı:** Dağıtılan yetenek setini tek tıkla URL bağlantısına dönüştürün (`#build=Ranged_...`) ve panoya kopyalayın; linki açan herkes build'inizi doğrudan görsün.
 - **💾 Özel Kayıt Yuvaları (Slot 1 & 2):** Kendi özel Boss veya Farm dizilimlerinizi tarayıcınıza kaydedip tek tıkla geri yükleyin.
-- **Seviyeye Dayalı Yetenek Puanları:** Mevcut karakter seviyesine göre kullanılabilecek maksimum yetenek puanını otomatik hesaplar.
+- **🎮 Tek Tıkla Canlı Oyuna Dağıtma (`Runtime.evaluate` Sync):** Seçtiğiniz hazır şablonu veya özel build'i doğrudan çalışan oyundaki (`Genesis.exe`) karakterinize WebSocket üzerinden otomatik aktarın.
+- **🧪 Planlama / Simülasyon Koruması:** Şablon veya simülasyon incelerken arka plan oyun eşitlemesinin build'i ezmesini engeller; "🟢 Canlı Oyun Eşitlendi" ve "🧪 Planlama / Simülasyon" rozetleriyle anlık durum bildirir.
+- **⚠️ Akıllı Sıfırlama Rehberi:** Oyundaki boşta puan durumu yetersiz olduğunda otomatik sıfırlamayı dener; oyun içi sıfırlama gerekiyorsa kullanıcıyı adım adım yönlendiren rehber penceresini açar.
 - **Tek Tıkla Oyun Dağılımına Dönüş:** *"↩️ Oyundan Geri Yükle"* butonu ile oyundaki orijinal yetenek dağılımınıza anında geri dönün.
 
 ### ⚔️ 2. "Ne Takmalıyım?" (Ekipman Karşılaştırma & Canlı DPS Simülatörü)

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -1189,10 +1189,11 @@ body {
   </div>
 
   <div class="tree-toolbar">
-    <div class="pts-pool-wrap">
+    <div class="pts-pool-wrap" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
       <span id="treeAvailPtsLabel">Mevcut yetenek puanı:</span>
       <span class="pts-badge" id="treeAvailPts">1</span>
       <span style="font-size:12px; color:#8b949e;">(Toplam sınır: <b id="treeTotalPts" style="color:#58a6ff;">32</b> puan)</span>
+      <span id="buildModeBadge" style="background:#23863622; border:1px solid #238636; color:#3fb950; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600; cursor:pointer;" onclick="showAppToast(window.isSimulationMode ? 'Simülasyon Modu: Hazır şablon veya özel planlama açık. Canlı oyuna aktarmak için Oyuna Dağıt butonuna basın.' : 'Canlı Eşitleme: Ağaç doğrudan oyundaki mevcut yeteneklerinizle senkronizedir.', 'info')" title="Yetenek senkronizasyon durumu">🟢 Canlı Oyun Eşitlendi</span>
     </div>
     <div class="tree-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
       <select id="buildPresetSelect" class="preset-select" onchange="applyBuildPreset(this.value)">
@@ -1201,6 +1202,7 @@ body {
         <option value="single_boss">🎯 Boss Avcısı (Tek Hedef DPS)</option>
         <option value="balanced_tank">🛡️ Dengeli Hayatta Kalma</option>
       </select>
+      <button class="small-btn" id="btnPushToGame" onclick="applyBuildToLiveGame()" style="background:#238636; border-color:#2ea043; color:#fff; font-weight:700; display:inline-flex; align-items:center; gap:5px; box-shadow:0 0 10px rgba(35,134,54,0.35);" title="Seçilen bu yetenek dağılımını çalışan oyundaki karakterinize tek tıkla uygular">🎮 Oyuna Dağıt</button>
       <button class="small-btn" onclick="shareCurrentBuild()" style="background:#1f6feb26; border-color:#388bfd; color:#58a6ff; font-weight:600;" title="Mevcut dağılımı link olarak kopyala">🔗 Build'i Paylaş (Link Kopyala)</button>
       <div style="display:inline-flex; border:1px solid #30363d; border-radius:6px; overflow:hidden;">
         <button class="small-btn" onclick="quickSaveBuildSlot(1)" style="border-radius:0; border:none; border-right:1px solid #30363d;" title="Mevcut yetenekleri Yuva 1'e kaydet">💾 Kaydet 1</button>
@@ -14341,6 +14343,11 @@ function pollLiveGame() {
     liveWs.onmessage = function(msg) {
       try {
         const res = JSON.parse(msg.data);
+        if (window.__pendingWsCallbacks && res.id && window.__pendingWsCallbacks[res.id]) {
+          window.__pendingWsCallbacks[res.id](res);
+          delete window.__pendingWsCallbacks[res.id];
+          return;
+        }
         if (res.result && res.result.result && res.result.result.value) {
           const data = JSON.parse(res.result.result.value);
           if (data && data.nickname) {
@@ -15557,10 +15564,14 @@ function applyLiveGameData(data) {
   // === LIVE SKILL TREE SYNC: Update skillAllocations directly from game ===
   if (data.liveSkillLevels && Object.keys(data.liveSkillLevels).length > 0) {
     userProfile.liveSkillLevels = data.liveSkillLevels;
-    for (const groupTid in data.liveSkillLevels) {
-      skillAllocations[String(groupTid)] = data.liveSkillLevels[groupTid].level;
+    if (!window.isSimulationMode) {
+      for (const groupTid in data.liveSkillLevels) {
+        skillAllocations[String(groupTid)] = data.liveSkillLevels[groupTid].level;
+      }
+      saveSkillAllocations();
+      updateTreeHeader();
+      updateSimulationModeUI();
     }
-    saveSkillAllocations();
   }
 
   // === LIVE TRAINING SKILLS SYNC: Update userProfile.trainingSkills directly from game ===
@@ -15801,11 +15812,31 @@ function changeSkillPoints(skillId, delta) {
     skillAllocations[skillId] = cur - 1;
   }
 
+  window.isSimulationMode = true;
+  updateSimulationModeUI();
   saveSkillAllocations();
   updateTreeHeader();
   renderTree();
   updateInspector();
   renderCombatBreakdown();
+}
+
+function updateSimulationModeUI() {
+  const badge = document.getElementById('buildModeBadge');
+  if (!badge) return;
+  if (window.isSimulationMode) {
+    badge.style.background = 'rgba(210, 153, 34, 0.2)';
+    badge.style.borderColor = '#d29922';
+    badge.style.color = '#e3b341';
+    badge.innerHTML = '🧪 Planlama / Simülasyon';
+    badge.title = 'Özel build veya hazır şablon görüntülüyorsunuz. Canlı oyundaki yeteneklerin üzerine yazması duraklatıldı. Oyuna aktarmak için "Oyuna Dağıt" butonuna basın.';
+  } else {
+    badge.style.background = 'rgba(35, 134, 54, 0.2)';
+    badge.style.borderColor = '#238636';
+    badge.style.color = '#3fb950';
+    badge.innerHTML = '🟢 Canlı Oyun Eşitlendi';
+    badge.title = 'Yetenek dağılımı çalışan oyundaki mevcut karakterinizle anlık senkronizedir.';
+  }
 }
 
 function resetSkillAllocations() {
@@ -15818,6 +15849,8 @@ function resetSkillAllocations() {
         }
       }
     }
+    window.isSimulationMode = true;
+    updateSimulationModeUI();
     saveSkillAllocations();
     updateTreeHeader();
     renderTree();
@@ -15828,12 +15861,15 @@ function resetSkillAllocations() {
 
 function restoreFromGameSave() {
   const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; if (confirm(cL === 'tr' ? 'Oyun kayıt dosyanızdaki orijinal yetenek dağılımı geri yüklensin mi?' : 'Khôi phục lại chính xác phân bổ kỹ năng từ file save game của bạn?')) {
+    window.isSimulationMode = false;
     localStorage.removeItem('genesis_skill_tree_allocations_' + currentClass);
     initSkillAllocations();
+    updateSimulationModeUI();
     updateTreeHeader();
     renderTree();
     updateInspector();
     renderCombatBreakdown();
+    showAppToast(cL === 'tr' ? 'Orijinal oyun dağılımı geri yüklendi (Canlı Eşitleme Açık).' : 'Đã khôi phục phân bổ kỹ năng từ game.', 'success');
   }
 }
 
@@ -17748,6 +17784,10 @@ function applyBuildPreset(presetKey) {
   const preset = BUILD_PRESETS[currentClass] && BUILD_PRESETS[currentClass][presetKey];
   if (!preset) return;
 
+  // Activate simulation mode so 2s background poller does not overwrite preset
+  window.isSimulationMode = true;
+  updateSimulationModeUI();
+
   const maxPoints = getTotalSkillPointsPool();
   let remaining = maxPoints;
 
@@ -17792,7 +17832,14 @@ function applyBuildPreset(presetKey) {
   saveSkillAllocations();
   updateTreeHeader();
   renderTree();
-  showAppToast('"' + preset.name + '" şablonu uygulandı! (' + (maxPoints - remaining) + ' / ' + maxPoints + ' puan dağıtıldı)', 'success');
+  updateInspector();
+  renderCombatBreakdown();
+
+  const cL = localStorage.getItem('genesis_helper_lang') || 'tr';
+  showAppToast(cL === 'tr'
+    ? ('"' + preset.name + '" şablonu uygulandı! (Simülasyon Modu). Oyuna aktarmak için "🎮 Oyuna Dağıt" butonuna basın.')
+    : ('Đã áp dụng mẫu "' + preset.name + '"! (Chế độ mô phỏng). Nhấn "🎮 Đồng bộ vào game" để nạp vào nhân vật.'),
+    'success');
   
   const selectEl = document.getElementById('buildPresetSelect');
   if (selectEl) selectEl.value = '';
@@ -17844,10 +17891,15 @@ function quickLoadBuildSlot(slot) {
     for (let k in saved) {
       skillAllocations[k] = saved[k];
     }
+    window.isSimulationMode = true;
+    updateSimulationModeUI();
     saveSkillAllocations();
     updateTreeHeader();
     renderTree();
-    showAppToast(currentClass + ' Yuva ' + slot + ' dağılımı yüklendi! 📂', 'success');
+    updateInspector();
+    renderCombatBreakdown();
+    const cL = localStorage.getItem('genesis_helper_lang') || 'tr';
+    showAppToast(cL === 'tr' ? (currentClass + ' Yuva ' + slot + ' dağılımı yüklendi! (Simülasyon Modu) 📂') : ('Đã tải ô ' + slot + ' (Mô phỏng)!'), 'success');
   } catch(e) {
     showAppToast('Kayıtlı build yüklenirken hata oluştu.', 'error');
   }
@@ -17878,13 +17930,281 @@ function checkUrlHashForBuild() {
       }
     }
 
+    window.isSimulationMode = true;
+    updateSimulationModeUI();
     saveSkillAllocations();
     updateTreeHeader();
     renderTree();
-    showAppToast('Paylaşılan ' + cls + ' build başarıyla yüklendi! 🌳', 'info');
+    updateInspector();
+    renderCombatBreakdown();
+    const cL = localStorage.getItem('genesis_helper_lang') || 'tr';
+    showAppToast(cL === 'tr' ? ('Paylaşılan ' + cls + ' build başarıyla yüklendi! (Simülasyon Modu) 🌳') : ('Đã tải thành công build ' + cls + ' được chia sẻ!'), 'info');
   } catch(e) {
     console.error('Failed to parse build hash', e);
   }
+}
+
+// --- CANLI OYUNA YETENEK DAĞITIMI (PUSH BUILD TO GAME VIA LIVE WS) ---
+window.__pendingWsCallbacks = window.__pendingWsCallbacks || {};
+
+function evaluateInGame(expression, timeoutMs = 12000) {
+  return new Promise(function(resolve, reject) {
+    let ws = (typeof liveWs !== 'undefined' && liveWs) ? liveWs : null;
+    let ownWs = false;
+    let timer = null;
+
+    function cleanup(id, socket) {
+      if (timer) clearTimeout(timer);
+      if (id && window.__pendingWsCallbacks) delete window.__pendingWsCallbacks[id];
+      if (ownWs && socket) {
+        try { socket.close(); } catch(e){}
+      }
+    }
+
+    function runWithWs(socket) {
+      const id = Math.floor(Math.random() * 10000000) + 10000;
+      window.__pendingWsCallbacks = window.__pendingWsCallbacks || {};
+
+      timer = setTimeout(function() {
+        cleanup(id, socket);
+        reject(new Error('Oyun yanıt vermedi (Zaman aşımı). Genesis.exe açık mı?'));
+      }, timeoutMs);
+
+      window.__pendingWsCallbacks[id] = function(res) {
+        cleanup(id, socket);
+        if (res.error) {
+          reject(new Error(res.error.message || JSON.stringify(res.error)));
+        } else if (res.result && res.result.result && res.result.result.value !== undefined) {
+          resolve(res.result.result.value);
+        } else if (res.result && res.result.result) {
+          resolve(res.result.result);
+        } else {
+          resolve(res.result);
+        }
+      };
+
+      const payload = JSON.stringify({
+        id: id,
+        method: "Runtime.evaluate",
+        params: {
+          expression: expression,
+          returnByValue: true,
+          awaitPromise: true
+        }
+      });
+      socket.send(payload);
+    }
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      runWithWs(ws);
+    } else {
+      ownWs = true;
+      try {
+        const tempWs = new WebSocket('ws://127.0.0.1:10998');
+        tempWs.onopen = function() { runWithWs(tempWs); };
+        tempWs.onerror = function(err) {
+          cleanup(null, tempWs);
+          reject(new Error('Oyuna bağlanılamadı. Genesis.exe ve 127.0.0.1:10998 portu açık mı?'));
+        };
+        tempWs.onmessage = function(msg) {
+          try {
+            const res = JSON.parse(msg.data);
+            if (res.id && window.__pendingWsCallbacks && window.__pendingWsCallbacks[res.id]) {
+              window.__pendingWsCallbacks[res.id](res);
+            }
+          } catch(e){}
+        };
+      } catch(err) {
+        reject(new Error('WebSocket başlatılamadı: ' + err.message));
+      }
+    }
+  });
+}
+
+async function applyBuildToLiveGame() {
+  const btn = document.getElementById('btnPushToGame');
+  const origText = btn ? btn.innerHTML : '🎮 Oyuna Dağıt';
+  const cL = localStorage.getItem('genesis_helper_lang') || 'tr';
+
+  // 1. Check if there are allocations to distribute
+  const classTree = skillTrees && skillTrees[currentClass];
+  if (!classTree) {
+    showAppToast(cL === 'tr' ? 'Sınıf ağacı bulunamadı!' : 'Không tìm thấy cây kỹ năng!', 'error');
+    return;
+  }
+
+  // Gather targets in dependency order (sorted by req_player_level ascending)
+  const targets = [];
+  for (let b of classTree.branches) {
+    for (let s of b.skills) {
+      const alloc = skillAllocations[s.id] || 0;
+      if (alloc > 0) {
+        targets.push({ gid: s.id, count: alloc, req_lv: s.req_player_level || 1 });
+      }
+    }
+  }
+
+  // Sort by req_lv ascending so parent skills are allocated before children
+  targets.sort(function(a, b) { return a.req_lv - b.req_lv; });
+
+  if (targets.length === 0) {
+    showAppToast(cL === 'tr' ? 'Ağaçta henüz dağıtılacak puan bulunmuyor!' : 'Chưa có điểm nào để phân bổ vào game!', 'warning');
+    return;
+  }
+
+  const totalPointsToPush = targets.reduce(function(acc, item) { return acc + item.count; }, 0);
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Dağıtılıyor...';
+  }
+
+  try {
+    const targetsJson = JSON.stringify(targets);
+    const expr = `(async () => {
+      let sTree = null;
+      for (let [k, v] of nn.services._mapService.entries()) {
+        const name = k.name || k.toString();
+        if (name === 'ServiceTree') sTree = v;
+      }
+      if (!sTree) return { success: false, error: 'ServiceTree not found in game engine' };
+
+      let userLv = (nn.net && nn.net.data && nn.net.data.user) ? nn.net.data.user.lv : 0;
+      let curInfo = (nn.net && nn.net.data && nn.net.data.tree) ? nn.net.data.tree.getTreeAllInfo(4) : null;
+      let spent = 0;
+      if (curInfo) {
+        for (let [k, v] of curInfo.entries()) {
+          let lvl = sTree.getSkillGroupReachedLevel ? sTree.getSkillGroupReachedLevel(v._groupTid) : 0;
+          spent += lvl;
+        }
+      }
+      let available = Math.max(0, userLv - spent);
+
+      // Try auto reset if points are already spent
+      let didReset = false;
+      if (spent > 0) {
+        try {
+          didReset = await sTree.reqResetAsync(4);
+          if (didReset) {
+            available = userLv;
+            spent = 0;
+          }
+        } catch(e) {}
+      }
+
+      const targets = ${targetsJson};
+      const totalTargetPoints = ${totalPointsToPush};
+
+      // If cannot auto-reset and available points are insufficient
+      if (available < totalTargetPoints && available === 0) {
+        return {
+          success: false,
+          code: 'NEED_INGAME_RESET',
+          userLv: userLv,
+          spent: spent,
+          available: available
+        };
+      }
+
+      let totalUpgrades = 0;
+      let failedSkill = null;
+      let results = [];
+
+      for (let item of targets) {
+        let gid = item.gid;
+        let count = item.count;
+        let successCount = 0;
+
+        for (let i = 0; i < count; i++) {
+          if (available <= 0) break;
+          try {
+            let ok = await sTree.reqEnchantAsync(4, gid);
+            if (ok) {
+              successCount++;
+              totalUpgrades++;
+              available--;
+            } else {
+              failedSkill = gid;
+              break;
+            }
+          } catch(e) {
+            failedSkill = gid;
+            break;
+          }
+        }
+        results.push({ gid: gid, target: count, upgraded: successCount });
+      }
+
+      try {
+        if (nn.msgBroker && nn.msgBroker.publish) {
+          nn.msgBroker.publish('onUpdateTree');
+        }
+      } catch(e) {}
+
+      return {
+        success: true,
+        totalUpgrades: totalUpgrades,
+        remainingAvailable: available,
+        userLv: userLv,
+        results: results,
+        failedSkill: failedSkill
+      };
+    })()`;
+
+    const result = await evaluateInGame(expr);
+
+    if (!result) {
+      throw new Error('Oyun motorundan boş yanıt alındı.');
+    }
+
+    if (result.code === 'NEED_INGAME_RESET') {
+      openInGameResetModal(result.spent, result.userLv);
+      showAppToast(cL === 'tr' ? '⚠️ Oyunda boşta yetenek puanı yok! Lütfen oyundan sıfırlayın.' : '⚠️ Trong game không còn điểm kỹ năng! Vui lòng tẩy điểm trong game.', 'warning');
+      return;
+    }
+
+    if (result.error) {
+      throw new Error(result.error);
+    }
+
+    if (result.success) {
+      window.isSimulationMode = false;
+      updateSimulationModeUI();
+      closeInGameResetModal();
+
+      showAppToast(cL === 'tr'
+        ? ('🎉 ' + result.totalUpgrades + ' yetenek puanı oyuna başarıyla aktarıldı! (Kalan Boş Puan: ' + result.remainingAvailable + ')')
+        : ('🎉 Đã đồng bộ thành công ' + result.totalUpgrades + ' điểm kỹ năng vào game!'),
+        'success');
+
+      if (typeof sendEvaluatePoll === 'function') {
+        sendEvaluatePoll();
+      }
+    }
+  } catch(err) {
+    console.error('applyBuildToLiveGame error:', err);
+    showAppToast(cL === 'tr' ? ('❌ Oyuna aktarılamadı: ' + err.message) : ('❌ Thất bại khi nạp vào game: ' + err.message), 'error');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+    }
+  }
+}
+
+function openInGameResetModal(spent, total) {
+  const modal = document.getElementById('inGameResetModal');
+  if (!modal) return;
+  const spentEl = document.getElementById('resetModalSpentPts');
+  const totalEl = document.getElementById('resetModalTotalPts');
+  if (spentEl) spentEl.innerText = spent !== undefined ? spent : 0;
+  if (totalEl) totalEl.innerText = total !== undefined ? total : 0;
+  modal.style.display = 'flex';
+}
+
+function closeInGameResetModal() {
+  const modal = document.getElementById('inGameResetModal');
+  if (modal) modal.style.display = 'none';
 }
 
 // --- 3. "NE TAKMALIYIM?" EKİPMAN KARŞILAŞTIRMA VE CANLI DPS SİMÜLATÖRÜ ---
@@ -20295,6 +20615,57 @@ goto CHECK</code>
       </button>
     </div>
 
+  </div>
+</div>
+
+<!-- IN-GAME SKILL RESET GUIDANCE MODAL -->
+<div id="inGameResetModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999999; justify-content:center; align-items:center; padding:16px;">
+  <div style="background:#161b22; border:1px solid #d29922; border-radius:12px; max-width:560px; width:100%; max-height:90vh; overflow-y:auto; box-shadow:0 16px 48px rgba(0,0,0,0.9); padding:24px; position:relative;">
+    <!-- Modal Header -->
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #30363d; padding-bottom:14px; margin-bottom:18px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:26px;">⚠️</span>
+        <div>
+          <h3 style="margin:0; color:#e3b341; font-size:18px;">Oyunda Yetenek Sıfırlama Gerekiyor</h3>
+          <div style="font-size:12px; color:#8b949e; margin-top:2px;">Yetenek puanlarının tamamı şu anda oyunda kullanılmış durumda</div>
+        </div>
+      </div>
+      <button onclick="closeInGameResetModal()" style="background:transparent; border:none; color:#8b949e; font-size:20px; cursor:pointer; padding:4px 8px; border-radius:6px;">✕</button>
+    </div>
+
+    <!-- Status Box -->
+    <div style="background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:14px; margin-bottom:18px; text-align:center;">
+      <div style="font-size:13px; color:#8b949e; margin-bottom:4px;">Kullanılan / Toplam Puan Durumu:</div>
+      <div style="font-size:22px; font-weight:bold; color:#f85149;">
+        <span id="resetModalSpentPts">33</span> / <span id="resetModalTotalPts" style="color:#58a6ff;">33</span> Puan
+      </div>
+      <div style="font-size:12px; color:#d29922; margin-top:4px;">
+        Boşta puan bulunmadığı için yeni şablon doğrudan aktarılamıyor.
+      </div>
+    </div>
+
+    <!-- Step by Step Instructions -->
+    <div style="font-size:13px; line-height:1.6; color:#c9d1d9; margin-bottom:20px;">
+      <b style="color:#f0f6fc; display:block; margin-bottom:8px;">💡 Nasıl Sıfırlanır? (Hızlı Adımlar):</b>
+      <div style="display:flex; gap:10px; margin-bottom:8px;">
+        <span style="background:#21262d; border:1px solid #30363d; color:#58a6ff; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; flex-shrink:0;">1</span>
+        <span>Açık olan <b>The War of Genesis</b> oyun penceresine geçin.</span>
+      </div>
+      <div style="display:flex; gap:10px; margin-bottom:8px;">
+        <span style="background:#21262d; border:1px solid #30363d; color:#58a6ff; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; flex-shrink:0;">2</span>
+        <span><b>Yetenekler (Skills / Tree)</b> menüsünü açın ve <b>Sıfırla (Reset)</b> butonuna tıklayarak puanlarınızı geri alın.</span>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <span style="background:#21262d; border:1px solid #30363d; color:#58a6ff; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; flex-shrink:0;">3</span>
+        <span>Puanlar boşa çıktıktan sonra aşağıdaki butona tıklayarak yeni dağılımı oyuna aktarın.</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div style="display:flex; justify-content:flex-end; gap:10px;">
+      <button onclick="closeInGameResetModal()" class="small-btn" style="padding:8px 16px; background:#21262d; border-color:#30363d; color:#c9d1d9;">Kapat</button>
+      <button onclick="applyBuildToLiveGame()" class="small-btn" style="padding:8px 18px; background:#238636; border-color:#2ea043; color:#fff; font-weight:bold; display:inline-flex; align-items:center; gap:6px;">🎮 Oyunda Sıfırladım, Şimdi Dağıt</button>
+    </div>
   </div>
 </div>
 
