@@ -19,23 +19,39 @@ Herhangi bir şey yüklemeden web sürümüne anında erişin:
 
 ## 🌟 Öne Çıkan Özellikler
 
-### 🌳 1. Çok Sınıflı Yetenek Ağacı Simülatörü ve Puan Dağıtıcı
+### 🌳 1. Çok Sınıflı Yetenek Ağacı Simülatörü, Hazır Şablonlar & Linkle Paylaşım
 - **İnteraktif Yetenek Ağaçları:** Her 3 sınıf için de eksiksiz görsel gelişim ağaçları: **Menzilli (Okçu)**, **Yakın Dövüş (Şövalye)** ve **Büyücü**.
+- **📋 Hazır Topluluk Şablonları (Presets):** Her sınıf için optimize edilmiş 3'er hazır dağıtım: *AFK Hızlı Farm (AoE)*, *Boss Avcısı (Tek Hedef DPS)* ve *Dengeli Hayatta Kalma*.
+- **🔗 Tek Tıkla Build Paylaşımı:** Dağıtılan yetenek setini tek tıkla URL bağlantısına dönüştürün (`#build=Ranged_...`) ve panoya kopyalayın; linki açan herkes build'inizi doğrudan görsün.
+- **💾 Özel Kayıt Yuvaları (Slot 1 & 2):** Kendi özel Boss veya Farm dizilimlerinizi tarayıcınıza kaydedip tek tıkla geri yükleyin.
 - **Seviyeye Dayalı Yetenek Puanları:** Mevcut karakter seviyesine göre kullanılabilecek maksimum yetenek puanını otomatik hesaplar.
-- **Otomatik Kayıt Desteği:** Yetenek dağılımları anında tarayıcınızın `localStorage` alanına kaydedilir.
-- **Tek Tıkla Oyun Dağılımına Dönüş:** *"↩️ Oyundan Geri Yükle"* butonu ile oyundaki gerçek yetenek dağılımınıza tek tıkla geri dönün.
+- **Tek Tıkla Oyun Dağılımına Dönüş:** *"↩️ Oyundan Geri Yükle"* butonu ile oyundaki orijinal yetenek dağılımınıza anında geri dönün.
 
-### 🏆 2. 400+ Aşama AFK Kasılma Verimliliği Liderlik Tablosu
+### ⚔️ 2. "Ne Takmalıyım?" (Ekipman Karşılaştırma & Canlı DPS Simülatörü)
+- **Yan Yana Karşılaştırma:** 1.872 eşyalık veri tabanından herhangi iki eşyayı seçip stat farklarını renkli göstergelerle kıyaslayın.
+- **Net Gerçek DPS Değişimi:** Karakterinizin mevcut saldırı gücü, kritik oranı/hasarı ve hızını baz alarak:  
+  *"🚀 Tavsiye: +450 DPS (+13.4% Artış) — Kesinlikle Kuşanmalısın!"* şeklinde akıllı karar desteği sağlar.
+- **Tek Tıkla Seçim:** Ekipman arama tablosundaki her eşyanın yanındaki *"⚔️ Karşılaştır"* butonuna basarak doğrudan simülatör yuvasına aktarın.
+
+### ⏱️ 3. Hedef Seviye, AFK Gelir Projeksiyonu & Boss Hazırlık Analizi
+- **Hedef Seviye Hesaplayıcı (Level ETA):** Hedeflediğiniz seviyeye (Örn: Seviye 50, 70, 100) kalan toplam EXP miktarını, anlık farm hızınıza göre gereken tam süreyi (*X gün Y saat Z dakika*) ve hedefe ulaşacağınız kesin tarihi hesaplar.
+- **💤 AFK Ganimet Projeksiyon Kartları:** Oyunu açık bıraktığınızda kazanacağınız tahmini kazancı gösterir:
+  - *4 Saatlik AFK (Kısa Mola)*
+  - *8 Saatlik AFK (Gece Uykusu)*
+  - *24 Saatlik AFK (Tam Gün)*
+- **🥊 Aşama Boss Geçme Analizi:** İlerlemek istediğiniz bölümün Boss'unu seçin; Boss canı ve 60 saniyelik temizleme süresi için gereken DPS ile kendi mevcut DPS'inizi kıyaslayıp hazırlık yüzdesini (% Hazırlık Çubuğu) görüntüleyin.
+
+### 🏆 4. 400+ Aşama AFK Kasılma Verimliliği Liderlik Tablosu
 - **Altın/sn & EXP/sn Analitiği:** Bölüm 1'den 4'e kadar (Kolay, Normal, Zor, Çok Zor) 400'den fazla aşamayı kapsayan gerçek zamanlı kazanç analizleri.
 - **Kesin Temizleme Süresi Modellemesi:** Aşamaların toplam can (HP) havuzu, canavar yoğunlukları ve gerçek DPS değeriniz baz alınarak hesaplanır.
 - **Akıllı Filtreleme:** Açık aşama aralığına, manuel DPS kaydırıcısına veya oyundan ölçülen gerçek DPS verisine göre filtreleme yapın.
 
-### ⚔️ 3. Gerçek Zamanlı DPS & Savaş Analizi
+### ⚔️ 5. Gerçek Zamanlı DPS & Savaş Analizi
 - **Ayrıntılı DPS Dağılımı:** Toplam hasar çıktınızı normal saldırılar ve bireysel yetenek kullanımları olarak detaylandırır.
 - **Çift Savaş Modu:** Doğru simülasyon için **Yaratık Temizleme (Alan Etkili - AoE)** ve **Boss Kesme (Tek Hedef)** modları arasında geçiş yapın.
 - **Sınıflar Arası DPS Karşılaştırma Tablosu:** Her 3 sınıfın Saldırı Hızı, Kritik Oranı/Hasarı, Normal Saldırı DPS'i, Yetenek DPS'i ve En Yüksek Anlık Hasar Yeteneğini yan yana karşılaştıran matris.
 
-### 🛡️ 4. Eksiksiz 1.872 Parçalık Ekipman Veri Tabanı
+### 🛡️ 6. Eksiksiz 1.872 Parçalık Ekipman Veri Tabanı
 - **Kapsamlı Katalog:** Oyundaki tüm ana silahlar, ikincil silahlar, miğferler, zırhlar, eldivenler, çizmeler, omuzluklar, pelerinler ve 6 aksesuar türü.
 - **Çok Yönlü Filtreleme:**
   - **Yuva Filtresi:** 14 farklı ekipman pozisyonu.
@@ -44,16 +60,16 @@ Herhangi bir şey yüklemeden web sürümüne anında erişin:
   - **Sıralama:** Seviye, Kademe, Altın Değeri veya İsme (A-Z) göre sıralama.
 - **Hızlı Sayfalama:** Sayfa başına 100 eşya ve Türkçe, İngilizce ile Vietnamca arama desteği.
 
-### 🏋️ 5. Eğitim Yetenekleri Optimize Edici
+### 🏋️ 7. Eğitim Yetenekleri Optimize Edici
 - Temel istatistik yükseltmeleri (Saldırı, Savunma, Can, Kritik Oranı, Altın Bonusu, EXP Bonusu) için eksiksiz altın maliyet ölçeklendirme veri tabanı.
 - Canlı oyun verileriyle birebir eşleşen istatistik artışlarını ve yüzde çarpanlarını hassas şekilde görüntüler.
 
-### 💎 6. Otomatik Mücevher Demircisi & Depo Yönetimi (Otomatik Birleştirme)
+### 💎 8. Otomatik Mücevher Demircisi & Depo Yönetimi (Otomatik Birleştirme)
 - **Doğrulanmış Birleştirme Kuralı:** Aynı kademedeki herhangi **6 mücevheri** (aynı tür olma zorunluluğu olmaksızın) otomatik olarak bir üst kademeye birleştirir.
 - **Kademe Seçicileri:** Kademe 1'den Kademe 7'ye kadar 7 kademe onay kutusu; yalnızca istediğiniz kademeleri birleştirip yüksek kademeli taşlarınızı korumanıza olanak tanır.
 - **Depo & Çanta Yönetimi:** Çanta ile kişisel depo arasında otomatik mücevher aktarım ve çekim kuyruğu.
 
-### 🔍 7. Kayıt Dosyası Konumlandırıcı & Profil Eşitleme
+### 🔍 9. Kayıt Dosyası Konumlandırıcı & Profil Eşitleme
 - **Windows / Steam Yol Rehberi:** Dosya Gezgini için tek tıkla yol kopyalama desteği:
   - AppData Dizini: `%LOCALAPPDATA%Low\Newnormal Soft\War of Genesis Idle Loot\`
   - Steam Varsayılanı: `C:\Program Files (x86)\Steam\steamapps\common\War of Genesis Idle Loot\`

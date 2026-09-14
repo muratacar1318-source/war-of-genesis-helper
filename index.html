@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -640,6 +640,162 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
+  /* PRESET & BUILD SHARING & TOAST STYLES */
+  .preset-select {
+    background: #161b22;
+    border: 1.5px solid #388bfd;
+    color: #58a6ff;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .preset-select:hover {
+    background: #21262d;
+    border-color: #58a6ff;
+  }
+  .toast-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #161b22;
+    border: 1.5px solid #2ea043;
+    color: #f0f6fc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999999;
+    font-weight: 600;
+    font-size: 13.5px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+  .toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .toast-notification.success { border-color: #2ea043; }
+  .toast-notification.info { border-color: #388bfd; }
+  .toast-notification.warning { border-color: #d29922; }
+
+  /* EQUIP COMPARISON PANEL STYLES */
+  .compare-panel {
+    background: #161b22;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .compare-slots-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-top: 14px;
+  }
+  @media (max-width: 800px) {
+    .compare-slots-grid { grid-template-columns: 1fr; }
+  }
+  .compare-slot-card {
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .compare-vs-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #21262d;
+    border: 2px solid #58a6ff;
+    color: #58a6ff;
+    font-weight: 900;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 12px rgba(88,166,255,0.3);
+  }
+  .diff-badge-pos { color: #7ee787; font-weight: bold; }
+  .diff-badge-neg { color: #f85149; font-weight: bold; }
+  .diff-badge-zero { color: #8b949e; }
+  .dps-impact-box {
+    margin-top: 16px;
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .dps-impact-box.gain {
+    background: rgba(46, 160, 67, 0.12);
+    border: 1px solid #2ea043;
+    color: #7ee787;
+  }
+  .dps-impact-box.loss {
+    background: rgba(248, 81, 73, 0.12);
+    border: 1px solid #f85149;
+    color: #ff7b72;
+  }
+  .dps-impact-box.neutral {
+    background: rgba(88, 166, 255, 0.1);
+    border: 1px solid #388bfd;
+    color: #58a6ff;
+  }
+
+  /* ETA & AFK PROJECTION PANEL STYLES */
+  .eta-container-card {
+    background: #161b22;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .projection-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .proj-card {
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px;
+    border-top: 3px solid #388bfd;
+  }
+  .proj-card.hours-4 { border-top-color: #58a6ff; }
+  .proj-card.hours-8 { border-top-color: #bc8cff; }
+  .proj-card.hours-24 { border-top-color: #e3b341; }
+  .boss-gauge-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: #21262d;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .boss-gauge-fill {
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+
 </style>
 </head>
 <body>
@@ -1038,8 +1194,23 @@ body {
       <span class="pts-badge" id="treeAvailPts">1</span>
       <span style="font-size:12px; color:#8b949e;">(Toplam sınır: <b id="treeTotalPts" style="color:#58a6ff;">32</b> puan)</span>
     </div>
-    <div class="tree-actions">
-      <button class="small-btn" onclick="restoreFromGameSave()">↩️ Oyun Dağılımını Geri Yükle</button>
+    <div class="tree-actions" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <select id="buildPresetSelect" class="preset-select" onchange="applyBuildPreset(this.value)">
+        <option value="">ğŸ“‹ HazÄ±r Åablon SeÃ§...</option>
+        <option value="aoe_farm">âš¡ AFK HÄ±zlÄ± Farm (AoE)</option>
+        <option value="single_boss">ğŸ¯ Boss AvcÄ±sÄ± (Tek Hedef DPS)</option>
+        <option value="balanced_tank">ğŸ›¡ï¸ Dengeli Hayatta Kalma</option>
+      </select>
+      <button class="small-btn" onclick="shareCurrentBuild()" style="background:#1f6feb26; border-color:#388bfd; color:#58a6ff; font-weight:600;" title="Mevcut daÄŸÄ±lÄ±mÄ± link olarak kopyala">ğŸ”— Build'i PaylaÅŸ (Link Kopyala)</button>
+      <div style="display:inline-flex; border:1px solid #30363d; border-radius:6px; overflow:hidden;">
+        <button class="small-btn" onclick="quickSaveBuildSlot(1)" style="border-radius:0; border:none; border-right:1px solid #30363d;" title="Mevcut yetenekleri Yuva 1'e kaydet">ğŸ’¾ Kaydet 1</button>
+        <button class="small-btn" onclick="quickLoadBuildSlot(1)" style="border-radius:0; border:none; background:#161b22; color:#58a6ff;" title="Yuva 1'deki daÄŸÄ±lÄ±mÄ± yÃ¼kle">ğŸ“‚ YÃ¼kle 1</button>
+      </div>
+      <div style="display:inline-flex; border:1px solid #30363d; border-radius:6px; overflow:hidden;">
+        <button class="small-btn" onclick="quickSaveBuildSlot(2)" style="border-radius:0; border:none; border-right:1px solid #30363d;" title="Mevcut yetenekleri Yuva 2'ye kaydet">ğŸ’¾ Kaydet 2</button>
+        <button class="small-btn" onclick="quickLoadBuildSlot(2)" style="border-radius:0; border:none; background:#161b22; color:#58a6ff;" title="Yuva 2'deki daÄŸÄ±lÄ±mÄ± yÃ¼kle">ğŸ“‚ YÃ¼kle 2</button>
+      </div>
+      <button class="small-btn" onclick="restoreFromGameSave()" title="Oyundaki orijinal yetenek daÄŸÄ±lÄ±mÄ±na dÃ¶n">â†©ï¸ Oyun DaÄŸÄ±lÄ±mÄ±nÄ± Geri YÃ¼kle</button>
     </div>
   </div>
 
@@ -1454,6 +1625,109 @@ body {
       </div>
     </div>
 
+        <!-- LEVEL ETA & AFK EARNINGS PROJECTION CALCULATOR -->
+    <div class="eta-container-card" id="levelEtaAndAfkPanel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid var(--border-color); padding-bottom:14px;">
+        <div>
+          <h3 style="margin:0; color:#7ee787; display:flex; align-items:center; gap:8px;">
+            â±ï¸ Hedef Seviye & AFK Gelir HesaplayÄ±cÄ±sÄ±
+          </h3>
+          <div style="font-size:12.5px; color:#8b949e; margin-top:3px;">
+            GerÃ§ek zamanlÄ± kasma hÄ±zÄ±nÄ±za (EXP/sn ve AltÄ±n/sn) gÃ¶re hedeflerinize ne zaman ulaÅŸacaÄŸÄ±nÄ±zÄ± planlayÄ±n.
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label style="font-size:12.5px; color:#8b949e; font-weight:bold;">Hedef Seviye:</label>
+          <select id="targetLevelSelect" onchange="onTargetLevelChanged(this.value)" style="background:#0d1117; border:1.5px solid #2ea043; color:#7ee787; font-weight:bold; padding:6px 12px; border-radius:6px; font-size:13px; cursor:pointer;">
+            <option value="40">Seviye 40</option>
+            <option value="50" selected>Seviye 50</option>
+            <option value="60">Seviye 60</option>
+            <option value="70">Seviye 70</option>
+            <option value="80">Seviye 80</option>
+            <option value="90">Seviye 90</option>
+            <option value="100">Seviye 100 (Son)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TARGET SUMMARY ROW -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:16px;">
+        <div style="background:#0d1117; border:1px solid var(--border-color); border-radius:8px; padding:14px;">
+          <div style="font-size:11.5px; color:#8b949e; text-transform:uppercase;">Kalan Toplam EXP</div>
+          <div style="font-size:22px; font-weight:bold; color:#79c0ff; margin-top:4px;" id="targetEtaRemExp">â€”</div>
+          <div style="font-size:11.5px; color:#8b949e; margin-top:4px;" id="targetEtaCurExpProgress">Mevcut Seviyeden itibaren</div>
+        </div>
+        <div style="background:#0d1117; border:1px solid var(--border-color); border-radius:8px; padding:14px;">
+          <div style="font-size:11.5px; color:#8b949e; text-transform:uppercase;">Gereken Tahmini SÃ¼re</div>
+          <div style="font-size:22px; font-weight:bold; color:#7ee787; margin-top:4px;" id="targetEtaDuration">â€”</div>
+          <div style="font-size:11.5px; color:#8b949e; margin-top:4px;" id="targetEtaRateNote">AnlÄ±k Farm HÄ±zÄ±yla</div>
+        </div>
+        <div style="background:#0d1117; border:1px solid var(--border-color); border-radius:8px; padding:14px;">
+          <div style="font-size:11.5px; color:#8b949e; text-transform:uppercase;">Hedefe UlaÅŸma Tarihi</div>
+          <div style="font-size:18px; font-weight:bold; color:#f0c674; margin-top:6px;" id="targetEtaDate">â€”</div>
+          <div style="font-size:11.5px; color:#8b949e; margin-top:4px;">Kesintisiz AFK durumunda</div>
+        </div>
+      </div>
+
+      <!-- AFK PROJECTION CARDS -->
+      <div style="margin-top:20px;">
+        <div style="font-size:13px; font-weight:bold; color:#f0f6fc; margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+          <span>ğŸ’¤ AFK Oturum KazanÃ§ Projeksiyonu:</span>
+          <span style="font-size:11.5px; color:#8b949e; font-weight:normal;">(Oyunu aÃ§Ä±k bÄ±raktÄ±ÄŸÄ±nÄ±zda elde edeceÄŸiniz tahmini ganimet)</span>
+        </div>
+        <div class="projection-cards-grid">
+          <div class="proj-card hours-4">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <b style="color:#58a6ff; font-size:13px;">â˜• 4 Saatlik AFK</b>
+              <span style="font-size:11px; color:#8b949e;">KÄ±sa Mola</span>
+            </div>
+            <div style="margin-top:10px; font-size:13px;">
+              <div>ğŸ’° AltÄ±n: <b style="color:#e3b341;" id="projGold4h">â€”</b></div>
+              <div style="margin-top:4px;">âœ¨ EXP: <b style="color:#bc8cff;" id="projExp4h">â€”</b></div>
+            </div>
+          </div>
+          <div class="proj-card hours-8">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <b style="color:#bc8cff; font-size:13px;">ğŸŒ™ 8 Saatlik AFK</b>
+              <span style="font-size:11px; color:#8b949e;">Gece Uykusu</span>
+            </div>
+            <div style="margin-top:10px; font-size:13px;">
+              <div>ğŸ’° AltÄ±n: <b style="color:#e3b341;" id="projGold8h">â€”</b></div>
+              <div style="margin-top:4px;">âœ¨ EXP: <b style="color:#bc8cff;" id="projExp8h">â€”</b></div>
+            </div>
+          </div>
+          <div class="proj-card hours-24">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <b style="color:#e3b341; font-size:13px;">â˜€ï¸ 24 Saatlik AFK</b>
+              <span style="font-size:11px; color:#8b949e;">Tam GÃ¼n</span>
+            </div>
+            <div style="margin-top:10px; font-size:13px;">
+              <div>ğŸ’° AltÄ±n: <b style="color:#e3b341;" id="projGold24h">â€”</b></div>
+              <div style="margin-top:4px;">âœ¨ EXP: <b style="color:#bc8cff;" id="projExp24h">â€”</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE BOSS READINESS SECTION -->
+      <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--border-color);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+          <div>
+            <b style="color:#f85149; font-size:14px; display:flex; align-items:center; gap:6px;">
+              ğŸ¥Š AÅŸama Boss GeÃ§me HazÄ±rlÄ±k Analizi
+            </b>
+            <div style="font-size:12px; color:#8b949e; margin-top:2px;">SeÃ§tiÄŸiniz bÃ¶lÃ¼m Boss'unu kesebilmek iÃ§in mevcut DPS ve gÃ¼cÃ¼nÃ¼z yeterli mi?</div>
+          </div>
+          <select id="stageBossTargetSelect" onchange="renderStageBossReadiness(this.value)" style="background:#0d1117; border:1px solid var(--border-color); color:#fff; padding:6px 10px; border-radius:6px; font-size:12.5px; max-width:280px;">
+            <option value="">AÅŸama seÃ§iliyor...</option>
+          </select>
+        </div>
+        <div id="stageBossReadinessResult" style="background:#0d1117; border:1px solid var(--border-color); border-radius:8px; padding:14px;">
+          <span style="color:#8b949e;">Analiz yÃ¼kleniyor...</span>
+        </div>
+      </div>
+    </div>
+
     <div class="profile-grid-summary">
       <div class="summary-card">
         <div class="summary-card-title">Karakter Adı</div>
@@ -1533,6 +1807,60 @@ body {
     </div>
 
     <!-- Filter bar -->
+        <!-- NE TAKMALIYIM? EKÄ°PMAN KARÅILAÅTIRMA VE CANLI DPS SÄ°MÃœLATÃ–RÃœ -->
+    <div class="compare-panel" id="equipComparePanel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid var(--border-color); padding-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <h3 style="margin:0; color:#bc8cff; display:flex; align-items:center; gap:8px;">
+            âš”ï¸ "Ne TakmalÄ±yÄ±m?" â€” Ekipman KarÅŸÄ±laÅŸtÄ±rma & DPS SimÃ¼latÃ¶rÃ¼
+          </h3>
+          <span style="font-size:11px; padding:2px 8px; border-radius:10px; background:#1f6feb26; color:#58a6ff; border:1px solid #1f6feb40;">CanlÄ± DPS Motoru</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="small-btn" onclick="clearEquipComparison()" style="color:#8b949e;">ğŸ—‘ï¸ KarÅŸÄ±laÅŸtÄ±rmayÄ± Temizle</button>
+        </div>
+      </div>
+      <div style="font-size:12.5px; color:#8b949e; margin-top:8px;">
+        Tablodaki herhangi iki eÅŸyanÄ±n yanÄ±ndaki <b>"âš”ï¸ KarÅŸÄ±laÅŸtÄ±r"</b> butonuna basarak stat farklarÄ±nÄ± ve <b>karakterinize saÄŸlayacaÄŸÄ± net DPS kazancÄ±nÄ±/kaybÄ±nÄ±</b> anÄ±nda hesaplayÄ±n.
+      </div>
+
+      <div class="compare-slots-grid">
+        <!-- SLOT 1: CURRENT / BASE GEAR -->
+        <div class="compare-slot-card" id="compareSlotCard1">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span style="font-size:11.5px; font-weight:bold; color:#8b949e; text-transform:uppercase;">1. EÅŸya (Mevcut / Temel)</span>
+            <button class="small-btn" onclick="clearCompareSlot(1)" style="padding:1px 6px; font-size:11px;">âœ•</button>
+          </div>
+          <div id="compareSlotContent1" style="margin-top:10px;">
+            <div style="text-align:center; padding:20px; color:#8b949e; font-size:13px;">
+              AÅŸaÄŸÄ±daki tablodan 1. eÅŸyayÄ± seÃ§mek iÃ§in <b>"âš”ï¸ KarÅŸÄ±laÅŸtÄ±r"</b> butonuna basÄ±n.
+            </div>
+          </div>
+        </div>
+
+        <!-- VS BADGE -->
+        <div style="text-align:center;">
+          <div class="compare-vs-badge">VS</div>
+        </div>
+
+        <!-- SLOT 2: NEW / TARGET GEAR -->
+        <div class="compare-slot-card" id="compareSlotCard2">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span style="font-size:11.5px; font-weight:bold; color:#8b949e; text-transform:uppercase;">2. EÅŸya (Yeni / KarÅŸÄ±laÅŸtÄ±rÄ±lan)</span>
+            <button class="small-btn" onclick="clearCompareSlot(2)" style="padding:1px 6px; font-size:11px;">âœ•</button>
+          </div>
+          <div id="compareSlotContent2" style="margin-top:10px;">
+            <div style="text-align:center; padding:20px; color:#8b949e; font-size:13px;">
+              AÅŸaÄŸÄ±daki tablodan 2. eÅŸyayÄ± seÃ§mek iÃ§in <b>"âš”ï¸ KarÅŸÄ±laÅŸtÄ±r"</b> butonuna basÄ±n.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARISON RESULT / IMPACT CARD -->
+      <div id="compareImpactBox" style="display:none;"></div>
+    </div>
+
     <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
       <input type="text" id="equipSearch" placeholder="🔍 Ekipman adına göre ara..." oninput="renderEquip()" style="flex:1; min-width:200px; padding:8px 12px; background:#0d1117; border:1px solid var(--border-color); color:#fff; border-radius:8px;">
 
@@ -17439,6 +17767,7 @@ function applyUserData(data) {
 
   // EXP Progress Card in Profile
   renderExpCard(pLv, nextLv, curExpInLevel, maxExpInLevel, expRemaining, expRatePct, expTotal, curLvData.max_equip_tier, etaFormatted, curEps);
+  renderLevelEtaCalculator();
 
   // Render Gear & Trees
   renderProfileGear();
@@ -18156,13 +18485,15 @@ function renderEquip() {
       priceCellHtml = '<div style="text-align:right; color:#6e7681; font-size:13px;">—</div>';
     }
 
+    const compareBtnHtml = '<div style="margin-top:6px;"><button class="small-btn" onclick="setCompareEquip(\'' + e.id + '\')" style="font-size:11px; padding:3px 8px; background:#1f6feb26; border-color:#388bfd; color:#58a6ff; width:100%; font-weight:600;" title="Bu eÅŸyayÄ± KarÅŸÄ±laÅŸtÄ±rma Paneline al">âš”ï¸ KarÅŸÄ±laÅŸtÄ±r</button></div>';
+
     return '<tr>' +
       '<td><div style="display:flex; align-items:center; gap:10px;">' + iconHtml + '<div><b style="color:#f0f6fc;">' + primaryName + '</b><br><span style="font-size:11px; color:#8b949e;">' + secondaryName + '</span></div></div></td>' +
       '<td><span class="badge" style="background:#21262d; color:#d0d7de; font-size:12px;">' + slotText + '</span></td>' +
       '<td><span class="gear-tier-badge ' + tierClass + '">Tier ' + e.tier + '</span></td>' +
       '<td><b style="color:' + lvColor + ';">Lv.' + lv + '</b></td>' +
       '<td style="font-size:12.5px;">' + statsText + '</td>' +
-      '<td>' + priceCellHtml + '</td>' +
+      '<td>' + priceCellHtml + compareBtnHtml + '</td>' +
       '</tr>';
   }).join('');
 
@@ -18995,6 +19326,7 @@ function switchMainTab(tab) {
   } else if (tab === 'profile') {
     renderProfileGear();
     renderProfileTraining();
+    renderLevelEtaCalculator();
   } else if (tab === 'stage') {
     applyRealDps();
   } else if (tab === 'tree') {
@@ -19464,7 +19796,593 @@ document.addEventListener('DOMContentLoaded', function() {
   const savedLang = localStorage.getItem('genesis_helper_lang') || 'tr';
   switchLanguage(savedLang);
 });
+
+
+// ============================================================================
+// FEATURE ENHANCEMENTS: BUILD SHARING, EQUIP COMPARISON, LEVEL ETA & AFK PROJECTIONS
+// ============================================================================
+
+// --- 1. TOAST NOTIFICATION SYSTEM ---
+function showAppToast(msg, type) {
+  const toast = document.getElementById('appToast');
+  const msgEl = document.getElementById('appToastMsg');
+  const iconEl = document.getElementById('appToastIcon');
+  if (!toast || !msgEl) {
+    alert(msg);
+    return;
+  }
+  msgEl.innerText = msg;
+  toast.className = 'toast-notification ' + (type || 'info') + ' show';
+  if (iconEl) {
+    iconEl.innerText = type === 'success' ? '✅' : (type === 'warning' ? '⚠️' : (type === 'error' ? '❌' : 'ℹ️'));
+  }
+  if (window._toastTimer) clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function() {
+    toast.className = 'toast-notification ' + (type || 'info');
+  }, 3500);
+}
+
+// --- 2. BUILD PRESETS & SHARING ENGINE ---
+const BUILD_PRESETS = {
+  Ranged: {
+    aoe_farm: {
+      name: '⚡ AFK Hızlı Farm (AoE)',
+      desc: 'Alan etkili hasar ve saldırı hızı odaklı, maksimum canavar temizleme.',
+      branchOrder: [1, 2, 0, 3, 4]
+    },
+    single_boss: {
+      name: '🎯 Boss Avcısı (Tek Hedef DPS)',
+      desc: 'Tek hedefe odaklı azami hasar ve kritik vuruş artışı.',
+      branchOrder: [0, 2, 1, 3, 4]
+    },
+    balanced_tank: {
+      name: '🛡️ Dengeli Hayatta Kalma',
+      desc: 'Savunma, kaçınma ve can yenileme ile zorlu aşamalarda hayatta kalma.',
+      branchOrder: [3, 4, 2, 0, 1]
+    }
+  },
+  Melee: {
+    aoe_farm: {
+      name: '⚔️ Kasırga & Yarma (AoE Farm)',
+      desc: 'Geniş vuruş açısı ve hızlı saldırılarla kalabalık yaratık gruplarını biçer.',
+      branchOrder: [1, 2, 0, 3, 4]
+    },
+    single_boss: {
+      name: '🥊 Boss Ezici (Tek Hedef DPS)',
+      desc: 'Boss yaratıklara karşı maksimum ezici darbe ve kritik hasar.',
+      branchOrder: [0, 2, 1, 3, 4]
+    },
+    balanced_tank: {
+      name: '🏰 Yıkılmaz Tank (Maksimum Zırh)',
+      desc: 'Yüksek savunma, kalkan ve dayanıklılık ile ölümsüz yakın dövüş.',
+      branchOrder: [3, 4, 2, 0, 1]
+    }
+  },
+  Mage: {
+    aoe_farm: {
+      name: '🔥 Kıyamet / Meteor (Devasa AoE)',
+      desc: 'Geniş alan büyüleri ve mana akışı ile ekranı temizleyen büyücü.',
+      branchOrder: [1, 2, 0, 3, 4]
+    },
+    single_boss: {
+      name: '❄️ Don & Ateş Burst (Boss Eritici)',
+      desc: 'Büyük bosslara karşı konsantre büyü hasarı ve element zayıflatması.',
+      branchOrder: [0, 2, 1, 3, 4]
+    },
+    balanced_tank: {
+      name: '✨ Hızlı Dolum & Büyü Kalkanı',
+      desc: 'Hızlı bekleme süresi, mana kalkanı ve kendini yenileme.',
+      branchOrder: [4, 3, 2, 0, 1]
+    }
+  }
+};
+
+function applyBuildPreset(presetKey) {
+  if (!presetKey) return;
+  const classTree = skillTrees && skillTrees[currentClass];
+  if (!classTree) return;
+
+  const preset = BUILD_PRESETS[currentClass] && BUILD_PRESETS[currentClass][presetKey];
+  if (!preset) return;
+
+  const maxPoints = getTotalSkillPointsPool();
+  let remaining = maxPoints;
+
+  // Clear allocations
+  for (let k in skillAllocations) {
+    skillAllocations[k] = 0;
+  }
+
+  // Allocate points following branch priority
+  const branches = classTree.branches;
+  for (let branchIdx of preset.branchOrder) {
+    if (!branches[branchIdx]) continue;
+    const skills = branches[branchIdx].skills || [];
+
+    for (let skill of skills) {
+      if (remaining <= 0) break;
+      if (skill.req_player_level > maxPoints) continue;
+
+      // Ensure prerequisite is met
+      if (skill.pre_req) {
+        const parentId = String(skill.pre_req.parent_id);
+        const reqParentLv = skill.pre_req.req_level || 1;
+        const curParentLv = skillAllocations[parentId] || 0;
+        if (curParentLv < reqParentLv) {
+          const needed = reqParentLv - curParentLv;
+          if (remaining >= needed) {
+            skillAllocations[parentId] = reqParentLv;
+            remaining -= needed;
+          } else {
+            continue;
+          }
+        }
+      }
+
+      // Allocate up to 10 or remaining points
+      const toAlloc = Math.min(10, remaining);
+      skillAllocations[String(skill.id)] = toAlloc;
+      remaining -= toAlloc;
+    }
+  }
+
+  saveSkillAllocations();
+  updateTreeHeader();
+  renderTree();
+  showAppToast('"' + preset.name + '" şablonu uygulandı! (' + (maxPoints - remaining) + ' / ' + maxPoints + ' puan dağıtıldı)', 'success');
+  
+  const selectEl = document.getElementById('buildPresetSelect');
+  if (selectEl) selectEl.value = '';
+}
+
+function shareCurrentBuild() {
+  const activePairs = [];
+  for (let k in skillAllocations) {
+    if (skillAllocations[k] > 0) {
+      activePairs.push(k + ':' + skillAllocations[k]);
+    }
+  }
+
+  if (activePairs.length === 0) {
+    showAppToast('Ağaçta henüz puan verilmiş yetenek yok!', 'warning');
+    return;
+  }
+
+  const buildData = currentClass + '_' + activePairs.join(',');
+  const shareUrl = window.location.origin + window.location.pathname + '#build=' + encodeURIComponent(buildData);
+  window.location.hash = 'build=' + encodeURIComponent(buildData);
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareUrl).then(function() {
+      showAppToast('Build bağlantısı panoya kopyalandı! 📋 Arkadaşlarınızla paylaşabilirsiniz.', 'success');
+    }).catch(function() {
+      prompt('Build bağlantınızı kopyalayın:', shareUrl);
+    });
+  } else {
+    prompt('Build bağlantınızı kopyalayın:', shareUrl);
+  }
+}
+
+function quickSaveBuildSlot(slot) {
+  const key = 'genesis_custom_build_' + currentClass + '_slot_' + slot;
+  localStorage.setItem(key, JSON.stringify(skillAllocations));
+  showAppToast(currentClass + ' Yuva ' + slot + ' build dağılımı kaydedildi! 💾', 'success');
+}
+
+function quickLoadBuildSlot(slot) {
+  const key = 'genesis_custom_build_' + currentClass + '_slot_' + slot;
+  const raw = localStorage.getItem(key);
+  if (!raw) {
+    showAppToast('Yuva ' + slot + ' henüz boş! Önce "Kaydet ' + slot + '" butonuna basın.', 'warning');
+    return;
+  }
+  try {
+    const saved = JSON.parse(raw);
+    for (let k in saved) {
+      skillAllocations[k] = saved[k];
+    }
+    saveSkillAllocations();
+    updateTreeHeader();
+    renderTree();
+    showAppToast(currentClass + ' Yuva ' + slot + ' dağılımı yüklendi! 📂', 'success');
+  } catch(e) {
+    showAppToast('Kayıtlı build yüklenirken hata oluştu.', 'error');
+  }
+}
+
+function checkUrlHashForBuild() {
+  const hash = window.location.hash;
+  if (!hash || hash.indexOf('build=') === -1) return;
+
+  try {
+    const raw = decodeURIComponent(hash.substring(hash.indexOf('build=') + 6));
+    const parts = raw.split('_');
+    if (parts.length < 2) return;
+
+    const cls = parts[0];
+    const pairs = parts[1].split(',');
+
+    if (['Melee', 'Ranged', 'Mage'].includes(cls)) {
+      if (typeof switchClass === 'function') switchClass(cls);
+    }
+
+    for (let p of pairs) {
+      const parts2 = p.split(':');
+      const id = parts2[0];
+      const lv = parts2[1];
+      if (id && lv) {
+        skillAllocations[String(id)] = parseInt(lv) || 0;
+      }
+    }
+
+    saveSkillAllocations();
+    updateTreeHeader();
+    renderTree();
+    showAppToast('Paylaşılan ' + cls + ' build başarıyla yüklendi! 🌳', 'info');
+  } catch(e) {
+    console.error('Failed to parse build hash', e);
+  }
+}
+
+// --- 3. "NE TAKMALIYIM?" EKİPMAN KARŞILAŞTIRMA VE CANLI DPS SİMÜLATÖRÜ ---
+window.compareSlot1 = null;
+window.compareSlot2 = null;
+
+function setCompareEquip(equipId) {
+  if (typeof equipments === 'undefined') return;
+  const item = equipments.find(function(e) { return String(e.id) === String(equipId); });
+  if (!item) return;
+
+  if (!window.compareSlot1) {
+    window.compareSlot1 = item;
+    showAppToast('1. Eşya olarak "' + (item.name_en || item.name_vi) + '" seçildi.', 'info');
+  } else if (!window.compareSlot2) {
+    window.compareSlot2 = item;
+    showAppToast('2. Eşya olarak "' + (item.name_en || item.name_vi) + '" seçildi.', 'success');
+  } else {
+    window.compareSlot2 = item;
+    showAppToast('2. Eşya güncellendi: "' + (item.name_en || item.name_vi) + '"', 'info');
+  }
+
+  renderEquipComparison();
+
+  const panel = document.getElementById('equipComparePanel');
+  if (panel) {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function clearCompareSlot(slot) {
+  if (slot === 1) window.compareSlot1 = null;
+  if (slot === 2) window.compareSlot2 = null;
+  renderEquipComparison();
+}
+
+function clearEquipComparison() {
+  window.compareSlot1 = null;
+  window.compareSlot2 = null;
+  renderEquipComparison();
+  showAppToast('Karşılaştırma yuvaları temizlendi.', 'info');
+}
+
+function parseEquipStats(e) {
+  if (!e) return { attack: 0, attackPct: 0, critRate: 0, critDmg: 0, atkSpeed: 0, defense: 0, hp: 0, rawStats: [] };
+  const res = { attack: 0, attackPct: 0, critRate: 0, critDmg: 0, atkSpeed: 0, defense: 0, hp: 0, rawStats: [] };
+  const isTr = (localStorage.getItem('genesis_helper_lang') || 'tr') === 'tr';
+
+  (e.stats || []).forEach(function(s) {
+    const text = (s.text_en || s.text || '').trim();
+    res.rawStats.push(isTr && typeof translateTurkishText === 'function' ? translateTurkishText(text) : text);
+
+    const match = text.match(/([+\-]?\d+(?:\.\d+)?)\s*(%?)/);
+    const val = match ? parseFloat(match[1]) : 0;
+    const isPct = match && match[2] === '%';
+
+    const lower = text.toLowerCase();
+    if (lower.includes('attack speed') || lower.includes('tốc độ đánh')) {
+      res.atkSpeed += val;
+    } else if (lower.includes('critical damage') || lower.includes('sát thương chí mạng')) {
+      res.critDmg += val;
+    } else if (lower.includes('critical rate') || lower.includes('tỷ lệ chí mạng')) {
+      res.critRate += val;
+    } else if (lower.includes('attack') || lower.includes('sát thương') || lower.includes('tấn công')) {
+      if (isPct) res.attackPct += val; else res.attack += val;
+    } else if (lower.includes('defense') || lower.includes('giáp') || lower.includes('phòng thủ')) {
+      res.defense += val;
+    } else if (lower.includes('hp') || lower.includes('máu')) {
+      res.hp += val;
+    }
+  });
+
+  return res;
+}
+
+function renderCompareSlotCard(slotNum, item) {
+  const container = document.getElementById('compareSlotContent' + slotNum);
+  if (!container) return;
+
+  if (!item) {
+    container.innerHTML = '<div style="text-align:center; padding:24px 10px; color:#8b949e; font-size:13px;">' +
+      'Aşağıdaki tablodan ' + slotNum + '. eşyayı seçmek için <b>"⚔️ Karşılaştır"</b> butonuna basın.' +
+      '</div>';
+    return;
+  }
+
+  const isTr = (localStorage.getItem('genesis_helper_lang') || 'tr') === 'tr';
+  const tierNum = parseInt(item.tier) || 1;
+  const tierClass = 't' + Math.min(10, Math.max(1, tierNum));
+  const iconHtml = typeof getItemIconHtml === 'function' ? getItemIconHtml(item.icon, '⚔️', 'equip-icon-img', tierNum) : '⚔️';
+  const primaryName = item.name_en || item.name_vi;
+  const slotText = isTr && typeof I18N_TR !== 'undefined' && I18N_TR[item.slot_name] ? I18N_TR[item.slot_name] : (item.slot_name || '');
+  const parsed = parseEquipStats(item);
+
+  container.innerHTML = '<div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">' +
+    iconHtml +
+    '<div>' +
+      '<div style="font-weight:bold; font-size:14.5px; color:#f0f6fc;">' + primaryName + '</div>' +
+      '<div style="display:flex; gap:6px; margin-top:4px;">' +
+        '<span class="badge" style="background:#21262d; font-size:11px;">' + slotText + '</span>' +
+        '<span class="gear-tier-badge ' + tierClass + '" style="font-size:11px;">Tier ' + item.tier + '</span>' +
+        '<span style="font-size:11.5px; color:#58a6ff; font-weight:bold;">Lv.' + (item.level_req || 1) + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</div>' +
+  '<div style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:10px; font-size:12.5px; line-height:1.6;">' +
+    (parsed.rawStats.length > 0 ? parsed.rawStats.map(function(s){ return '<div>• ' + s + '</div>'; }).join('') : '<span style="color:#8b949e;">Özel stat yok</span>') +
+  '</div>';
+}
+
+function renderEquipComparison() {
+  renderCompareSlotCard(1, window.compareSlot1);
+  renderCompareSlotCard(2, window.compareSlot2);
+
+  const impactBox = document.getElementById('compareImpactBox');
+  if (!impactBox) return;
+
+  if (!window.compareSlot1 || !window.compareSlot2) {
+    impactBox.style.display = 'none';
+    return;
+  }
+
+  impactBox.style.display = 'block';
+
+  const stat1 = parseEquipStats(window.compareSlot1);
+  const stat2 = parseEquipStats(window.compareSlot2);
+
+  const baseStats = (userProfile && userProfile.combatStats) ? userProfile.combatStats : {};
+  const curAtk = baseStats.finalAttack || 1337;
+  const curCritRate = (baseStats.finalCriticalRate || 23.6) / 100;
+  const curCritDmg = (baseStats.finalCriticalDamage || 192.7) / 100;
+  const curSpeed = (baseStats.finalAttackSpeed || 115.95) / 100;
+  const curDps = (window.__lastTotalDps && window.__lastTotalDps > 0) ? window.__lastTotalDps : (baseStats.realDps || 3415);
+
+  const dAtk = (stat2.attack - stat1.attack);
+  const dAtkPct = (stat2.attackPct - stat1.attackPct);
+  const dCritRate = (stat2.critRate - stat1.critRate);
+  const dCritDmg = (stat2.critDmg - stat1.critDmg);
+  const dSpeed = (stat2.atkSpeed - stat1.atkSpeed);
+  const dDef = (stat2.defense - stat1.defense);
+  const dHp = (stat2.hp - stat1.hp);
+
+  const effCrit1 = 1 + Math.max(0, curCritRate) * Math.max(0, curCritDmg);
+  const effCrit2 = 1 + Math.max(0, curCritRate + dCritRate / 100) * Math.max(0, curCritDmg + dCritDmg / 100);
+
+  const effAtk1 = curAtk;
+  const effAtk2 = Math.max(10, (curAtk + dAtk) * (1 + dAtkPct / 100));
+
+  const effSpd1 = curSpeed;
+  const effSpd2 = Math.max(0.2, curSpeed + dSpeed / 100);
+
+  const mult1 = effAtk1 * effCrit1 * effSpd1;
+  const mult2 = effAtk2 * effCrit2 * effSpd2;
+
+  const pctChange = ((mult2 / mult1) - 1) * 100;
+  const deltaDps = curDps * (pctChange / 100);
+  const isGain = pctChange >= 0.05;
+  const isLoss = pctChange <= -0.05;
+
+  const boxClass = isGain ? 'gain' : (isLoss ? 'loss' : 'neutral');
+  const dpsSign = deltaDps > 0 ? '+' : '';
+  const pctSign = pctChange > 0 ? '+' : '';
+
+  const renderDiffPill = function(label, val, unit) {
+    if (val === 0 || isNaN(val)) return '';
+    const sign = val > 0 ? '+' : '';
+    const colorClass = val > 0 ? 'diff-badge-pos' : 'diff-badge-neg';
+    return '<span style="background:#0d1117; border:1px solid #30363d; padding:3px 8px; border-radius:6px; font-size:12px;">' +
+      label + ': <b class="' + colorClass + '">' + sign + (Math.round(val * 10) / 10) + (unit || '') + '</b>' +
+      '</span>';
+  };
+
+  const diffPillsHtml = [
+    renderDiffPill('Saldırı', dAtk, ''),
+    renderDiffPill('Saldırı %', dAtkPct, '%'),
+    renderDiffPill('Kritik Oranı', dCritRate, '%'),
+    renderDiffPill('Kritik Hasar', dCritDmg, '%'),
+    renderDiffPill('Saldırı Hızı', dSpeed, '%'),
+    renderDiffPill('Savunma', dDef, ''),
+    renderDiffPill('Can (HP)', dHp, '')
+  ].filter(Boolean).join(' ');
+
+  impactBox.className = 'dps-impact-box ' + boxClass;
+  impactBox.innerHTML = '<div style="flex:1;">' +
+    '<div style="font-size:16px; font-weight:bold; display:flex; align-items:center; gap:8px;">' +
+      (isGain ? '🚀 Tavsiye: 2. Eşyayı Kuşanmalısın!' : (isLoss ? '⚠️ Tavsiye: 1. Mevcut Eşyan Daha Güçlü!' : '⚖️ İki Eşya Benzer DPS Sağlıyor')) +
+      '<span style="font-size:14px; font-weight:normal;">(' + pctSign + pctChange.toFixed(1) + '% Net Hasar Farkı)</span>' +
+    '</div>' +
+    '<div style="font-size:12.5px; margin-top:6px; opacity:0.9;">' +
+      'Tahmini Net DPS Değişimi: <b>' + dpsSign + Math.round(deltaDps).toLocaleString() + ' DPS</b> ' +
+      '(Mevcut ' + Math.round(curDps).toLocaleString() + ' DPS ➔ <b>' + Math.round(curDps + deltaDps).toLocaleString() + ' DPS</b>)' +
+    '</div>' +
+    (diffPillsHtml ? '<div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">' + diffPillsHtml + '</div>' : '') +
+  '</div>' +
+  '<div style="text-align:right;">' +
+    '<div style="font-size:26px; font-weight:bold;">' + pctSign + pctChange.toFixed(1) + '%</div>' +
+    '<div style="font-size:11px; opacity:0.8;">Gerçek DPS Değişimi</div>' +
+  '</div>';
+}
+
+// --- 4. HEDEF SEVİYE & AFK KAZANÇ VE BOSS HAZIRLIK ANALİZİ ---
+function onTargetLevelChanged(targetLv) {
+  renderLevelEtaCalculator(parseInt(targetLv) || 50);
+}
+
+function renderLevelEtaCalculator(targetLv) {
+  if (!targetLv) {
+    const sel = document.getElementById('targetLevelSelect');
+    targetLv = sel ? (parseInt(sel.value) || 50) : 50;
+  }
+
+  const pLv = (userProfile && userProfile.level) ? userProfile.level : 32;
+  const totalExpCur = (userProfile && userProfile.currencies && userProfile.currencies['2000']) ? Number(userProfile.currencies['2000'].count) : 9914797;
+  const curEps = (typeof calculateRecentFarmExpPerSec === 'function' ? calculateRecentFarmExpPerSec(20) : 0) || 125;
+  const curGps = (userProfile && userProfile.recentFarmGps) ? userProfile.recentFarmGps : 280;
+
+  const targetData = (typeof userLevelsData !== 'undefined' && userLevelsData[targetLv]) ? userLevelsData[targetLv] : null;
+  const targetReqExp = targetData ? targetData.req_exp : 324106451;
+
+  const remExpToTarget = Math.max(0, targetReqExp - totalExpCur);
+
+  const remExpEl = document.getElementById('targetEtaRemExp');
+  if (remExpEl) {
+    remExpEl.innerText = remExpToTarget > 1000000000 ? (remExpToTarget / 1000000000).toFixed(2) + 'B EXP' :
+                         (remExpToTarget > 1000000 ? (remExpToTarget / 1000000).toFixed(2) + 'M EXP' : Number(remExpToTarget).toLocaleString() + ' EXP');
+  }
+
+  const durEl = document.getElementById('targetEtaDuration');
+  const dateEl = document.getElementById('targetEtaDate');
+  const noteEl = document.getElementById('targetEtaCurExpProgress');
+
+  if (targetLv <= pLv) {
+    if (durEl) durEl.innerText = '✅ Ulaşıldı!';
+    if (dateEl) dateEl.innerText = 'Tebrikler, bu seviyedesiniz!';
+    if (noteEl) noteEl.innerText = 'Hedef seviye mevcut seviyenizden küçük';
+  } else {
+    const secondsNeeded = Math.round(remExpToTarget / (curEps > 0 ? curEps : 125));
+    const days = Math.floor(secondsNeeded / 86400);
+    const hours = Math.floor((secondsNeeded % 86400) / 3600);
+    const mins = Math.floor((secondsNeeded % 3600) / 60);
+
+    let durationStr = '';
+    if (days > 0) durationStr += days + ' gün ';
+    if (hours > 0 || days > 0) durationStr += hours + ' sa ';
+    durationStr += mins + ' dk';
+
+    if (durEl) durEl.innerText = durationStr;
+    if (noteEl) noteEl.innerText = 'Mevcut Seviye ' + pLv + ' ➔ ' + targetLv + ' (' + Number(remExpToTarget).toLocaleString() + ' EXP)';
+
+    const targetDate = new Date(Date.now() + secondsNeeded * 1000);
+    const options = { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+    if (dateEl) {
+      dateEl.innerText = targetDate.toLocaleDateString('tr-TR', options);
+    }
+  }
+
+  const calcAfk = function(hours) {
+    const totalSec = hours * 3600;
+    const goldEarned = Math.round(totalSec * curGps);
+    const expEarned = Math.round(totalSec * curEps);
+    const goldStr = goldEarned > 1000000 ? (goldEarned / 1000000).toFixed(2) + 'M' : Number(goldEarned).toLocaleString();
+    const expStr = expEarned > 1000000 ? (expEarned / 1000000).toFixed(2) + 'M' : Number(expEarned).toLocaleString();
+    return { goldStr: goldStr, expStr: expStr };
+  };
+
+  const p4 = calcAfk(4);
+  const p8 = calcAfk(8);
+  const p24 = calcAfk(24);
+
+  if (document.getElementById('projGold4h')) document.getElementById('projGold4h').innerText = '+' + p4.goldStr;
+  if (document.getElementById('projExp4h')) document.getElementById('projExp4h').innerText = '+' + p4.expStr;
+  if (document.getElementById('projGold8h')) document.getElementById('projGold8h').innerText = '+' + p8.goldStr;
+  if (document.getElementById('projExp8h')) document.getElementById('projExp8h').innerText = '+' + p8.expStr;
+  if (document.getElementById('projGold24h')) document.getElementById('projGold24h').innerText = '+' + p24.goldStr;
+  if (document.getElementById('projExp24h')) document.getElementById('projExp24h').innerText = '+' + p24.expStr;
+
+  populateStageBossDropdown();
+}
+
+function populateStageBossDropdown() {
+  const sel = document.getElementById('stageBossTargetSelect');
+  if (!sel || typeof stageData === 'undefined' || sel.options.length > 1) return;
+
+  sel.innerHTML = '';
+  const bossStages = stageData.filter(function(s) {
+    const tid = String(s.stage_id);
+    return tid.endsWith('05') || tid.endsWith('10') || (s.display_tag && s.display_tag.includes('Boss'));
+  }).slice(0, 30);
+
+  bossStages.forEach(function(s) {
+    const opt = document.createElement('option');
+    opt.value = s.stage_id;
+    let tag = s.display_tag || s.stage_id;
+    if (typeof translateTurkishText === 'function') tag = translateTurkishText(tag);
+    opt.innerText = tag;
+    sel.appendChild(opt);
+  });
+
+  if (bossStages.length > 0) {
+    const curTid = (userProfile && userProfile.stageTid) ? userProfile.stageTid : 13208;
+    const closest = bossStages.find(function(s){ return s.stage_id >= curTid; }) || bossStages[0];
+    sel.value = closest.stage_id;
+    renderStageBossReadiness(closest.stage_id);
+  }
+}
+
+function renderStageBossReadiness(stageId) {
+  const container = document.getElementById('stageBossReadinessResult');
+  if (!container || typeof stageData === 'undefined') return;
+
+  const stage = stageData.find(function(s){ return String(s.stage_id) === String(stageId); });
+  if (!stage) return;
+
+  const playerDps = (window.__lastTotalDps && window.__lastTotalDps > 0) ? window.__lastTotalDps : 
+                    ((userProfile && userProfile.combatStats && userProfile.combatStats.realDps) ? userProfile.combatStats.realDps : 3415);
+
+  const bossHp = stage.boss_hp || (stage.monsters_hp ? stage.monsters_hp * 0.6 : 180000);
+  const recDps = Math.round(bossHp / 55);
+  const ratio = Math.min(2.0, playerDps / (recDps > 0 ? recDps : 1));
+  const pctReady = Math.min(100, Math.round(ratio * 100));
+
+  const isReady = playerDps >= recDps;
+  const dpsDiff = playerDps - recDps;
+
+  container.innerHTML = '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">' +
+    '<div>' +
+      '<div style="font-size:15px; font-weight:bold; color:' + (isReady ? '#7ee787' : '#ffa657') + ';">' +
+        (isReady ? '✅ Bu Boss\'u Kesmek İçin Hazırsınız!' : '⚠️ Hasarınız Henüz Yetersiz (%' + pctReady + ' Hazır)') +
+      '</div>' +
+      '<div style="font-size:12.5px; color:#8b949e; margin-top:4px;">' +
+        'Boss Canı: <b>' + Number(bossHp).toLocaleString() + ' HP</b> | Tavsiye Edilen DPS: <b style="color:#f0f6fc;">' + Number(recDps).toLocaleString() + ' DPS</b>' +
+      '</div>' +
+    '</div>' +
+    '<div style="text-align:right;">' +
+      '<div style="font-size:18px; font-weight:bold; color:' + (isReady ? '#7ee787' : '#f85149') + ';">' +
+        (dpsDiff >= 0 ? '+' : '') + Number(dpsDiff).toLocaleString() + ' DPS Fark' +
+      '</div>' +
+      '<div style="font-size:11px; color:#8b949e;">Mevcut DPS: ' + Number(Math.round(playerDps)).toLocaleString() + '</div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="boss-gauge-bar">' +
+    '<div class="boss-gauge-fill" style="width:' + pctReady + '%; background:' + (isReady ? 'linear-gradient(90deg, #238636, #2ea043)' : 'linear-gradient(90deg, #bd561d, #f0883e)') + ';"></div>' +
+  '</div>' +
+  '<div style="display:flex; justify-content:space-between; font-size:11px; color:#8b949e;">' +
+    '<span>0 DPS</span>' +
+    '<span>Gereken: ' + Number(recDps).toLocaleString() + ' DPS</span>' +
+    '<span>%100+ Hazırlık</span>' +
+  '</div>';
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  setTimeout(checkUrlHashForBuild, 250);
+});
+window.addEventListener('hashchange', checkUrlHashForBuild);
+
 </script>
 
+<!-- GLOBAL TOAST NOTIFICATION CONTAINER -->
+<div id="appToast" class="toast-notification">
+  <span id="appToastIcon" style="font-size:20px;">âœ…</span>
+  <span id="appToastMsg">Ä°ÅŸlem baÅŸarÄ±yla tamamlandÄ±.</span>
+</div>
 </body>
 </html>
