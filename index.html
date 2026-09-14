@@ -650,16 +650,16 @@ body {
     <div class="player-avatar">⚔️</div>
     <div class="player-name-wrap">
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:nowrap;">
-        <div class="player-name notranslate" id="barPlayerName" translate="no" style="margin-bottom:0; white-space:nowrap;">Lee <span style="font-size:12px; background:#1f6feb; padding:2px 8px; border-radius:10px; color:#fff;">Cấp 35</span></div>
+        <div class="player-name notranslate" id="barPlayerName" translate="no" style="margin-bottom:0; white-space:nowrap;">Lee <span style="font-size:12px; background:#1f6feb; padding:2px 8px; border-radius:10px; color:#fff;">Seviye 35</span></div>
         <div class="lang-switch-group notranslate" id="langSwitchGroup" translate="no" title="Chuyển đổi ngôn ngữ / Switch Language">
-          <button type="button" class="lang-btn active notranslate" id="langBtnVi" onclick="switchLanguage('vi')" translate="no" title="Tiếng Việt">
+          <button type="button" class="lang-btn notranslate" id="langBtnVi" onclick="switchLanguage('vi')" translate="no" title="Tiếng Việt">
             <svg class="lang-flag" width="16" height="11" viewBox="0 0 900 600">
               <rect width="900" height="600" fill="#da251d"/>
               <polygon points="450,150 491,277 625,277 516,356 558,483 450,404 342,483 384,356 275,277 409,277" fill="#ff0"/>
             </svg>
             <span>Tiếng Việt</span>
           </button>
-          <button type="button" class="lang-btn notranslate" id="langBtnEn" onclick="switchLanguage('en')" translate="no" title="Tiếng Anh">
+          <button type="button" class="lang-btn notranslate" id="langBtnEn" onclick="switchLanguage('en')" translate="no" title="English">
             <svg class="lang-flag" width="16" height="11" viewBox="0 0 60 30">
               <clipPath id="engDiag"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
               <rect width="60" height="30" fill="#012169"/>
@@ -668,20 +668,26 @@ body {
               <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
               <path d="M30,0 v30 M0,15 h60" stroke="#ce1124" stroke-width="6"/>
             </svg>
-            <span>Tiếng Anh</span>
+            <span>English</span>
           </button>
-          <button type="button" class="lang-btn notranslate" id="langBtnTr" onclick="switchLanguage('tr')" translate="no" title="Türkçe">
+          <button type="button" class="lang-btn active notranslate" id="langBtnTr" onclick="switchLanguage('tr')" translate="no" title="Türkçe">
+            <svg class="lang-flag" width="16" height="11" viewBox="0 0 1200 800">
+              <rect width="1200" height="800" fill="#e30a17"/>
+              <circle cx="425" cy="400" r="200" fill="#fff"/>
+              <circle cx="475" cy="400" r="160" fill="#e30a17"/>
+              <polygon points="583.33,400 700.86,438.19 628.21,338.19 628.21,461.81 700.86,361.81" fill="#fff"/>
+            </svg>
             <span>Türkçe</span>
           </button>
         </div>
       </div>
-      <div class="player-meta notranslate" id="barPlayerMeta" translate="no">Ải hiện tại: 1-1 Dễ | Lực chiến: 100</div>
+      <div class="player-meta notranslate" id="barPlayerMeta" translate="no">Mevcut Bölüm: 1-1 Kolay | Savaş Gücü: 100</div>
     </div>
   </div>
 
   <div class="player-stats">
-    <div class="stat-pill gold">💰 Vàng: <b id="barGold">0</b></div>
-    <div class="stat-pill gem">💎 Kim Cương: <b id="barGem">0</b></div>
+    <div class="stat-pill gold">💰 Altın: <b id="barGold">0</b></div>
+    <div class="stat-pill gem">💎 Elmas: <b id="barGem">0</b></div>
     
     <!-- DETAILED EXP PILL WITH MINI PROGRESS BAR -->
     <div class="stat-pill exp" id="barExpPill" title="Tiến độ cấp độ hiện tại">
@@ -694,15 +700,15 @@ body {
       </div>
     </div>
 
-    <div class="stat-pill cp">⚔️ Lực chiến: <b id="barCp">100</b></div>
-    <div class="stat-pill dps">⚡ DPS Thực Tế: <b id="barDps">--</b></div>
+    <div class="stat-pill cp">⚔️ Savaş Gücü: <b id="barCp">100</b></div>
+    <div class="stat-pill dps">⚡ Gerçek DPS: <b id="barDps">--</b></div>
   </div>
 
   <div class="player-actions">
-    <button class="live-toggle-btn notranslate" id="liveSyncToggleBtn" translate="no" onclick="toggleLiveSync()">🟢 Tự Động Cập Nhật (BẬT)</button>
+    <button class="live-toggle-btn notranslate" id="liveSyncToggleBtn" translate="no" onclick="toggleLiveSync()">🟢 Otomatik Güncelleme (AÇIK)</button>
     <div class="ws-badge online notranslate" id="wsStatusBadge" translate="no">
       <span class="pulse-dot"></span>
-      <span id="wsStatusText" class="notranslate" translate="no">Đang kết nối Genesis.exe</span>
+      <span id="wsStatusText" class="notranslate" translate="no">Genesis.exe Bağlanıyor...</span>
     </div>
   </div>
 </div>
@@ -713,15 +719,15 @@ body {
     <span style="font-size:24px;">⚡</span>
     <div>
       <div style="display:flex; align-items:center; gap:8px;">
-        <b style="color:#ff7b72; font-size:14.5px;" id="dcBannerTitle">Mất kết nối hoặc văng game!</b>
-        <span style="background:#238636; color:#fff; font-size:11px; font-weight:bold; padding:2px 8px; border-radius:10px;">⚡ TỰ ĐỘNG BẬT LẠI GAME: ĐANG CHẠY</span>
+        <b style="color:#ff7b72; font-size:14.5px;" id="dcBannerTitle">Bağlantı koptu veya oyun kapandı!</b>
+        <span style="background:#238636; color:#fff; font-size:11px; font-weight:bold; padding:2px 8px; border-radius:10px;">⚡ OTOMATİK YENİDEN BAŞLATMA: AKTİF</span>
       </div>
-      <div style="font-size:12px; color:#c9d1d9; margin-top:3px;" id="dcBannerDesc">⚡ Đang tự động mở lại game qua Steam (hoàn toàn tự động, bạn không cần bấm gì cả).</div>
-      <div style="font-size:11px; color:#8b949e; margin-top:2px;">💡 <i>Lưu ý: Nếu trình duyệt hiện hộp thoại hỏi "Mở Steam?", hãy tích chọn <b>"Luôn cho phép" (Always allow)</b> để mọi lần sau mở tự động 100%.</i></div>
+      <div style="font-size:12px; color:#c9d1d9; margin-top:3px;" id="dcBannerDesc">⚡ Oyun Steam üzerinden otomatik olarak yeniden açılıyor (tamamen otomatiktir, bir şeye basmanız gerekmez).</div>
+      <div style="font-size:11px; color:#8b949e; margin-top:2px;">💡 <i>Not: Tarayıcınız "Steam Açılsın mı?" uyarısı gösterirse, tüm sonraki açılışların otomatik olması için <b>"Her zaman izin ver" (Always allow)</b> seçeneğini işaretleyin.</i></div>
     </div>
   </div>
   <div style="display:flex; align-items:center; gap:8px;">
-    <button class="small-btn" onclick="triggerSteamRelaunch()" style="background:#238636; color:#fff; font-weight:bold; padding:7px 14px; font-size:12px;" title="Bấm để kích hoạt mở lại ngay nếu muốn">🚀 Mở Thủ Công (Steam)</button>
+    <button class="small-btn" onclick="triggerSteamRelaunch()" style="background:#238636; color:#fff; font-weight:bold; padding:7px 14px; font-size:12px;" title="İsterseniz oyunu şimdi hemen başlatın">🚀 Manuel Başlat (Steam)</button>
     <button class="small-btn" onclick="openWatchdogModal()" style="background:#30363d; color:#c9d1d9; padding:7px 14px; font-size:12px;">🛠️ Treo Đêm 24/7 (Watchdog)</button>
     <button onclick="dismissDisconnectBanner()" style="background:transparent; border:none; color:#8b949e; cursor:pointer; font-size:15px; padding:0 4px;" title="Đóng thông báo">✕</button>
   </div>
@@ -12551,28 +12557,30 @@ function updateLiveSyncStatus(state) {
   const btn = document.getElementById('liveSyncToggleBtn');
   if (!badge || !text || !btn) return;
 
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
 
   if (state === 'online') {
     badge.className = 'ws-badge online notranslate';
-    text.innerText = isEn ? ('🟢 Live (' + new Date().toLocaleTimeString() + ')') : ('🟢 Trực tiếp (' + new Date().toLocaleTimeString() + ')');
+    text.innerText = isTr ? ('🟢 Canlı (' + new Date().toLocaleTimeString() + ')') : (isEn ? ('🟢 Live (' + new Date().toLocaleTimeString() + ')') : ('🟢 Trực tiếp (' + new Date().toLocaleTimeString() + ')'));
     btn.className = 'live-toggle-btn notranslate';
-    btn.innerHTML = isEn ? '🟢 Auto Update (ON)' : '🟢 Tự Động Cập Nhật (BẬT)';
+    btn.innerHTML = isTr ? '🟢 Otomatik Güncelleme (AÇIK)' : (isEn ? '🟢 Auto Update (ON)' : '🟢 Tự Động Cập Nhật (BẬT)');
   } else if (state === 'connecting') {
     badge.className = 'ws-badge connecting notranslate';
-    text.innerText = isEn ? '🔄 Connecting Genesis.exe...' : '🔄 Đang kết nối Genesis.exe...';
+    text.innerText = isTr ? '🔄 Genesis.exe Bağlanıyor...' : (isEn ? '🔄 Connecting Genesis.exe...' : '🔄 Đang kết nối Genesis.exe...');
     btn.className = 'live-toggle-btn notranslate';
-    btn.innerHTML = isEn ? '🔄 Connecting...' : '🔄 Đang kết nối...';
+    btn.innerHTML = isTr ? '🔄 Bağlanıyor...' : (isEn ? '🔄 Connecting...' : '🔄 Đang kết nối...');
   } else if (state === 'paused') {
     badge.className = 'ws-badge paused notranslate';
-    text.innerText = isEn ? '🟡 Update Paused' : '🟡 Đã tạm dừng cập nhật';
+    text.innerText = isTr ? '🟡 Güncelleme Duraklatıldı' : (isEn ? '🟡 Update Paused' : '🟡 Đã tạm dừng cập nhật');
     btn.className = 'live-toggle-btn paused notranslate';
-    btn.innerHTML = isEn ? '▶️ Turn On Auto Update' : '▶️ Bật Tự Động Cập Nhật';
+    btn.innerHTML = isTr ? '▶️ Otomatik Güncellemeyi Aç' : (isEn ? '▶️ Turn On Auto Update' : '▶️ Bật Tự Động Cập Nhật');
   } else {
     badge.className = 'ws-badge offline notranslate';
-    text.innerText = isEn ? '⚪ Game Not Open (Offline)' : '⚪ Game chưa mở (Offline)';
+    text.innerText = isTr ? '⚪ Oyun Açık Değil (Çevrimdışı)' : (isEn ? '⚪ Game Not Open (Offline)' : '⚪ Game chưa mở (Offline)');
     btn.className = 'live-toggle-btn paused notranslate';
-    btn.innerHTML = isEn ? '▶️ Retry Connection' : '▶️ Thử Kết Nối Lại';
+    btn.innerHTML = isTr ? '▶️ Yeniden Bağlanmayı Dene' : (isEn ? '▶️ Retry Connection' : '▶️ Thử Kết Nối Lại');
   }
 }
 
@@ -14236,7 +14244,7 @@ function changeSkillPoints(skillId, delta) {
   if (!skill) return;
 
   if (!isSkillUnlocked(skill) && delta > 0) {
-    alert('Kỹ năng này chưa mở khóa! (Yêu cầu Cấp ' + skill.req_player_level + (skill.pre_req ? ' và ' + skill.pre_req.parent_name + ' Cấp ' + skill.pre_req.req_level : '') + ')');
+    const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; alert(cL === 'tr' ? ('Bu yetenek henüz açılmadı! (Gereken Seviye ' + skill.req_player_level + (skill.pre_req ? ' ve ' + skill.pre_req.parent_name + ' Seviye ' + skill.pre_req.req_level : '') + ')') : ('Kỹ năng này chưa mở khóa! (Yêu cầu Cấp ' + skill.req_player_level + (skill.pre_req ? ' và ' + skill.pre_req.parent_name + ' Cấp ' + skill.pre_req.req_level : '') + ')'));
     return;
   }
 
@@ -14245,7 +14253,7 @@ function changeSkillPoints(skillId, delta) {
 
   if (delta > 0) {
     if (avail <= 0) {
-      alert('Bạn đã dùng hết điểm kỹ năng! (Tổng: ' + getTotalSkillPointsPool() + ' điểm tương ứng Cấp ' + getPlayerLevel() + ')');
+      const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; alert(cL === 'tr' ? ('Tüm yetenek puanlarınızı kullandınız! (Toplam: ' + getTotalSkillPointsPool() + ' puan, Seviye ' + getPlayerLevel() + ')') : ('Bạn đã dùng hết điểm kỹ năng! (Tổng: ' + getTotalSkillPointsPool() + ' điểm tương ứng Cấp ' + getPlayerLevel() + ')'));
       return;
     }
     if (cur >= 10) return;
@@ -14261,7 +14269,7 @@ function changeSkillPoints(skillId, delta) {
     }));
 
     if (isParentOfAllocatedChild) {
-      alert('Không thể giảm cấp vì kỹ năng nhánh dưới đang phụ thuộc vào kỹ năng này!');
+      const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; alert(cL === 'tr' ? 'Alt daldaki yetenekler bu yeteneğe bağlı olduğu için seviyesi düşürülemez!' : 'Không thể giảm cấp vì kỹ năng nhánh dưới đang phụ thuộc vào kỹ năng này!');
       return;
     }
 
@@ -14276,7 +14284,7 @@ function changeSkillPoints(skillId, delta) {
 }
 
 function resetSkillAllocations() {
-  if (confirm('Bạn có chắc chắn muốn tẩy toàn bộ điểm kỹ năng của ' + currentClass + ' về 0 để cộng lại không?')) {
+  const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; if (confirm(cL === 'tr' ? (currentClass + ' sınıfının tüm yetenek puanlarını sıfırlayıp baştan dağıtmak istediğinizden emin misiniz?') : ('Bạn có chắc chắn muốn tẩy toàn bộ điểm kỹ năng của ' + currentClass + ' về 0 để cộng lại không?'))) {
     const classTree = skillTrees[currentClass];
     if (classTree) {
       for (let b of classTree.branches) {
@@ -14294,7 +14302,7 @@ function resetSkillAllocations() {
 }
 
 function restoreFromGameSave() {
-  if (confirm('Khôi phục lại chính xác phân bổ kỹ năng từ file save game của bạn?')) {
+  const cL = localStorage.getItem('genesis_helper_lang') || 'tr'; if (confirm(cL === 'tr' ? 'Oyun kayıt dosyanızdaki orijinal yetenek dağılımı geri yüklensin mi?' : 'Khôi phục lại chính xác phân bổ kỹ năng từ file save game của bạn?')) {
     localStorage.removeItem('genesis_skill_tree_allocations_' + currentClass);
     initSkillAllocations();
     updateTreeHeader();
@@ -14346,22 +14354,25 @@ function getItemIconHtml(iconName, fallbackEmoji, imgClass, tier) {
 }
 
 function formatEtaTime(seconds) {
-  if (!seconds || seconds <= 0) return 'Đã sẵn sàng lên cấp';
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
+  if (!seconds || seconds <= 0) return isTr ? 'Seviye atlamaya hazır' : (isEn ? 'Ready to level up' : 'Đã sẵn sàng lên cấp');
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
   if (h > 24) {
     const d = Math.floor(h / 24);
     const remH = h % 24;
-    return d + ' ngày ' + remH + ' giờ';
+    return isTr ? (d + ' gün ' + remH + ' saat') : (isEn ? (d + 'd ' + remH + 'h') : (d + ' ngày ' + remH + ' giờ'));
   }
   if (h > 0) {
-    return h + ' giờ ' + m + ' phút';
+    return isTr ? (h + ' saat ' + m + ' dakika') : (isEn ? (h + 'h ' + m + 'm') : (h + ' giờ ' + m + ' phút'));
   }
   if (m > 0) {
-    return m + ' phút ' + s + ' giây';
+    return isTr ? (m + ' dakika ' + s + ' saniye') : (isEn ? (m + 'm ' + s + 's') : (m + ' phút ' + s + ' giây'));
   }
-  return s + ' giây';
+  return isTr ? (s + ' saniye') : (isEn ? (s + 's') : (s + ' giây'));
 }
 
 function getSkillIconHtml(iconName, fallbackEmoji, imgClass) {
@@ -14401,20 +14412,22 @@ function renderTree() {
 
       const connector = sIdx < branch.skills.length - 1 ? '<div class="vert-connector"></div>' : '';
       const iconHtml = getSkillIconHtml(s.icon, emoji, 'skill-icon-img');
+      const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+      const isTr = (currentLang === 'tr');
       const badgeHtml = s.is_passive 
-        ? (isEn ? '<span class="node-type-badge badge-passive">🛡️ Passive</span>' : '<span class="node-type-badge badge-passive">🛡️ Bị động</span>')
-        : (isEn ? '<span class="node-type-badge badge-active">⚔️ Active</span>' : '<span class="node-type-badge badge-active">⚔️ Chủ động</span>');
+        ? (isTr ? '<span class="node-type-badge badge-passive">🛡️ Pasif</span>' : (isEn ? '<span class="node-type-badge badge-passive">🛡️ Passive</span>' : '<span class="node-type-badge badge-passive">🛡️ Bị động</span>'))
+        : (isTr ? '<span class="node-type-badge badge-active">⚔️ Aktif</span>' : (isEn ? '<span class="node-type-badge badge-active">⚔️ Active</span>' : '<span class="node-type-badge badge-active">⚔️ Chủ động</span>'));
 
       const allocBadgeClass = allocLv >= 10 ? 'max-pts' : allocLv > 0 ? 'has-pts' : 'zero-pts';
-      const allocBadgeText = allocLv >= 10 ? 'MAX (10/10)' : ('Lv. ' + allocLv + ' / 10');
+      const allocBadgeText = allocLv >= 10 ? 'MAKS (10/10)' : (isTr ? ('Sv. ' + allocLv + ' / 10') : ('Lv. ' + allocLv + ' / 10'));
 
       let lockHtml = '';
       if (!isUnlocked) {
-        lockHtml = isEn ? ('<div class="node-lock-tag">🔒 Req. Lv.' + s.req_player_level + '</div>') : ('<div class="node-lock-tag">🔒 Cần Lv.' + s.req_player_level + '</div>');
+        lockHtml = isTr ? ('<div class="node-lock-tag">🔒 Gerekli Sv.' + s.req_player_level + '</div>') : (isEn ? ('<div class="node-lock-tag">🔒 Req. Lv.' + s.req_player_level + '</div>') : ('<div class="node-lock-tag">🔒 Cần Lv.' + s.req_player_level + '</div>'));
       }
 
-      const nodeName = (isEn && s.name_en) ? s.name_en : s.name_vi;
-      const reqText = isEn ? ('Req: Lv.' + s.req_player_level) : ('Yêu cầu: Lv.' + s.req_player_level);
+      const nodeName = isTr ? (s.name_en || s.name_vi) : ((isEn && s.name_en) ? s.name_en : s.name_vi);
+      const reqText = isTr ? ('Gereksinim: Sv.' + s.req_player_level) : (isEn ? ('Req: Lv.' + s.req_player_level) : ('Yêu cầu: Lv.' + s.req_player_level));
 
       return '<div class="skill-node-vert ' + (isSelected ? 'selected' : '') + ' ' + (isUnlocked ? '' : 'locked') + '" id="node_' + s.id + '" onclick="selectSkillNode(\'' + s.id + '\')">' +
         '<div class="node-icon-box">' + iconHtml + '</div>' +
@@ -14467,19 +14480,21 @@ function selectSkillNode(skillId) {
 
 function updateInspector() {
   if (!selectedSkill) return;
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const s = selectedSkill;
   const alloc = skillAllocations[s.id] || 0;
   const isUnlocked = isSkillUnlocked(s);
   const avail = getAvailableSkillPoints();
 
-  document.getElementById('insName').innerText = (isEn && s.name_en) ? s.name_en : s.name_vi;
-  document.getElementById('insSub').innerText = isEn ? (s.name_en + ' | Req: Level ' + s.req_player_level) : (s.name_en + ' | Yêu cầu: Cấp ' + s.req_player_level);
+  document.getElementById('insName').innerText = isTr ? (s.name_en || s.name_vi) : ((isEn && s.name_en) ? s.name_en : s.name_vi);
+  document.getElementById('insSub').innerText = isTr ? (s.name_en + ' | Gereksinim: Seviye ' + s.req_player_level) : (isEn ? (s.name_en + ' | Req: Level ' + s.req_player_level) : (s.name_en + ' | Yêu cầu: Cấp ' + s.req_player_level));
   
   const emoji = getIconEmoji(s.name_vi, currentClass);
   document.getElementById('insIcon').innerHTML = getSkillIconHtml(s.icon, emoji, 'skill-icon-img');
 
-  const allocText = alloc >= 10 ? 'MAX (10/10)' : (isEn ? ('Level ' + alloc + ' / 10') : ('Cấp ' + alloc + ' / 10'));
+  const allocText = alloc >= 10 ? 'MAKS (10/10)' : (isTr ? ('Seviye ' + alloc + ' / 10') : (isEn ? ('Level ' + alloc + ' / 10') : ('Cấp ' + alloc + ' / 10')));
   document.getElementById('insAllocLevel').innerText = allocText;
   document.getElementById('insAllocLevel').style.color = alloc >= 10 ? '#e3b341' : alloc > 0 ? '#58a6ff' : '#8b949e';
 
@@ -14495,40 +14510,43 @@ function updateInspector() {
 
   if (isPassive) {
     typeBadge.className = 'node-type-badge badge-passive';
-    typeBadge.innerText = isEn ? '🛡️ Passive Skill' : '🛡️ Kỹ Năng Bị Động (Passive)';
+    typeBadge.innerText = isTr ? '🛡️ Pasif Yetenek' : (isEn ? '🛡️ Passive Skill' : '🛡️ Kỹ Năng Bị Động (Passive)');
     rowDmg.style.display = 'none';
     rowCd.style.display = 'none';
-    typeLabel.innerText = isEn ? '🛡️ Passive (Auto triggered)' : '🛡️ Bị động (Tự động kích hoạt)';
+    typeLabel.innerText = isTr ? '🛡️ Pasif (Otomatik tetiklenir)' : (isEn ? '🛡️ Passive (Auto triggered)' : '🛡️ Bị động (Tự động kích hoạt)');
     typeLabel.style.color = '#58a6ff';
     descBox.className = 'desc-box passive';
   } else {
     typeBadge.className = 'node-type-badge badge-active';
-    typeBadge.innerText = isEn ? '⚔️ Active Skill' : '⚔️ Kỹ Năng Chủ Động (Active)';
+    typeBadge.innerText = isTr ? '⚔️ Aktif Yetenek' : (isEn ? '⚔️ Active Skill' : '⚔️ Kỹ Năng Chủ Động (Active)');
     rowDmg.style.display = 'flex';
     rowCd.style.display = 'flex';
-    typeLabel.innerText = isEn ? '⚔️ Active (Cooldown based)' : '⚔️ Chủ động (Có hồi chiêu)';
+    typeLabel.innerText = isTr ? '⚔️ Aktif (Bekleme süreli)' : (isEn ? '⚔️ Active (Cooldown based)' : '⚔️ Chủ động (Có hồi chiêu)');
     typeLabel.style.color = '#ffa657';
     descBox.className = 'desc-box active';
   }
 
-  document.getElementById('insLvLabel').innerText = isEn ? ('Level ' + selectedLevel + ' / 10') : ('Cấp ' + selectedLevel + ' / 10');
+  document.getElementById('insLvLabel').innerText = isTr ? ('Seviye ' + selectedLevel + ' / 10') : (isEn ? ('Level ' + selectedLevel + ' / 10') : ('Cấp ' + selectedLevel + ' / 10'));
   document.getElementById('insSlider').value = selectedLevel;
 
   const lvData = s.levels.find(l => l.level === selectedLevel) || s.levels[0];
   if (!isPassive) {
-    document.getElementById('insDmg').innerText = lvData.damage_percent ? (lvData.damage_percent + '%') : (isEn ? 'By effect' : 'Theo hiệu ứng');
+    document.getElementById('insDmg').innerText = lvData.damage_percent ? (lvData.damage_percent + '%') : (isTr ? 'Etkiye göre' : (isEn ? 'By effect' : 'Theo hiệu ứng'));
     document.getElementById('insCd').innerText = lvData.cooldown_sec + 's';
   }
   
   if (s.pre_req) {
-    document.getElementById('insPreReq').innerText = isEn ?
+    document.getElementById('insPreReq').innerText = isTr ?
+      ('Gereken: ' + s.pre_req.parent_name + ' (Seviye ' + s.pre_req.req_level + ')') :
+      (isEn ?
       ('Req: ' + s.pre_req.parent_name + ' (Lv. ' + s.pre_req.req_level + ')') :
-      ('Cần ' + s.pre_req.parent_name + ' (Cấp ' + s.pre_req.req_level + ')');
+      ('Cần ' + s.pre_req.parent_name + ' (Cấp ' + s.pre_req.req_level + ')'));
   } else {
-    document.getElementById('insPreReq').innerText = isEn ? 'None (Starter skill)' : 'Không có (Kỹ năng khởi đầu)';
+    document.getElementById('insPreReq').innerText = isTr ? 'Yok (Başlangıç yeteneği)' : (isEn ? 'None (Starter skill)' : 'Không có (Kỹ năng khởi đầu)');
   }
 
-  document.getElementById('insDesc').innerText = (isEn && lvData.description_en) ? lvData.description_en : (lvData.description || (isEn ? 'No extra description.' : 'Không có mô tả thêm.'));
+  const rawDesc = (isEn && lvData.description_en) ? lvData.description_en : (lvData.description || (isEn ? 'No extra description.' : 'Không có mô tả thêm.'));
+  document.getElementById('insDesc').innerText = isTr ? translateTurkishText(rawDesc) : rawDesc;
 }
 
 function changeSkillLevel(lv) {
@@ -14658,7 +14676,23 @@ function buildStageRankingFromHistory(history, stageDataList) {
 
 function translateStageTag(tag) {
   if (!tag) return '';
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
+  if (isTr) {
+    return tag.replace('Rất khó', 'Çok Zor')
+              .replace('Rất Khó', 'Çok Zor')
+              .replace('Cực khó', 'Uzman')
+              .replace('Cực Khó', 'Uzman')
+              .replace('Ác mộng', 'Kabus')
+              .replace('Ác Mộng', 'Kabus')
+              .replace('Địa ngục', 'Cehennem')
+              .replace('Địa Ngục', 'Cehennem')
+              .replace('Khó', 'Zor')
+              .replace('Thường', 'Normal')
+              .replace('Dễ', 'Kolay')
+              .replace('Ải', 'Bölüm');
+  }
   if (!isEn) return tag;
   return tag.replace('Rất khó', 'Very Hard')
             .replace('Rất Khó', 'Very Hard')
@@ -14687,9 +14721,11 @@ function renderStageTable() {
   const maxUnlockedTag = maxUnlockedObj ? maxUnlockedObj.display_tag : '2-10 Rất khó';
 
   // Update scope dropdown text dynamically
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
   const optUnlocked = document.querySelector('#stageScopeSelect option[value="unlocked"]');
   if (optUnlocked) {
-    optUnlocked.text = isEn ? ('Unlocked Stages Only (≤ Stage ' + translateStageTag(maxUnlockedTag) + ')') : ('Chỉ hiện Ải đã mở khóa (≤ Ải ' + maxUnlockedTag + ')');
+    optUnlocked.text = isTr ? ('Yalnızca Açık Bölümler (≤ Bölüm ' + translateStageTag(maxUnlockedTag) + ')') : (isEn ? ('Unlocked Stages Only (≤ Stage ' + translateStageTag(maxUnlockedTag) + ')') : ('Chỉ hiện Ải đã mở khóa (≤ Ải ' + maxUnlockedTag + ')'));
   }
 
   const curFarmingStageId = userProfile.stageTid || 13208;
@@ -14708,9 +14744,11 @@ function renderStageTable() {
   if (scope === 'history') {
     list = [...historyRankedStages];
     if (list.length === 0) {
-      tbody.innerHTML = isEn 
+      tbody.innerHTML = isTr
+        ? '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Bölüm geçmişinde henüz tamamlanmış veri yok. Canlı Senkronizasyonu açın ve gerçek performansı ölçmek için oyunda bölüm tamamlayın!</td></tr>'
+        : (isEn 
         ? '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">No cleared stage data in history yet. Enable Live Sync and clear stages in-game to measure real performance!</td></tr>'
-        : '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Chưa có dữ liệu ải hoàn thành trong lịch sử chạy. Hãy bật Live Sync và hoàn thành ải trong game để BXH ghi nhận hiệu suất thực tế!</td></tr>';
+        : '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Chưa có dữ liệu ải hoàn thành trong lịch sử chạy. Hãy bật Live Sync và hoàn thành ải trong game để BXH ghi nhận hiệu suất thực tế!</td></tr>');
       return;
     }
   } else {
@@ -14777,9 +14815,9 @@ function renderStageTable() {
     }
     window.__currentEps = parseFloat(curEps.toFixed(2));
     if (document.getElementById('cardCurrentGold')) {
-      document.getElementById('cardCurrentGold').innerText = isEn ? (curGps.toFixed(2) + ' Gold/s') : (curGps.toFixed(2) + ' Vàng/s');
-      document.getElementById('cardCurrentExp').innerText = isEn ? (curEps.toFixed(2) + ' EXP/s') : (curEps.toFixed(2) + ' EXP/s');
-      document.getElementById('cardCurrentTitle').innerText = isEn ? ('Stage ' + (translateStageTag(currentStageObj.display_tag) || curFarmingStageId) + ' (' + currentStageObj.area_name + ')') : ('Ải ' + (currentStageObj.display_tag || curFarmingStageId) + ' (' + currentStageObj.area_name + ')');
+      document.getElementById('cardCurrentGold').innerText = isTr ? (curGps.toFixed(2) + ' Altın/sn') : (isEn ? (curGps.toFixed(2) + ' Gold/s') : (curGps.toFixed(2) + ' Vàng/s'));
+      document.getElementById('cardCurrentExp').innerText = curEps.toFixed(2) + (isTr ? ' EXP/sn' : ' EXP/s');
+      document.getElementById('cardCurrentTitle').innerText = isTr ? ('Bölüm ' + (translateStageTag(currentStageObj.display_tag) || curFarmingStageId) + ' (' + currentStageObj.area_name + ')') : (isEn ? ('Stage ' + (translateStageTag(currentStageObj.display_tag) || curFarmingStageId) + ' (' + currentStageObj.area_name + ')') : ('Ải ' + (currentStageObj.display_tag || curFarmingStageId) + ' (' + currentStageObj.area_name + ')'));
     }
   }
 
@@ -14787,34 +14825,43 @@ function renderStageTable() {
   const bestGold = [...list].sort((a, b) => b.calc_gps - a.calc_gps)[0];
   if (bestGold) {
     if (document.getElementById('cardPersonalRate')) {
-      document.getElementById('cardPersonalRate').innerText = isEn ? (bestGold.calc_gps.toFixed(2) + ' Gold / Sec') : (bestGold.calc_gps.toFixed(2) + ' Vàng / Giây');
+      document.getElementById('cardPersonalRate').innerText = isTr ? (bestGold.calc_gps.toFixed(2) + ' Altın / Saniye') : (isEn ? (bestGold.calc_gps.toFixed(2) + ' Gold / Sec') : (bestGold.calc_gps.toFixed(2) + ' Vàng / Giây'));
     }
     if (document.getElementById('cardPersonalTitle')) {
-      document.getElementById('cardPersonalTitle').innerText = isEn ? ('Stage ' + translateStageTag(bestGold.display_tag) + ' (' + bestGold.area_name + ')') : ('Ải ' + bestGold.display_tag + ' (' + bestGold.area_name + ')');
+      document.getElementById('cardPersonalTitle').innerText = isTr ? ('Bölüm ' + translateStageTag(bestGold.display_tag) + ' (' + bestGold.area_name + ')') : (isEn ? ('Stage ' + translateStageTag(bestGold.display_tag) + ' (' + bestGold.area_name + ')') : ('Ải ' + bestGold.display_tag + ' (' + bestGold.area_name + ')'));
     }
     const descGoldEl = document.getElementById('cardPersonalDesc');
     if (descGoldEl) {
       const gPerMin = Math.round(bestGold.calc_gps * 60);
       const gPerHour = Math.round(bestGold.calc_gps * 3600);
-      const mobHp = Math.round(bestGold.total_hp || 0).toLocaleString(isEn ? 'en-US' : 'vi-VN');
+      const mobHp = Math.round(bestGold.total_hp || 0).toLocaleString(isTr ? 'tr-TR' : (isEn ? 'en-US' : 'vi-VN'));
       const clearSec = (bestGold.calc_sec || 0).toFixed(1);
 
       let goldOptText = '';
       if (currentStageObj) {
         if (bestGold.stage_id === currentStageObj.stage_id) {
-          goldOptText = isEn
+          goldOptText = isTr
+            ? '• <span style="color:#7ee787; font-weight:bold;">En İyi:</span> Zaten en yüksek Altın/saniye veren bölümde farm yapıyorsunuz!'
+            : (isEn
             ? '• <span style="color:#7ee787; font-weight:bold;">Optimal:</span> You are already farming the highest Gold/s stage!'
-            : '• <span style="color:#7ee787; font-weight:bold;">Tối ưu:</span> Bạn đang treo máy ở ải có lượng Vàng/giây cao nhất!';
+            : '• <span style="color:#7ee787; font-weight:bold;">Tối ưu:</span> Bạn đang treo máy ở ải có lượng Vàng/giây cao nhất!');
         } else {
           const diffPct = Math.round(((bestGold.calc_gps - curGps) / (curGps || 1)) * 100);
-          const stageName = isEn ? ('Stage ' + translateStageTag(currentStageObj.display_tag)) : ('Ải ' + currentStageObj.display_tag);
-          goldOptText = isEn
+          const stageName = isTr ? ('Bölüm ' + translateStageTag(currentStageObj.display_tag)) : (isEn ? ('Stage ' + translateStageTag(currentStageObj.display_tag)) : ('Ải ' + currentStageObj.display_tag));
+          goldOptText = isTr
+            ? ('• <span style="color:#7ee787; font-weight:bold;">Öneri:</span> Şu anki bölüme (' + stageName + ') kıyasla +%' + diffPct + ' daha fazla Altın!')
+            : (isEn
             ? ('• <span style="color:#7ee787; font-weight:bold;">Optimal:</span> +' + diffPct + '% more Gold compared to current (' + stageName + ')!')
-            : ('• <span style="color:#7ee787; font-weight:bold;">Tối ưu:</span> Nhanh hơn +' + diffPct + '% Vàng so với ải đang treo (' + stageName + ')!');
+            : ('• <span style="color:#7ee787; font-weight:bold;">Tối ưu:</span> Nhanh hơn +' + diffPct + '% Vàng so với ải đang treo (' + stageName + ')!'));
         }
       }
 
-      if (isEn) {
+      if (isTr) {
+        descGoldEl.innerHTML =
+          '• Toplama hızı: <b>~' + gPerMin.toLocaleString('tr-TR') + ' Altın / Dakika</b> (~' + gPerHour.toLocaleString('tr-TR') + ' Altın/Saat)<br>' +
+          '• Toplam Canavar Canı: <b>' + mobHp + ' HP</b> (Ort. temizleme: ~' + clearSec + 'sn)<br>' +
+          goldOptText;
+      } else if (isEn) {
         descGoldEl.innerHTML =
           '• Harvest rate: <b>~' + gPerMin.toLocaleString(isEn ? 'en-US' : 'vi-VN') + ' Gold / Min</b> (~' + gPerHour.toLocaleString(isEn ? 'en-US' : 'vi-VN') + ' Gold/Hour)<br>' +
           '• Total Monster HP: <b>' + mobHp + ' HP</b> (Avg clear: ~' + clearSec + 's)<br>' +
@@ -14832,30 +14879,39 @@ function renderStageTable() {
   const bestExp = [...list].sort((a, b) => b.calc_eps - a.calc_eps)[0];
   if (bestExp) {
     if (document.getElementById('cardExpRate')) {
-      document.getElementById('cardExpRate').innerText = isEn ? (bestExp.calc_eps.toFixed(2) + ' EXP / Sec') : (bestExp.calc_eps.toFixed(2) + ' EXP / Giây');
+      document.getElementById('cardExpRate').innerText = isTr ? (bestExp.calc_eps.toFixed(2) + ' EXP / Saniye') : (isEn ? (bestExp.calc_eps.toFixed(2) + ' EXP / Sec') : (bestExp.calc_eps.toFixed(2) + ' EXP / Giây'));
     }
     if (document.getElementById('cardExpTitle')) {
-      document.getElementById('cardExpTitle').innerText = isEn ? ('Stage ' + translateStageTag(bestExp.display_tag) + ' (' + bestExp.area_name + ')') : ('Ải ' + bestExp.display_tag + ' (' + bestExp.area_name + ')');
+      document.getElementById('cardExpTitle').innerText = isTr ? ('Bölüm ' + translateStageTag(bestExp.display_tag) + ' (' + bestExp.area_name + ')') : (isEn ? ('Stage ' + translateStageTag(bestExp.display_tag) + ' (' + bestExp.area_name + ')') : ('Ải ' + bestExp.display_tag + ' (' + bestExp.area_name + ')'));
     }
     const descExpEl = document.getElementById('cardExpDesc');
     if (descExpEl) {
       const expPerHour = Math.round(bestExp.calc_eps * 3600);
-      const clearExp = Math.round(bestExp.total_exp || (bestExp.calc_eps * (bestExp.calc_sec || 10))).toLocaleString(isEn ? 'en-US' : 'vi-VN');
+      const clearExp = Math.round(bestExp.total_exp || (bestExp.calc_eps * (bestExp.calc_sec || 10))).toLocaleString(isTr ? 'tr-TR' : (isEn ? 'en-US' : 'vi-VN'));
 
       let expTimeText = '';
       if (typeof userProfile !== 'undefined' && userProfile && userProfile.exp_remaining && bestExp.calc_eps > 0) {
         const hoursToLevel = (userProfile.exp_remaining / (bestExp.calc_eps * 3600)).toFixed(1);
         const nextLv = (userProfile.level || 1) + 1;
-        expTimeText = isEn
+        expTimeText = isTr
+          ? ('• Seviye ' + nextLv + ' için Süre: yaklaşık <b>~' + hoursToLevel + ' saat</b> kesintisiz AFK!')
+          : (isEn
           ? ('• Time to Level ' + nextLv + ': approx. <b>~' + hoursToLevel + ' hours</b> of continuous AFK!')
-          : ('• Thời gian lên Cấp ' + nextLv + ': chỉ mất khoảng <b>~' + hoursToLevel + ' giờ treo máy liên tục</b>!');
+          : ('• Thời gian lên Cấp ' + nextLv + ': chỉ mất khoảng <b>~' + hoursToLevel + ' giờ treo máy liên tục</b>!'));
       } else {
-        expTimeText = isEn
+        expTimeText = isTr
+          ? '• Seviye atlama hızı: Açık tüm bölümler arasındaki en yüksek EXP kazancı.'
+          : (isEn
           ? '• Leveling speed: Maximum EXP gain across all unlocked stages.'
-          : '• Tốc độ tăng cấp: Lượng EXP cao nhất trong tất cả các ải đã mở.';
+          : '• Tốc độ tăng cấp: Lượng EXP cao nhất trong tất cả các ải đã mở.');
       }
 
-      if (isEn) {
+      if (isTr) {
+        descExpEl.innerHTML =
+          '• Seviye atlama hızı: <b>~' + expPerHour.toLocaleString('tr-TR') + ' EXP / Saat</b> (~' + bestExp.calc_eps.toFixed(1) + ' EXP/sn)<br>' +
+          '• Temizleme ödülü: <b>~' + clearExp + ' EXP</b> (Yaratıklar & Boss)<br>' +
+          expTimeText;
+      } else if (isEn) {
         descExpEl.innerHTML =
           '• Leveling rate: <b>~' + expPerHour.toLocaleString(isEn ? 'en-US' : 'vi-VN') + ' EXP / Hour</b> (~' + bestExp.calc_eps.toFixed(1) + ' EXP/s)<br>' +
           '• Clear reward: <b>~' + clearExp + ' EXP</b> (Mobs & Boss)<br>' +
@@ -14881,24 +14937,36 @@ function renderStageTable() {
 
     let recText = '';
     if (isBothBest) {
-      recText = isEn
+      recText = isTr
+        ? '• Öneri: Harika! Mevcut bölüm hem Altın hem de EXP için en verimli bölümdür!'
+        : (isEn
         ? '• Recommendation: Perfect! Current stage is the best for BOTH Gold and EXP!'
-        : '• Đề xuất: Tuyệt vời! Ải hiện tại đang là ải tối ưu nhất cho CẢ Vàng lẫn EXP!';
+        : '• Đề xuất: Tuyệt vời! Ải hiện tại đang là ải tối ưu nhất cho CẢ Vàng lẫn EXP!');
     } else if (isGoldBest) {
-      recText = isEn
+      recText = isTr
+        ? ('• Öneri: Altın için en iyisi! Daha fazla EXP istiyorsanız <b>' + expStageName + '</b> bölümüne geçin.')
+        : (isEn
         ? ('• Recommendation: Optimal for Gold! Switch to <b>' + expStageName + '</b> if you want more EXP.')
-        : ('• Đề xuất: Đang tối ưu Vàng nhất! Chuyển sang <b>' + expStageName + '</b> nếu muốn cày EXP nhanh hơn.');
+        : ('• Đề xuất: Đang tối ưu Vàng nhất! Chuyển sang <b>' + expStageName + '</b> nếu muốn cày EXP nhanh hơn.'));
     } else if (isExpBest) {
-      recText = isEn
+      recText = isTr
+        ? ('• Öneri: EXP için en iyisi! Daha fazla Altın istiyorsanız <b>' + goldStageName + '</b> bölümüne geçin.')
+        : (isEn
         ? ('• Recommendation: Optimal for EXP! Switch to <b>' + goldStageName + '</b> if you want more Gold.')
-        : ('• Đề xuất: Đang tối ưu EXP nhất! Chuyển sang <b>' + goldStageName + '</b> nếu muốn cày Vàng nhanh hơn.');
+        : ('• Đề xuất: Đang tối ưu EXP nhất! Chuyển sang <b>' + goldStageName + '</b> nếu muốn cày Vàng nhanh hơn.'));
     } else {
-      recText = isEn
+      recText = isTr
+        ? ('• Öneri: Altın için <b>' + goldStageName + '</b>, EXP için <b>' + expStageName + '</b> bölümüne geçin!')
+        : (isEn
         ? ('• Recommendation: Switch to <b>' + goldStageName + '</b> for Gold, or <b>' + expStageName + '</b> for EXP!')
-        : ('• Đề xuất: Muốn tối ưu Vàng hãy chuyển về <b>' + goldStageName + '</b>; muốn tối ưu EXP hãy chuyển sang <b>' + expStageName + '</b>!');
+        : ('• Đề xuất: Muốn tối ưu Vàng hãy chuyển về <b>' + goldStageName + '</b>; muốn tối ưu EXP hãy chuyển sang <b>' + expStageName + '</b>!'));
     }
 
-    if (isEn) {
+    if (isTr) {
+      descCurEl.innerHTML =
+        '• Durum: Temizlendi ve serbest AFK farm için açık.<br>' +
+        recText;
+    } else if (isEn) {
       descCurEl.innerHTML =
         '• Status: Cleared & unlocked for free AFK farming.<br>' +
         recText;
@@ -14914,30 +14982,33 @@ function renderStageTable() {
     const isCurrent = s.stage_id === curFarmingStageId;
     const isTop1 = idx === 0;
     
-    let recommendation = isEn ? '<span style="color:#8b949e;">Normal</span>' : '<span style="color:#8b949e;">Bình thường</span>';
+    let recommendation = isTr ? '<span style="color:#8b949e;">Normal</span>' : (isEn ? '<span style="color:#8b949e;">Normal</span>' : '<span style="color:#8b949e;">Bình thường</span>');
     if (isTop1) {
-      recommendation = isEn ? '<b style="color:#e3b341;">⭐ BEST STAGE (AFK)</b>' : '<b style="color:#e3b341;">⭐ TỐI ƯU NHẤT (NÊN AFK)</b>';
+      recommendation = isTr ? '<b style="color:#e3b341;">⭐ EN İYİ BÖLÜM (AFK)</b>' : (isEn ? '<b style="color:#e3b341;">⭐ BEST STAGE (AFK)</b>' : '<b style="color:#e3b341;">⭐ TỐI ƯU NHẤT (NÊN AFK)</b>');
     } else if (idx < 5) {
-      recommendation = isEn ? '<span style="color:#7ee787; font-weight:600;">Recommended AFK</span>' : '<span style="color:#7ee787; font-weight:600;">Khuyên Dùng AFK</span>';
+      recommendation = isTr ? '<span style="color:#7ee787; font-weight:600;">Önerilen AFK</span>' : (isEn ? '<span style="color:#7ee787; font-weight:600;">Recommended AFK</span>' : '<span style="color:#7ee787; font-weight:600;">Khuyên Dùng AFK</span>');
     } else if (isCurrent) {
-      recommendation = isEn ? '<span style="color:#58a6ff; font-weight:600;">Current Stage</span>' : '<span style="color:#58a6ff; font-weight:600;">Ải Hiện Tại</span>';
+      recommendation = isTr ? '<span style="color:#58a6ff; font-weight:600;">Mevcut Bölüm</span>' : (isEn ? '<span style="color:#58a6ff; font-weight:600;">Current Stage</span>' : '<span style="color:#58a6ff; font-weight:600;">Ải Hiện Tại</span>');
     }
 
-    const stageLabel = isEn ? (translateStageTag(s.display_tag) || ('Stage ' + s.stage_id)) : (s.display_tag || ('Ải ' + s.stage_id));
+    const stageLabel = isTr ? (translateStageTag(s.display_tag) || ('Bölüm ' + s.stage_id)) : (isEn ? (translateStageTag(s.display_tag) || ('Stage ' + s.stage_id)) : (s.display_tag || ('Ải ' + s.stage_id)));
     const areaIcon = getAreaIcon(s.area_name);
     const timeBadge = s.from_history 
-      ? ('⏱️ ' + s.calc_sec.toFixed(1) + 's <span style="font-size:10px; background:#238636; color:#fff; padding:1px 5px; border-radius:3px; display:inline-block; margin-top:2px;">(' + s.clear_count + ' ' + (isEn ? 'clears' : 'lần clear') + ')</span>')
-      : ('⏱️ ~' + s.calc_sec.toFixed(1) + 's <span style="font-size:10px; color:#8b949e; display:inline-block; margin-top:2px;">(' + (isEn ? 'est.' : 'ước tính') + ')</span>');
+      ? ('⏱️ ' + s.calc_sec.toFixed(1) + 's <span style="font-size:10px; background:#238636; color:#fff; padding:1px 5px; border-radius:3px; display:inline-block; margin-top:2px;">(' + s.clear_count + ' ' + (isTr ? 'temizleme' : (isEn ? 'clears' : 'lần clear')) + ')</span>')
+      : ('⏱️ ~' + s.calc_sec.toFixed(1) + 's <span style="font-size:10px; color:#8b949e; display:inline-block; margin-top:2px;">(' + (isTr ? 'tahmini' : (isEn ? 'est.' : 'ước tính')) + ')</span>');
+
+    const curTagText = isTr ? 'Burada' : (isEn ? 'Current' : 'Đang ở');
+    const stagePrefix = isTr ? 'Bölüm' : (isEn ? 'Stage' : 'Ải');
 
     return '<tr style="' + (isTop1 ? 'background:#e3b34114;' : isCurrent ? 'background:#1f6feb14;' : '') + '">' +
       '<td style="text-align:center;"><span class="rank-badge ' + rankClass + '">' + (idx + 1) + '</span></td>' +
-      '<td><b style="color:#58a6ff; font-size:14px;">' + stageLabel + '</b>' + (isCurrent ? (' <span style="font-size:10px; background:#1f6feb; padding:1px 5px; border-radius:4px; color:#fff;">' + (isEn ? 'Current' : 'Đang ở') + '</span>') : '') + '<br><span style="font-size:11px; color:#8b949e;">ID: ' + s.stage_id + '</span></td>' +
+      '<td><b style="color:#58a6ff; font-size:14px;">' + stageLabel + '</b>' + (isCurrent ? (' <span style="font-size:10px; background:#1f6feb; padding:1px 5px; border-radius:4px; color:#fff;">' + curTagText + '</span>') : '') + '<br><span style="font-size:11px; color:#8b949e;">ID: ' + s.stage_id + '</span></td>' +
       '<td><b>' + areaIcon + ' ' + s.area_name + '</b></td>' +
       '<td style="color:#e3b341; font-weight:bold; font-size:13.5px;">💰 ' + s.calc_gps.toFixed(2) + ' /s</td>' +
       '<td style="color:#bc8cff; font-weight:bold; font-size:13.5px;">📈 ' + s.calc_eps.toFixed(2) + ' /s</td>' +
       '<td style="color:#f2cc60; font-weight:600;">🪙 ' + Math.round(s.calc_gpm).toLocaleString() + ' /m</td>' +
-      '<td><b>' + Number(s.total_gold).toLocaleString() + ' 💰</b><br><span style="font-size:11px; color:#8b949e;">(' + (isEn ? 'Stage' : 'Ải') + ': ' + Number(s.clear_gold).toLocaleString() + ' + Boss: ' + Number(s.boss_gold).toLocaleString() + ')</span></td>' +
-      '<td><b>' + Number(s.total_exp || 0).toLocaleString() + ' ⭐</b><br><span style="font-size:11px; color:#8b949e;">(' + (isEn ? 'Stage' : 'Ải') + ': ' + Number(s.clear_exp || 0).toLocaleString() + ' + Boss: ' + Number(s.boss_exp || 0).toLocaleString() + ')</span></td>' +
+      '<td><b>' + Number(s.total_gold).toLocaleString() + ' 💰</b><br><span style="font-size:11px; color:#8b949e;">(' + stagePrefix + ': ' + Number(s.clear_gold).toLocaleString() + ' + Boss: ' + Number(s.boss_gold).toLocaleString() + ')</span></td>' +
+      '<td><b>' + Number(s.total_exp || 0).toLocaleString() + ' ⭐</b><br><span style="font-size:11px; color:#8b949e;">(' + stagePrefix + ': ' + Number(s.clear_exp || 0).toLocaleString() + ' + Boss: ' + Number(s.boss_exp || 0).toLocaleString() + ')</span></td>' +
       '<td>' + timeBadge + '</td>' +
       '<td>❤️ ' + Number(Math.round(s.total_hp)).toLocaleString() + ' HP</td>' +
       '<td>' + recommendation + '</td>' +
@@ -14965,7 +15036,7 @@ function saveStageHistory(list) {
 }
 
 function clearStageHistory() {
-  if (confirm('Bạn có chắc muốn xóa sạch 100 ải trong lịch sử chạy không?')) {
+  const curL = localStorage.getItem('genesis_helper_lang') || 'tr'; if (confirm(curL === 'tr' ? 'Çalışma geçmişindeki 100 bölümü tamamen temizlemek istediğinizden emin misiniz?' : (curL === 'en' ? 'Are you sure you want to clear all 100 stage runs from history?' : 'Bạn có chắc muốn xóa sạch 100 ải trong lịch sử chạy không?'))) {
     try {
       localStorage.setItem('genesis_stage_run_history', JSON.stringify([]));
     } catch(e) {}
@@ -15014,10 +15085,14 @@ function renderStageHistoryTable() {
   const history = getStageHistory();
   const hasLiveRun = window.liveCurrentStageRun && window.liveCurrentStageRun.stage_id;
 
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
   if (history.length === 0 && !hasLiveRun) {
-    tbody.innerHTML = isEn
+    tbody.innerHTML = isTr
+      ? '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Henüz kaydedilmiş bölüm geçmişi yok. Canlı Senkronizasyonu bağlayın ve oyunda savaşa başlayın!</td></tr>'
+      : (isEn
       ? '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">No stage history recorded yet. Connect Live Sync and start combat in-game!</td></tr>'
-      : '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Chưa có lịch sử chạy ải nào. Hãy bật chế độ Live Sync và vào chiến đấu trong game!</td></tr>';
+      : '<tr><td colspan="11" style="text-align:center; padding:30px; color:#8b949e;">Chưa có lịch sử chạy ải nào. Hãy bật chế độ Live Sync và vào chiến đấu trong game!</td></tr>');
     return;
   }
 
@@ -15090,13 +15165,13 @@ function renderStageHistoryTable() {
 
     if (r.status === 'failed') {
       rowBg = 'background: rgba(248, 81, 73, 0.22); border-left: 4px solid #f85149;';
-      statusBadge = '<span style="color:#f85149; font-weight:bold; font-size:12.5px; background:rgba(248, 81, 73, 0.2); border:1px solid #f85149; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">❌ FAILED</span>';
+      statusBadge = '<span style="color:#f85149; font-weight:bold; font-size:12.5px; background:rgba(248, 81, 73, 0.2); border:1px solid #f85149; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">' + (isTr ? '❌ BAŞARISIZ' : '❌ FAILED') + '</span>';
     } else if (r.status === 'abandoned') {
       rowBg = 'background: rgba(110, 118, 129, 0.22); border-left: 4px solid #6e7681;';
-      statusBadge = '<span style="color:#8b949e; font-weight:bold; font-size:12.5px; background:rgba(110, 118, 129, 0.2); border:1px solid #6e7681; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">' + (isEn ? '⏹️ Abandoned' : '⏹️ Bỏ dở giữa chừng') + '</span>';
+      statusBadge = '<span style="color:#8b949e; font-weight:bold; font-size:12.5px; background:rgba(110, 118, 129, 0.2); border:1px solid #6e7681; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">' + (isTr ? '⏹️ Yarıda Bırakıldı' : (isEn ? '⏹️ Abandoned' : '⏹️ Bỏ dở giữa chừng')) + '</span>';
     } else {
       rowBg = 'background: rgba(63, 185, 80, 0.12); border-left: 4px solid #3fb950;';
-      statusBadge = '<span style="color:#3fb950; font-weight:bold; font-size:12.5px; background:rgba(63, 185, 80, 0.2); border:1px solid #3fb950; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">' + (isEn ? '✅ Cleared' : '✅ Thành công') + '</span>';
+      statusBadge = '<span style="color:#3fb950; font-weight:bold; font-size:12.5px; background:rgba(63, 185, 80, 0.2); border:1px solid #3fb950; padding:3px 8px; border-radius:4px; display:inline-flex; align-items:center; gap:4px;">' + (isTr ? '✅ Temizlendi' : (isEn ? '✅ Cleared' : '✅ Thành công')) + '</span>';
     }
 
     return '<tr style="' + rowBg + '">' +
@@ -15211,36 +15286,42 @@ function renderClassDpsComparison() {
     try { localStorage.setItem('genesis_class_dps_history', JSON.stringify(history)); } catch(e) {}
   }
 
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
+
   const classConfigs = [
-    { code: 'Melee', name: 'Hiệp Sĩ', icon: '🛡️', color: '#58a6ff' },
-    { code: 'Ranged', name: 'Cung Thủ', icon: '🏹', color: '#7ee787' },
-    { code: 'Mage', name: 'Pháp Sư', icon: '🧙', color: '#bc8cff' }
+    { code: 'Melee', name: isTr ? 'Şövalye' : (isEn ? 'Knight' : 'Hiệp Sĩ'), icon: '🛡️', color: '#58a6ff' },
+    { code: 'Ranged', name: isTr ? 'Okçu' : (isEn ? 'Archer' : 'Cung Thủ'), icon: '🏹', color: '#7ee787' },
+    { code: 'Mage', name: isTr ? 'Büyücü' : (isEn ? 'Mage' : 'Pháp Sư'), icon: '🧙', color: '#bc8cff' }
   ];
 
   let tableHtml = '<table style="width:100%; border-collapse:collapse; font-size:13px; text-align:left;">';
   tableHtml += '<thead><tr style="border-bottom:2px solid #30363d; background:#0d1117;">';
-  tableHtml += '<th style="padding:10px 14px; width:220px; color:#8b949e;">Chỉ Số So Sánh</th>';
+  tableHtml += '<th style="padding:10px 14px; width:220px; color:#8b949e;">' + (isTr ? 'Karşılaştırma İstatistiği' : (isEn ? 'Comparison Metrics' : 'Chỉ Số So Sánh')) + '</th>';
 
+  const playingBadgeText = isTr ? 'Mevcut Sınıf' : (isEn ? 'Playing' : 'Đang chơi');
   classConfigs.forEach(c => {
     const isActive = c.code === activeClass;
     tableHtml += '<th style="padding:10px 14px; color:' + c.color + '; font-size:14px;">' +
-      c.icon + ' ' + c.name + (isActive ? ' <span class="badge" style="background:#238636; color:#fff; font-size:10.5px; margin-left:6px;">Đang chơi</span>' : '') +
+      c.icon + ' ' + c.name + (isActive ? ' <span class="badge" style="background:#238636; color:#fff; font-size:10.5px; margin-left:6px;">' + playingBadgeText + '</span>' : '') +
       '</th>';
   });
   tableHtml += '</tr></thead><tbody>';
 
+  const speedSuffix = isTr ? ' vuruş/sn' : (isEn ? ' hits/s' : ' đòn/s');
   const rows = [
-    { label: 'Trạng Thái Dữ Liệu', getter: (h, c, isAct) => isAct ? '<b style="color:#7ee787;">● Đang Chơi Trực Tiếp</b>' : (h ? '<span style="color:#58a6ff;">✓ Đã ghi nhớ (' + h.recordedAt + ')</span>' : '<span style="color:#6e7681; font-style:italic;">(Chưa có dữ liệu)</span>') },
-    { label: '⚡ Tổng DPS Thực Tế', getter: (h) => h ? '<b style="color:#f85149; font-size:15px;">' + Number(Math.round(h.totalDps)).toLocaleString() + ' DPS</b>' : '' },
-    { label: '⏱️ Tổng Dame Trong 1 Phút', getter: (h) => h ? '<b style="color:#e3b341;">' + Number(Math.round(h.totalMinuteDmg)).toLocaleString() + ' DMG</b>' : '' },
-    { label: '🗡️ DPS Đòn Đánh Thường', getter: (h) => h ? '<span style="color:#58a6ff;">' + Number(Math.round(h.normalDps)).toLocaleString() + ' DPS</span>' : '' },
-    { label: '✨ DPS Kỹ Năng (Skill)', getter: (h) => h ? '<span style="color:#ffa657;">' + Number(Math.round(h.skillDps)).toLocaleString() + ' DPS</span>' : '' },
-    { label: '🌟 Kỹ Năng Dame To Nhất', getter: (h) => h && h.topSkillName ? (h.topSkillName + ' (' + Number(Math.round(h.topSkillDps)).toLocaleString() + ' DPS)') : '' },
-    { label: '⚔️ Tấn Công Cơ Bản', getter: (h) => h ? Number(Math.round(h.attack)).toLocaleString() : '' },
-    { label: '⚡ Tốc Độ Đánh', getter: (h) => h ? (h.attackSpeed ? (h.attackSpeed >= 10 ? (h.attackSpeed / 100).toFixed(3) : Number(h.attackSpeed).toFixed(3)) : '1.155') + ' đòn/s' : '' },
-    { label: '💥 Chí Mạng (Tỉ lệ / Sát thương)', getter: (h) => h ? (h.criticalRate + '% / ' + h.criticalDamage + '%') : '' },
-    { label: '🔥 Khuếch Đại Sát Thương', getter: (h) => h ? ('+' + h.damageBonus + '%') : '' },
-    { label: '📍 Ải Ghi Nhận DPS', getter: (h) => h ? h.stageName : '' }
+    { label: isTr ? 'Veri Durumu' : (isEn ? 'Data Status' : 'Trạng Thái Dữ Liệu'), getter: (h, c, isAct) => isAct ? ('<b style="color:#7ee787;">● ' + (isTr ? 'Canlı Oynanıyor' : (isEn ? 'Live Playing' : 'Đang Chơi Trực Tiếp')) + '</b>') : (h ? ('<span style="color:#58a6ff;">✓ ' + (isTr ? 'Kaydedildi' : (isEn ? 'Recorded' : 'Đã ghi nhớ')) + ' (' + h.recordedAt + ')</span>') : ('<span style="color:#6e7681; font-style:italic;">' + (isTr ? '(Henüz veri yok)' : (isEn ? '(No data yet)' : '(Chưa có dữ liệu)')) + '</span>')) },
+    { label: isTr ? '⚡ Gerçek Toplam DPS' : (isEn ? '⚡ Real Total DPS' : '⚡ Tổng DPS Thực Tế'), getter: (h) => h ? '<b style="color:#f85149; font-size:15px;">' + Number(Math.round(h.totalDps)).toLocaleString() + ' DPS</b>' : '' },
+    { label: isTr ? '⏱️ 1 Dakikadaki Toplam Hasar' : (isEn ? '⏱️ Total 1-Minute Damage' : '⏱️ Tổng Dame Trong 1 Phút'), getter: (h) => h ? '<b style="color:#e3b341;">' + Number(Math.round(h.totalMinuteDmg)).toLocaleString() + ' DMG</b>' : '' },
+    { label: isTr ? '🗡️ Düz Vuruş DPS' : (isEn ? '🗡️ Normal Attack DPS' : '🗡️ DPS Đòn Đánh Thường'), getter: (h) => h ? '<span style="color:#58a6ff;">' + Number(Math.round(h.normalDps)).toLocaleString() + ' DPS</span>' : '' },
+    { label: isTr ? '✨ Yetenek DPS' : (isEn ? '✨ Skill DPS' : '✨ DPS Kỹ Năng (Skill)'), getter: (h) => h ? '<span style="color:#ffa657;">' + Number(Math.round(h.skillDps)).toLocaleString() + ' DPS</span>' : '' },
+    { label: isTr ? '🌟 En Çok Hasar Veren Yetenek' : (isEn ? '🌟 Top Burst Skill' : '🌟 Kỹ Năng Dame To Nhất'), getter: (h) => h && h.topSkillName ? (h.topSkillName + ' (' + Number(Math.round(h.topSkillDps)).toLocaleString() + ' DPS)') : '' },
+    { label: isTr ? '⚔️ Temel Saldırı' : (isEn ? '⚔️ Base Attack' : '⚔️ Tấn Công Cơ Bản'), getter: (h) => h ? Number(Math.round(h.attack)).toLocaleString() : '' },
+    { label: isTr ? '⚡ Saldırı Hızı' : (isEn ? '⚡ Attack Speed' : '⚡ Tốc Độ Đánh'), getter: (h) => h ? (h.attackSpeed ? (h.attackSpeed >= 10 ? (h.attackSpeed / 100).toFixed(3) : Number(h.attackSpeed).toFixed(3)) : '1.155') + speedSuffix : '' },
+    { label: isTr ? '💥 Kritik (Oran / Hasar)' : (isEn ? '💥 Crit (Rate / Dmg)' : '💥 Chí Mạng (Tỉ lệ / Sát thương)'), getter: (h) => h ? (h.criticalRate + '% / ' + h.criticalDamage + '%') : '' },
+    { label: isTr ? '🔥 Hasar Artışı' : (isEn ? '🔥 Damage Bonus' : '🔥 Khuếch Đại Sát Thương'), getter: (h) => h ? ('+' + h.damageBonus + '%') : '' },
+    { label: isTr ? '📍 Kaydedilen Bölüm' : (isEn ? '📍 Recorded Stage' : '📍 Ải Ghi Nhận DPS'), getter: (h) => h ? (translateStageTag(h.stageName) || h.stageName) : '' }
   ];
 
   rows.forEach((r, rIdx) => {
@@ -15286,11 +15367,15 @@ function renderCombatBreakdown() {
   if (stageBanner && curStageObj) {
     stageBanner.innerText = isEn ? ('Stage ' + translateStageTag(curStageObj.display_full)) : ('Ải ' + curStageObj.display_full);
     // Update class label
+    const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+    const isTr = (currentLang === 'tr');
     const classLabelEl = document.getElementById('dpsActiveClassLabel');
     if (classLabelEl) {
-      const classNames = isEn 
+      const classNames = isTr
+        ? { Ranged: '🏹 Okçu', Melee: '⚔️ Şövalye', Mage: '🔮 Büyücü' }
+        : (isEn 
         ? { Ranged: '🏹 Archer', Melee: '⚔️ Knight', Mage: '🔮 Mage' }
-        : { Ranged: '🏹 Cung Thủ', Melee: '⚔️ Hiệp Sĩ', Mage: '🔮 Pháp Sư' };
+        : { Ranged: '🏹 Cung Thủ', Melee: '⚔️ Hiệp Sĩ', Mage: '🔮 Pháp Sư' });
       classLabelEl.innerText = classNames[currentDpsClass] || currentDpsClass;
     }
     const hpEl = document.getElementById('dpsStageHp');
@@ -15440,12 +15525,16 @@ function renderCombatBreakdown() {
   });
 
   // Update Summary Cards
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
   document.getElementById('dpsStatAtk').innerText = Number(atk.toFixed(1)).toLocaleString();
-  document.getElementById('dpsStatSpd').innerText = atkSpeed.toFixed(3) + ' đòn/s (' + (atkSpeed * 100).toFixed(1) + '%)';
+  document.getElementById('dpsStatSpd').innerText = atkSpeed.toFixed(3) + (isTr ? ' vuruş/sn' : (isEn ? ' hits/s' : ' đòn/s')) + ' (' + (atkSpeed * 100).toFixed(1) + '%)';
   document.getElementById('dpsStatCrit').innerText = (critRate * 100).toFixed(1) + '% / ' + (critDmg * 100).toFixed(1) + '% (x' + critMult.toFixed(2) + ')';
   // Display general Damage Amplification matching in-game Status popup, and provide PvE breakdown
   document.getElementById('dpsStatBonus').innerText = '+' + generalDmg.toFixed(1) + '% (x' + (1.0 + generalDmg / 100).toFixed(2) + ')';
-  document.getElementById('dpsStatBonus').title = isEn ? ('General Dmg: +' + generalDmg.toFixed(1) + '% | PvE Dmg: +' + pveDmg.toFixed(1) + '% | Boss Dmg: +' + bossDmg.toFixed(1) + '% (Effective: +' + effDmgBonus.toFixed(1) + '%)') : ('Sát thương +: +' + generalDmg.toFixed(1) + '% | PvE +: +' + pveDmg.toFixed(1) + '% | Boss +: +' + bossDmg.toFixed(1) + '% (Hiệu lực: +' + effDmgBonus.toFixed(1) + '%)');
+  document.getElementById('dpsStatBonus').title = isTr 
+    ? ('Genel Hasar: +' + generalDmg.toFixed(1) + '% | PvE Hasarı: +' + pveDmg.toFixed(1) + '% | Boss Hasarı: +' + bossDmg.toFixed(1) + '% (Etkili: +' + effDmgBonus.toFixed(1) + '%)')
+    : (isEn ? ('General Dmg: +' + generalDmg.toFixed(1) + '% | PvE Dmg: +' + pveDmg.toFixed(1) + '% | Boss Dmg: +' + bossDmg.toFixed(1) + '% (Effective: +' + effDmgBonus.toFixed(1) + '%)') : ('Sát thương +: +' + generalDmg.toFixed(1) + '% | PvE +: +' + pveDmg.toFixed(1) + '% | Boss +: +' + bossDmg.toFixed(1) + '% (Hiệu lực: +' + effDmgBonus.toFixed(1) + '%)'));
   document.getElementById('dpsTotalVal').innerText = Number(Math.round(totalDps)).toLocaleString() + ' DPS';
   // Sync DPS header badge with live calculated DPS
   window.__lastTotalDps = totalDps;
@@ -15481,12 +15570,12 @@ function renderCombatBreakdown() {
   if (profDpsEl) profDpsEl.innerText = Number(Math.round(totalDps)).toLocaleString() + ' DPS';
   // Also sync the "Dùng DPS Thực" button and slider
   const realDpsBtn = document.querySelector('button[onclick="applyRealDps()"]');
-  if (realDpsBtn) realDpsBtn.innerText = (isEn ? 'Use Real DPS (' : 'Dùng DPS Thực (') + Number(Math.round(totalDps)).toLocaleString() + ')';
+  if (realDpsBtn) realDpsBtn.innerText = (isTr ? 'Gerçek DPS Kullan (' : (isEn ? 'Use Real DPS (' : 'Dùng DPS Thực (')) + Number(Math.round(totalDps)).toLocaleString() + ')';
   document.getElementById('dpsTotalMinuteVal').innerText = Number(Math.round(totalDps * 60)).toLocaleString() + ' DMG';
   const clearEl = document.getElementById('dpsStageClearTime');
   if (clearEl && curStageObj) {
     const clearSec = totalDps > 0 ? (curStageObj.total_hp / totalDps) : (curStageObj.est_clear_sec || 20);
-    clearEl.innerText = '~' + clearSec.toFixed(1) + (isEn ? 's / clear' : 's / lần');
+    clearEl.innerText = '~' + clearSec.toFixed(1) + (isTr ? 'sn / temizleme' : (isEn ? 's / clear' : 's / lần'));
   }
 
   // Render Table Rows (Sorted from highest to lowest damage)
@@ -15505,13 +15594,15 @@ function renderCombatBreakdown() {
     }
 
     const levelBadge = item.isNormal 
-      ? ('<span class="badge" style="background:#21262d;">' + (isEn ? 'Basic' : 'Cơ bản') + '</span>')
-      : ('<span class="badge badge-tier">' + (isEn ? 'Level ' : 'Cấp ') + item.lv + ' / ' + (item.maxLv || 10) + '</span>');
+      ? ('<span class="badge" style="background:#21262d;">' + (isTr ? 'Temel' : (isEn ? 'Basic' : 'Cơ bản')) + '</span>')
+      : ('<span class="badge badge-tier">' + (isTr ? 'Seviye ' : (isEn ? 'Level ' : 'Cấp ')) + item.lv + ' / ' + (item.maxLv || 10) + '</span>');
 
-    const cdText = item.isNormal ? (isEn ? 'No CD' : 'Không CD') : (item.cd + 's');
+    const cdText = item.isNormal ? (isTr ? 'Bekleme Yok' : (isEn ? 'No CD' : 'Không CD')) : (item.cd + 's');
     const freqText = item.isNormal 
-      ? ('<b>' + item.castsPerMin.toFixed(1) + '</b> ' + (isEn ? 'hits/m' : 'đòn/m'))
-      : ('<b>' + item.castsPerMin.toFixed(2) + '</b> ' + (isEn ? 'casts/m' : 'lần/m'));
+      ? ('<b>' + item.castsPerMin.toFixed(1) + '</b> ' + (isTr ? 'vuruş/dk' : (isEn ? 'hits/m' : 'đòn/m')))
+      : ('<b>' + item.castsPerMin.toFixed(2) + '</b> ' + (isTr ? 'kullanım/dk' : (isEn ? 'casts/m' : 'lần/m')));
+
+    const subDescText = item.subName || (item.isAoe ? (isTr ? 'Kalabalık temizleme AoE yeteneği' : (isEn ? 'AoE mob sweeping skill' : 'Chiêu diện rộng quét lính')) : (isTr ? 'Yüksek hasarlı tek hedef yeteneği' : (isEn ? 'High burst single-target skill' : 'Chiêu đơn mục tiêu sát thương cao')));
 
     return '<tr style="' + (idx === 0 ? 'background:#e3b3410c;' : '') + '">' +
       '<td style="text-align:center;"><span class="rank-badge ' + rankClass + '">' + (idx + 1) + '</span></td>' +
@@ -15520,7 +15611,7 @@ function renderCombatBreakdown() {
       iconBoxHtml +
       '<div>' +
       '<div style="font-size:14px; font-weight:bold; color:var(--text-bright);">' + item.name + aoeTag + '</div>' +
-      '<div style="font-size:11.5px; color:#8b949e;">' + (item.subName || (item.isAoe ? 'Chiêu diện rộng quét lính' : 'Chiêu đơn mục tiêu sát thương cao')) + '</div>' +
+      '<div style="font-size:11.5px; color:#8b949e;">' + subDescText + '</div>' +
       '</div>' +
       '</div>' +
       '</td>' +
@@ -15538,8 +15629,11 @@ function renderCombatBreakdown() {
       '</td>' +
       '</tr>';
   }).join('') +
-  '<tr style="background:#21262d40; font-size:12.5px; color:#8b949e;"><td colspan="9">🛡️ <b>Kỹ năng Bị Động đang áp dụng:</b> Nạp Nhanh Lv.' + getLiveLevel(8225010) + ' (+tốc đánh khi dồn mục tiêu) & Bộ Pháp U Linh Lv.' + getLiveLevel(8226010) + ' (+15% tốc chạy) — đã được tính vào chỉ số ATK cuối.</td></tr>' +
-  '<tr style="background:#0d1117; font-size:11px; color:#6e7681;"><td colspan="9">ℹ️ <b>Nguồn dữ liệu DPS:</b> Công lực (<b>' + atk.toFixed(1) + '</b>) lấy trực tiếp từ game (bao gồm Huấn luyện + Pet + Wing + Dị vật). Tỷ lệ sát thương kỹ năng theo thiết kế game. Cấp kỹ năng đồng bộ trực tiếp từ cây kỹ năng trong game.</td></tr>';
+  (isTr ?
+    '<tr style="background:#21262d40; font-size:12.5px; color:#8b949e;"><td colspan="9">🛡️ <b>Uygulanan Pasif Yetenekler:</b> Hızlı Doldurma Sv.' + getLiveLevel(8225010) + ' (+hedefe odaklanınca saldırı hızı) & Hayalet Adımları Sv.' + getLiveLevel(8226010) + ' (+%15 hareket hızı) — nihai ATK değerine dahil edilmiştir.</td></tr><tr style="background:#0d1117; font-size:11px; color:#6e7681;"><td colspan="9">ℹ️ <b>DPS Veri Kaynağı:</b> Saldırı gücü (<b>' + atk.toFixed(1) + '</b>) doğrudan oyundan alınmıştır (Eğitim + Evcil Hayvan + Kanat + Kalıntılar dahil). Yetenek hasar oranları oyun tasarımına uygundur. Yetenek seviyeleri oyundaki yetenek ağacından canlı senkronize edilir.</td></tr>' :
+  isEn ?
+    '<tr style="background:#21262d40; font-size:12.5px; color:#8b949e;"><td colspan="9">🛡️ <b>Active Passive Skills:</b> Quick Reload Lv.' + getLiveLevel(8225010) + ' (+atk spd on target) & Ghost Steps Lv.' + getLiveLevel(8226010) + ' (+15% move spd) — included in final ATK stat.</td></tr><tr style="background:#0d1117; font-size:11px; color:#6e7681;"><td colspan="9">ℹ️ <b>DPS Data Source:</b> Attack power (<b>' + atk.toFixed(1) + '</b>) fetched directly from game. Skill damage ratios follow official balance tables. Skill levels live synced from tree.</td></tr>' :
+    '<tr style="background:#21262d40; font-size:12.5px; color:#8b949e;"><td colspan="9">🛡️ <b>Kỹ năng Bị Động đang áp dụng:</b> Nạp Nhanh Lv.' + getLiveLevel(8225010) + ' (+tốc đánh khi dồn mục tiêu) & Bộ Pháp U Linh Lv.' + getLiveLevel(8226010) + ' (+15% tốc chạy) — đã được tính vào chỉ số ATK cuối.</td></tr><tr style="background:#0d1117; font-size:11px; color:#6e7681;"><td colspan="9">ℹ️ <b>Nguồn dữ liệu DPS:</b> Công lực (<b>' + atk.toFixed(1) + '</b>) lấy trực tiếp từ game (bao gồm Huấn luyện + Pet + Wing + Dị vật). Tỷ lệ sát thương kỹ năng theo thiết kế game. Cấp kỹ năng đồng bộ trực tiếp từ cây kỹ năng trong game.</td></tr>');
 
   // Save current class DPS snapshot into history and render comparison section
   const topSkillItem = allCombatItems.find(i => !i.isNormal) || allCombatItems[0];
@@ -15789,7 +15883,7 @@ function renderAnalysisCard(icon, title, color, rows, alertLevel) {
           '<span>Lv.' + r.currentLv + ' → <b style="color:#f2cc60;">Lv.' + r.nextLv + '</b></span>' +
           '<span>' + r.curMult + '% → <b style="color:#58a6ff;">' + r.nextMult + '%</b> mult</span>' +
           (r.curCd !== r.nextCd ? '<span>CD: ' + r.curCd + 's → <b style="color:#bc8cff;">' + r.nextCd + 's</b></span>' : '') +
-          '<span>+' + (r.dpsDeltaPct||0).toFixed(2) + '% tổng DPS</span>' +
+          '<span>+' + (r.dpsDeltaPct||0).toFixed(2) + '% ' + (currentLang === 'tr' ? 'toplam DPS' : currentLang === 'en' ? 'total DPS' : 'tổng DPS') + '</span>' +
         '</div>' +
         '<div style="background:#21262d; border-radius:3px; height:3px; margin-top:5px; overflow:hidden;">' +
           '<div style="width:' + bar + '%; height:100%; background:' + gainColor + ';"></div>' +
@@ -15821,6 +15915,10 @@ function renderSmartAnalysis() {
     renderCombatBreakdown();
   }
 
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
+
   const s = getSmartAnalysisData();
   const hasData = s.totalDps > 0 || s.level > 0;
 
@@ -15829,8 +15927,8 @@ function renderSmartAnalysis() {
   if (!hasData) {
     html = '<div style="text-align:center; padding:40px; color:#8b949e;">' +
       '<div style="font-size:32px; margin-bottom:12px;">⚡</div>' +
-      '<b style="font-size:15px; color:#f0883e;">Chưa có đủ dữ liệu để phân tích!</b><br>' +
-      '<div style="margin-top:8px; font-size:13px;">Hãy vào tab <b>⚔️ Thống Kê DPS</b> và tab <b>👤 Hồ Sơ & Tiến Độ</b> để đồng bộ dữ liệu trước, rồi quay lại bấm "🔄 Làm Mới Phân Tích".</div>' +
+      '<b style="font-size:15px; color:#f0883e;">' + (isTr ? 'Analiz için henüz yeterli veri yok!' : (isEn ? 'Not enough data for analysis!' : 'Chưa có đủ dữ liệu để phân tích!')) + '</b><br>' +
+      '<div style="margin-top:8px; font-size:13px;">' + (isTr ? 'Önce <b>⚔️ DPS İstatistikleri</b> ve <b>👤 Profil & İlerleme</b> sekmelerinden verileri eşitleyin, ardından "🔄 Analizi Yenile"ye tıklayın.' : (isEn ? 'Please sync data in <b>⚔️ DPS Stats</b> and <b>👤 Profile & Progress</b> tabs first, then click "🔄 Refresh Analysis".' : 'Hãy vào tab <b>⚔️ Thống Kê DPS</b> và tab <b>👤 Hồ Sơ & Tiến Độ</b> để đồng bộ dữ liệu trước, rồi quay lại bấm "🔄 Làm Mới Phân Tích".')) + '</div>' +
     '</div>';
     el.innerHTML = html;
     return;
@@ -15841,38 +15939,41 @@ function renderSmartAnalysis() {
   // ---- CARD 1: TỔNG QUAN TÀI KHOẢN ----
   const expPct = s.expPercent.toFixed(1);
   const etaMin = s.liveExpPerSec > 0 ? (s.expRemain / s.liveExpPerSec / 60) : null;
-  const etaText = etaMin ? (etaMin < 60 ? Math.ceil(etaMin) + ' phút' : (etaMin/60).toFixed(1) + ' giờ') : '-- (cần đồng bộ)';
-  html += renderAnalysisCard('👤', 'Tổng Quan Tài Khoản', '#58a6ff', [
-    { label: 'Cấp độ', value: s.level > 0 ? 'Lv. ' + s.level : '--', valColor: '#f2cc60' },
-    { label: 'Lực chiến', value: s.combatPower > 0 ? fmtNum(s.combatPower) : '--', valColor: '#f0883e' },
-    { type: 'progress', label: 'EXP Lên Cấp ' + (s.level + 1), value: s.level > 0 ? (fmtNum(s.exp) + ' / ' + fmtNum(s.expRequired) + ' (' + expPct + '%)') : '--', pct: parseFloat(expPct)||0, barColor: '#7ee787' },
-    { label: 'EXP còn thiếu', value: s.expRemain > 0 ? fmtNum(s.expRemain) : '--', valColor: '#8b949e' },
-    { label: 'EXP/giây', value: s.liveExpPerSec > 0 ? fmtNum(s.liveExpPerSec) + ' EXP/s' : '-- (cần sync)' , valColor: '#7ee787' },
-    { label: '⏱️ Ước tính lên cấp', value: etaText, valColor: '#58a6ff' },
-    { label: 'Vàng hiện có', value: s.gold > 0 ? fmtNum(s.gold) + ' 🪙' : '--', valColor: '#f2cc60' },
-    { label: 'Kim cương', value: s.diamond > 0 ? fmtNum(s.diamond) + ' 💎' : '--', valColor: '#79c0ff' },
+  const etaText = etaMin ? (etaMin < 60 ? Math.ceil(etaMin) + (isTr ? ' dk' : (isEn ? ' min' : ' phút')) : (etaMin/60).toFixed(1) + (isTr ? ' sa' : (isEn ? ' hrs' : ' giờ'))) : (isTr ? '-- (eşitleme gerekli)' : (isEn ? '-- (sync required)' : '-- (cần đồng bộ)'));
+  html += renderAnalysisCard('👤', isTr ? 'Genel Hesap Özeti' : (isEn ? 'Account Overview' : 'Tổng Quan Tài Khoản'), '#58a6ff', [
+    { label: isTr ? 'Seviye' : (isEn ? 'Level' : 'Cấp độ'), value: s.level > 0 ? 'Lv. ' + s.level : '--', valColor: '#f2cc60' },
+    { label: isTr ? 'Savaş Gücü' : (isEn ? 'Combat Power' : 'Lực chiến'), value: s.combatPower > 0 ? fmtNum(s.combatPower) : '--', valColor: '#f0883e' },
+    { type: 'progress', label: (isTr ? 'Seviye Atlama EXP ' : (isEn ? 'EXP to Level ' : 'EXP Lên Cấp ')) + (s.level + 1), value: s.level > 0 ? (fmtNum(s.exp) + ' / ' + fmtNum(s.expRequired) + ' (' + expPct + '%)') : '--', pct: parseFloat(expPct)||0, barColor: '#7ee787' },
+    { label: isTr ? 'Kalan EXP' : (isEn ? 'Remaining EXP' : 'EXP còn thiếu'), value: s.expRemain > 0 ? fmtNum(s.expRemain) : '--', valColor: '#8b949e' },
+    { label: isTr ? 'EXP/saniye' : (isEn ? 'EXP/sec' : 'EXP/giây'), value: s.liveExpPerSec > 0 ? fmtNum(s.liveExpPerSec) + ' EXP/s' : (isTr ? '-- (eşitleme gerekli)' : (isEn ? '-- (sync needed)' : '-- (cần sync)')), valColor: '#7ee787' },
+    { label: isTr ? '⏱️ Tahmini Seviye Atlama' : (isEn ? '⏱️ Estimated Level Up' : '⏱️ Ước tính lên cấp'), value: etaText, valColor: '#58a6ff' },
+    { label: isTr ? 'Mevcut Altın' : (isEn ? 'Current Gold' : 'Vàng hiện có'), value: s.gold > 0 ? fmtNum(s.gold) + ' 🪙' : '--', valColor: '#f2cc60' },
+    { label: isTr ? 'Elmas' : (isEn ? 'Diamond' : 'Kim cương'), value: s.diamond > 0 ? fmtNum(s.diamond) + ' 💎' : '--', valColor: '#79c0ff' },
   ], s.level > 0 ? 'good' : 'neutral');
 
   // ---- CARD 2: PHÂN TÍCH DPS ----
   const normalPct = s.totalDps > 0 ? (s.normalDps / s.totalDps * 100).toFixed(1) : '0';
   const skillPct = s.totalDps > 0 ? (s.skillDps / s.totalDps * 100).toFixed(1) : '0';
+  const classLabel = s.activeClass === 'Mage' ? (isTr ? '🔮 Büyücü' : (isEn ? '🔮 Mage' : '🔮 Pháp Sư')) :
+                     s.activeClass === 'Ranged' ? (isTr ? '🏹 Okçu' : (isEn ? '🏹 Archer' : '🏹 Cung Thủ')) :
+                     s.activeClass === 'Melee' ? (isTr ? '⚔️ Şövalye' : (isEn ? '⚔️ Knight' : '⚔️ Hiệp Sĩ')) : s.activeClass;
   const dpsRows = [
-    { label: 'Tổng DPS thực tế', value: fmtNum(s.totalDps) + ' DPS', valColor: '#f0883e' },
-    { label: 'Class đang chơi', value: s.activeClass === 'Mage' ? '🔮 Pháp Sư' : s.activeClass === 'Ranged' ? '🏹 Cung Thủ' : s.activeClass === 'Melee' ? '⚔️ Hiệp Sĩ' : s.activeClass, valColor: '#bc8cff' },
-    { type: 'progress', label: 'Đòn đánh thường', value: fmtNum(s.normalDps) + ' (' + normalPct + '%)', pct: parseFloat(normalPct), barColor: '#58a6ff' },
-    { type: 'progress', label: 'Kỹ năng (Skill)', value: fmtNum(s.skillDps) + ' (' + skillPct + '%)', pct: parseFloat(skillPct), barColor: '#bc8cff' },
-    { label: 'Công cơ bản', value: fmtNum(s.baseAtk), valColor: '#f0f6fc' },
-    { label: 'Tốc độ đánh', value: (s.attackSpeed||0).toFixed(3) + ' đòn/s', valColor: '#7ee787' },
-    { label: 'Chí mạng', value: (s.critRate||0).toFixed(1) + '% / ' + (s.critDmg||0).toFixed(1) + '%', valColor: '#f2cc60' },
-    { label: 'Khuếch đại tổng', value: '+' + (s.dmgBonus||0).toFixed(1) + '%', valColor: '#f0883e' },
+    { label: isTr ? 'Toplam Gerçek DPS' : (isEn ? 'Total Real DPS' : 'Tổng DPS thực tế'), value: fmtNum(s.totalDps) + ' DPS', valColor: '#f0883e' },
+    { label: isTr ? 'Aktif Sınıf' : (isEn ? 'Active Class' : 'Class đang chơi'), value: classLabel, valColor: '#bc8cff' },
+    { type: 'progress', label: isTr ? 'Normal Saldırı' : (isEn ? 'Normal Attack' : 'Đòn đánh thường'), value: fmtNum(s.normalDps) + ' (' + normalPct + '%)', pct: parseFloat(normalPct), barColor: '#58a6ff' },
+    { type: 'progress', label: isTr ? 'Yetenek (Beceri)' : (isEn ? 'Skill Damage' : 'Kỹ năng (Skill)'), value: fmtNum(s.skillDps) + ' (' + skillPct + '%)', pct: parseFloat(skillPct), barColor: '#bc8cff' },
+    { label: isTr ? 'Temel Saldırı' : (isEn ? 'Base Attack' : 'Công cơ bản'), value: fmtNum(s.baseAtk), valColor: '#f0f6fc' },
+    { label: isTr ? 'Saldırı Hızı' : (isEn ? 'Attack Speed' : 'Tốc độ đánh'), value: (s.attackSpeed||0).toFixed(3) + (isTr ? ' vuruş/sn' : (isEn ? ' hits/s' : ' đòn/s')), valColor: '#7ee787' },
+    { label: isTr ? 'Kritik Oranı / Hasarı' : (isEn ? 'Crit Rate / Dmg' : 'Chí mạng'), value: (s.critRate||0).toFixed(1) + '% / ' + (s.critDmg||0).toFixed(1) + '%', valColor: '#f2cc60' },
+    { label: isTr ? 'Toplam Hasar Bonusu' : (isEn ? 'Total Dmg Bonus' : 'Khuếch đại tổng'), value: '+' + (s.dmgBonus||0).toFixed(1) + '%', valColor: '#f0883e' },
   ];
   if (s.skills.length > 0) {
-    dpsRows.push({ type: 'header', text: 'Top Kỹ Năng Hiện Tại' });
+    dpsRows.push({ type: 'header', text: isTr ? 'Mevcut En İyi Yetenekler' : (isEn ? 'Top Current Skills' : 'Top Kỹ Năng Hiện Tại') });
     s.skills.slice().sort((a,b)=>b.dps-a.dps).slice(0,4).forEach((sk, i) => {
       dpsRows.push({ label: (i+1) + '. ' + sk.name, value: fmtNum(sk.dps) + ' DPS', valColor: '#bc8cff' });
     });
   }
-  html += renderAnalysisCard('⚔️', 'Phân Tích DPS Thực Tế', '#f0883e', dpsRows, s.totalDps > 0 ? 'neutral' : 'warn');
+  html += renderAnalysisCard('⚔️', isTr ? 'Gerçek DPS Analizi' : (isEn ? 'Real DPS Analysis' : 'Phân Tích DPS Thực Tế'), '#f0883e', dpsRows, s.totalDps > 0 ? 'neutral' : 'warn');
 
   // ---- CARD 3: GỢI Ý NÂNG CÂY KỸ NĂNG ----
   const opts = s.skillOptimizations;
@@ -15880,13 +15981,24 @@ function renderSmartAnalysis() {
   let skillCardAlert = 'neutral';
 
   if (opts.length === 0 && s.totalDps === 0) {
-    skillCardRows.push({ label: '⚠️ Chưa có dữ liệu DPS', value: 'Vào tab Thống Kê DPS trước', valColor: '#f85149' });
+    skillCardRows.push({
+      label: isTr ? '⚠️ DPS verisi yok' : (isEn ? '⚠️ No DPS data' : '⚠️ Chưa có dữ liệu DPS'),
+      value: isTr ? 'Önce DPS İstatistikleri sekmesine gidin' : (isEn ? 'Go to DPS Stats tab first' : 'Vào tab Thống Kê DPS trước'),
+      valColor: '#f85149'
+    });
     skillCardAlert = 'bad';
   } else if (opts.length === 0) {
-    skillCardRows.push({ label: '✅ Tất cả kỹ năng đã Max Level', value: 'Không còn kỹ năng nào có thể nâng thêm!', valColor: '#7ee787' });
+    skillCardRows.push({
+      label: isTr ? '✅ Tüm yetenekler Maks Seviyede' : (isEn ? '✅ All skills Max Level' : '✅ Tất cả kỹ năng đã Max Level'),
+      value: isTr ? 'Yükseltilecek başka yetenek kalmadı!' : (isEn ? 'No more skills can be upgraded!' : 'Không còn kỹ năng nào có thể nâng thêm!'),
+      valColor: '#7ee787'
+    });
     skillCardAlert = 'good';
   } else {
-    skillCardRows.push({ type: 'header', text: 'Xếp Hạng Theo Mức Tăng DPS Khi Nâng 1 Cấp' });
+    skillCardRows.push({
+      type: 'header',
+      text: isTr ? '1 Seviye Yükseltmede DPS Artışına Göre Sıralama' : (isEn ? 'Ranking by DPS Gain per +1 Level Upgrade' : 'Xếp Hạng Theo Mức Tăng DPS Khi Nâng 1 Cấp')
+    });
     opts.slice(0, 6).forEach((opt, i) => {
       skillCardRows.push({
         type: 'skill_row',
@@ -15906,19 +16018,31 @@ function renderSmartAnalysis() {
       });
     });
     if (opts.length > 6) {
-      skillCardRows.push({ label: '...và ' + (opts.length - 6) + ' kỹ năng khác có thể nâng', value: '', valColor: '#8b949e' });
+      skillCardRows.push({
+        label: isTr ? '...ve geliştirilebilir ' + (opts.length - 6) + ' diğer yetenek' : (isEn ? '...and ' + (opts.length - 6) + ' other upgradable skills' : '...và ' + (opts.length - 6) + ' kỹ năng khác có thể nâng'),
+        value: '',
+        valColor: '#8b949e'
+      });
     }
     // Summary advice
     const top1 = opts[0];
-    skillCardRows.push({ type: 'header', text: '💡 Lời Khuyên' });
+    skillCardRows.push({ type: 'header', text: isTr ? '💡 Öneri' : (isEn ? '💡 Recommendation' : '💡 Lời Khuyên') });
     if (top1.dpsDelta > s.totalDps * 0.05) {
-      skillCardRows.push({ label: '→ Nên nâng ngay: ' + top1.name, value: '+' + top1.dpsDeltaPct.toFixed(1) + '% DPS', valColor: '#7ee787' });
+      skillCardRows.push({
+        label: (isTr ? '→ Hemen yükseltilmeli: ' : (isEn ? '→ Recommended upgrade: ' : '→ Nên nâng ngay: ')) + top1.name,
+        value: '+' + top1.dpsDeltaPct.toFixed(1) + '% DPS',
+        valColor: '#7ee787'
+      });
     } else {
-      skillCardRows.push({ label: '→ Tất cả gain <5% DPS/lần nâng', value: 'Dồn vàng nâng đều', valColor: '#f2cc60' });
+      skillCardRows.push({
+        label: isTr ? '→ Tüm kazanımlar artış başına <%5 DPS' : (isEn ? '→ All gains are <5% DPS per upgrade' : '→ Tất cả gain <5% DPS/lần nâng'),
+        value: isTr ? 'Altını dengeli harcayın' : (isEn ? 'Upgrade evenly' : 'Dồn vàng nâng đều'),
+        valColor: '#f2cc60'
+      });
     }
     skillCardAlert = opts[0].dpsDelta > s.totalDps * 0.05 ? 'warn' : 'neutral';
   }
-  html += renderAnalysisCard('🌳', 'Tối Ưu Cây Kỹ Năng (Nâng Cấp Nào Tăng Dame Nhất)', '#7ee787', skillCardRows, skillCardAlert);
+  html += renderAnalysisCard('🌳', isTr ? 'Yetenek Ağacı Optimizasyonu (En Çok Hasar Artıranlar)' : (isEn ? 'Skill Tree Optimization (Best Damage Increases)' : 'Tối Ưu Cây Kỹ Năng (Nâng Cấp Nào Tăng Dame Nhất)'), '#7ee787', skillCardRows, skillCardAlert);
 
   // ---- CARD 4: GỢI Ý CÁCH ẢI & PHÒNG THỦ ----
   const goldRows = [];
@@ -15926,11 +16050,11 @@ function renderSmartAnalysis() {
   const farmGps = s.farmStage ? (s.farmStage.calc_gps || s.farmStage.gps || 0) : (s.liveGoldPerSec || 0);
 
   if (farmGps > 0) {
-    goldRows.push({ label: 'Ải đang farm', value: farmName || 'Ải hiện tại', valColor: '#f2cc60' });
-    goldRows.push({ label: 'Vàng/giây', value: fmtNum(farmGps) + ' 🪙/s', valColor: '#7ee787' });
-    goldRows.push({ label: 'Vàng/giờ (AFK)', value: fmtNum(farmGps * 3600) + ' 🪙/h', valColor: '#7ee787' });
+    goldRows.push({ label: isTr ? 'Kasılma Aşaması' : (isEn ? 'Farming Stage' : 'Ải đang farm'), value: farmName || (isTr ? 'Mevcut Aşama' : (isEn ? 'Current Stage' : 'Ải hiện tại')), valColor: '#f2cc60' });
+    goldRows.push({ label: isTr ? 'Altın/saniye' : (isEn ? 'Gold/sec' : 'Vàng/giây'), value: fmtNum(farmGps) + ' 🪙/s', valColor: '#7ee787' });
+    goldRows.push({ label: isTr ? 'Altın/saat (AFK)' : (isEn ? 'Gold/hour (AFK)' : 'Vàng/giờ (AFK)'), value: fmtNum(farmGps * 3600) + ' 🪙/h', valColor: '#7ee787' });
   } else {
-    goldRows.push({ label: 'Vàng/giây', value: s.liveGoldPerSec > 0 ? fmtNum(s.liveGoldPerSec) + ' 🪙/s' : '-- (cần sync)', valColor: '#f2cc60' });
+    goldRows.push({ label: isTr ? 'Altın/saniye' : (isEn ? 'Gold/sec' : 'Vàng/giây'), value: s.liveGoldPerSec > 0 ? fmtNum(s.liveGoldPerSec) + ' 🪙/s' : (isTr ? '-- (eşitleme gerekli)' : (isEn ? '-- (sync needed)' : '-- (cần sync)')), valColor: '#f2cc60' });
   }
 
   if (s.bestGoldStage) {
@@ -15938,25 +16062,28 @@ function renderSmartAnalysis() {
     const bName = s.bestGoldStage.display_full || s.bestGoldStage.nameVi || '';
     const sameStage = s.farmStage && (s.bestGoldStage.stage_id === s.farmStage.stage_id);
     if (!sameStage && bGps > farmGps * 1.03) {
-      goldRows.push({ type: 'header', text: '💡 Gợi Ý Ải Vàng Tốt Hơn' });
+      goldRows.push({ type: 'header', text: isTr ? '💡 Daha İyi Altın Aşaması Önerisi' : (isEn ? '💡 Better Gold Stage Suggestion' : '💡 Gợi Ý Ải Vàng Tốt Hơn') });
       goldRows.push({ label: '→ ' + bName, value: fmtNum(bGps) + ' 🪙/s', valColor: '#2ea043' });
-      goldRows.push({ label: '→ Tăng thêm', value: '+' + ((bGps - farmGps) / (farmGps||1) * 100).toFixed(1) + '%', valColor: '#7ee787' });
+      goldRows.push({ label: isTr ? '→ Kazanç Artışı' : (isEn ? '→ Extra Gain' : '→ Tăng thêm'), value: '+' + ((bGps - farmGps) / (farmGps||1) * 100).toFixed(1) + '%', valColor: '#7ee787' });
     } else {
-      goldRows.push({ type: 'header', text: '✅ Đang Cày Ải Vàng Tối Ưu' });
+      goldRows.push({ type: 'header', text: isTr ? '✅ En Verimli Altın Aşamasında Kasılıyor' : (isEn ? '✅ Optimal Gold Stage Active' : '✅ Đang Cày Ải Vàng Tối Ưu') });
     }
   }
 
   if (s.bestExpStage) {
     const beName = s.bestExpStage.display_full || s.bestExpStage.nameVi || '';
     const beEps = s.bestExpStage.exp_per_sec || s.bestExpStage.expPerSec || 0;
-    goldRows.push({ type: 'header', text: '📈 Ải EXP Tốt Nhất Đã Mở' });
-    goldRows.push({ label: '→ ' + beName, value: beEps > 0 ? fmtNum(beEps) + ' EXP/s' : 'Tốt nhất', valColor: '#58a6ff' });
+    goldRows.push({ type: 'header', text: isTr ? '📈 En İyi Açık EXP Aşaması' : (isEn ? '📈 Best Unlocked EXP Stage' : '📈 Ải EXP Tốt Nhất Đã Mở') });
+    goldRows.push({ label: '→ ' + beName, value: beEps > 0 ? fmtNum(beEps) + ' EXP/s' : (isTr ? 'En iyi' : (isEn ? 'Best' : 'Tốt nhất')), valColor: '#58a6ff' });
   }
 
-  html += renderAnalysisCard('🌾', 'Cày Vàng & EXP Tối Ưu', '#f2cc60', goldRows, 'neutral');
+  html += renderAnalysisCard('🌾', isTr ? 'En Verimli Altın & EXP Farmı' : (isEn ? 'Optimal Gold & EXP Farming' : 'Cày Vàng & EXP Tối Ưu'), '#f2cc60', goldRows, 'neutral');
 
   html += '</div>';
-  html += '<div style="text-align:center; font-size:12px; color:#484f58; margin-top:12px;">⏱️ Dữ liệu từ lần đồng bộ gần nhất · Bấm <b>🔄 Đồng Bộ Ngay</b> ở tab Hồ Sơ → quay lại bấm <b>🔄 Làm Mới Phân Tích</b></div>';
+  html += '<div style="text-align:center; font-size:12px; color:#484f58; margin-top:12px;">' +
+    (isTr ? '⏱️ Son eşitlemeden alınan veriler · Profil sekmesinde <b>🔄 Şimdi Eşitle</b>ye basın → ardından <b>🔄 Analizi Yenile</b>ye tıklayın' :
+     (isEn ? '⏱️ Data from latest sync · Click <b>🔄 Sync Now</b> in Profile tab → then click <b>🔄 Refresh Analysis</b>' :
+     '⏱️ Dữ liệu từ lần đồng bộ gần nhất · Bấm <b>🔄 Đồng Bộ Ngay</b> ở tab Hồ Sơ → quay lại bấm <b>🔄 Làm Mới Phân Tích</b>')) + '</div>';
 
   el.innerHTML = html;
 }
@@ -15986,10 +16113,12 @@ function calculateRecentFarmExpPerSec(limit = 20) {
 function applyUserData(data) {
   userProfile = data;
   
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
 
   // Top bar
-  document.getElementById('barPlayerName').innerHTML = (data.nickname || 'Lee') + ' <span style="font-size:12px; background:#1f6feb; padding:2px 8px; border-radius:10px; color:#fff;" class="notranslate" translate="no">' + (isEn ? 'Level ' : 'Cấp ') + (data.level || 32) + '</span>';
+  document.getElementById('barPlayerName').innerHTML = (data.nickname || 'Lee') + ' <span style="font-size:12px; background:#1f6feb; padding:2px 8px; border-radius:10px; color:#fff;" class="notranslate" translate="no">' + (isTr ? 'Seviye ' : (isEn ? 'Level ' : 'Cấp ')) + (data.level || 32) + '</span>';
   
   const goldCnt = data.currencies && data.currencies['1000'] ? Number(data.currencies['1000'].count).toLocaleString() : '667,776';
   const gemCnt = data.currencies && data.currencies['6000'] ? Number(data.currencies['6000'].count).toLocaleString() : '3';
@@ -16049,17 +16178,19 @@ function applyUserData(data) {
               .replace('Thường', 'Normal');
   };
 
-  document.getElementById('profStage').innerText = isEn ? ('Stage ' + translateStageTag(maxStageTag) + ' (Farm ' + translateStageTag(curStageTag) + ')') : ('Ải ' + maxStageTag + ' (Farm ' + curStageTag + ')');
-  document.getElementById('barPlayerMeta').innerText = isEn ? 
+  document.getElementById('profStage').innerText = isTr ? ('Bölüm ' + translateStageTag(maxStageTag) + ' (Farm ' + translateStageTag(curStageTag) + ')') : (isEn ? ('Stage ' + translateStageTag(maxStageTag) + ' (Farm ' + translateStageTag(curStageTag) + ')') : ('Ải ' + maxStageTag + ' (Farm ' + curStageTag + ')'));
+  document.getElementById('barPlayerMeta').innerText = isTr ?
+    ('İlerleme: Bölüm ' + translateStageTag(maxStageTag) + ' | Farm: ' + translateStageTag(curStageTag) + ' | Güç: ' + cpCnt) :
+    (isEn ? 
     ('Progress: Stage ' + translateStageTag(maxStageTag) + ' | Farming: ' + translateStageTag(curStageTag) + ' | CP: ' + cpCnt) : 
-    ('Tiến độ: Ải ' + maxStageTag + ' | Đang farm: ' + curStageTag + ' | Lực chiến: ' + cpCnt);
+    ('Tiến độ: Ải ' + maxStageTag + ' | Đang farm: ' + curStageTag + ' | Lực chiến: ' + cpCnt));
   document.getElementById('profGold').innerText = goldCnt;
   document.getElementById('profGem').innerText = gemCnt;
   document.getElementById('profEther').innerText = etherCnt;
 
   const wPts = data.currencies && data.currencies['8000'] ? data.currencies['8000'].count : '1';
   const mPts = data.currencies && data.currencies['8200'] ? data.currencies['8200'].count : '1';
-  document.getElementById('profSkillPts').innerText = wPts + ' Hiệp Sĩ / ' + mPts + ' Pháp Sư';
+  document.getElementById('profSkillPts').innerText = isTr ? (wPts + ' Şövalye / ' + mPts + ' Büyücü') : (isEn ? (wPts + ' Knight / ' + mPts + ' Mage') : (wPts + ' Hiệp Sĩ / ' + mPts + ' Pháp Sư'));
 
   // EXP Progress Card in Profile
   renderExpCard(pLv, nextLv, curExpInLevel, maxExpInLevel, expRemaining, expRatePct, expTotal, curLvData.max_equip_tier, etaFormatted, curEps);
@@ -16075,11 +16206,13 @@ function applyUserData(data) {
 }
 
 function renderExpCard(pLv, nextLv, curExp, maxExp, remExp, ratePct, totalExp, maxTier, etaFormatted, curEps) {
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const title = document.getElementById('expCardTitle');
   if (!title) return;
-  title.innerText = isEn ? ('Level ' + pLv + ' ➡️ ' + nextLv) : ('Cấp Độ ' + pLv + ' ➡️ ' + nextLv);
-  document.getElementById('expCardTierUnlocked').innerText = isEn ? ('Max Gear Tier: Tier ' + (maxTier || 5)) : ('Tier Trang Bị Tối Đa: Tier ' + (maxTier || 5));
+  title.innerText = isTr ? ('Seviye ' + pLv + ' ➡️ ' + nextLv) : (isEn ? ('Level ' + pLv + ' ➡️ ' + nextLv) : ('Cấp Độ ' + pLv + ' ➡️ ' + nextLv));
+  document.getElementById('expCardTierUnlocked').innerText = isTr ? ('Maks. Ekipman Kademesi: Kademe ' + (maxTier || 5)) : (isEn ? ('Max Gear Tier: Tier ' + (maxTier || 5)) : ('Tier Trang Bị Tối Đa: Tier ' + (maxTier || 5)));
   document.getElementById('expCardPctBig').innerText = ratePct + '%';
   document.getElementById('expCardBarFill').style.width = ratePct + '%';
   document.getElementById('expCardCur').innerText = Number(curExp).toLocaleString();
@@ -16088,9 +16221,11 @@ function renderExpCard(pLv, nextLv, curExp, maxExp, remExp, ratePct, totalExp, m
   document.getElementById('expCardTotal').innerText = Number(totalExp).toLocaleString();
   const etaEl = document.getElementById('expCardEta');
   if (etaEl && etaFormatted) {
-    etaEl.innerHTML = isEn ?
+    etaEl.innerHTML = isTr ?
+      ('⏳ Seviye ' + nextLv + ' İçin Tahmini: <b style="color:#7ee787;">~' + etaFormatted + '</b> <span style="font-size:11.5px; color:#8b949e;">(~' + Math.round(curEps || 125) + ' EXP/sn farm baz alınarak)</span>') :
+      (isEn ?
       ('⏳ Est. to Level ' + nextLv + ': <b style="color:#7ee787;">~' + etaFormatted + '</b> <span style="font-size:11.5px; color:#8b949e;">(based on farm ~' + Math.round(curEps || 125) + ' EXP/s)</span>') :
-      ('⏳ Ước tính lên Cấp ' + nextLv + ': <b style="color:#7ee787;">~' + etaFormatted + '</b> <span style="font-size:11.5px; color:#8b949e;">(dựa trên farm ~' + Math.round(curEps || 125) + ' EXP/s)</span>');
+      ('⏳ Ước tính lên Cấp ' + nextLv + ': <b style="color:#7ee787;">~' + etaFormatted + '</b> <span style="font-size:11.5px; color:#8b949e;">(dựa trên farm ~' + Math.round(curEps || 125) + ' EXP/s)</span>'));
   }
 }
 
@@ -16111,6 +16246,10 @@ function renderProfileGear() {
     1: 'Main Weapon', 2: 'Sub Weapon', 3: 'Helmet', 4: 'Armor',
     5: 'Gloves', 7: 'Shoulders', 8: 'Cloak', 6: 'Boots'
   };
+  const mainSlotLabelsTr = {
+    1: 'Ana Silah', 2: 'İkincil Silah', 3: 'Miğfer', 4: 'Zırh',
+    5: 'Eldiven', 7: 'Omuzluk', 8: 'Pelerin', 6: 'Çizme'
+  };
 
   // Accessories horizontal row: Nhẫn (9) -> Khuyên tai (10) -> Dây chuyền (11) -> Vòng tay (12) -> Thắt lưng (13) -> Trâm cài (14)
   const accOrderMap = { 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 6 };
@@ -16122,9 +16261,15 @@ function renderProfileGear() {
     9: 'Ring', 10: 'Earrings', 11: 'Necklace',
     12: 'Bracelet', 13: 'Belt', 14: 'Brooch'
   };
+  const accSlotLabelsTr = {
+    9: 'Yüzük', 10: 'Küpe', 11: 'Kolye',
+    12: 'Bilezik', 13: 'Kemer', 14: 'Broş'
+  };
 
-  const mainSlotLabels = isEn ? mainSlotLabelsEn : mainSlotLabelsVi;
-  const accSlotLabels = isEn ? accSlotLabelsEn : accSlotLabelsVi;
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const mainSlotLabels = isTr ? mainSlotLabelsTr : (isEn ? mainSlotLabelsEn : mainSlotLabelsVi);
+  const accSlotLabels = isTr ? accSlotLabelsTr : (isEn ? accSlotLabelsEn : accSlotLabelsVi);
 
   const gearList = userProfile.equippedGearEnriched || [];
 
@@ -16148,10 +16293,10 @@ function renderProfileGear() {
       }
     }
     const iconHtml = getItemIconHtml(iconName, fallback, 'gear-icon-img', tierNum);
-    const slotLabel = (isAcc ? accSlotLabels[g.parts_type] : mainSlotLabels[g.parts_type]) || g.slot_name || (isEn ? 'Gear' : 'Trang bị');
+    const slotLabel = (isAcc ? accSlotLabels[g.parts_type] : mainSlotLabels[g.parts_type]) || g.slot_name || (isTr ? 'Ekipman' : (isEn ? 'Gear' : 'Trang bị'));
     const safeName = (gearName || '').replace(/'/g, "\\'");
     const cardStyle = 'background:#161b22; border:1px solid #30363d; border-radius:8px; padding:10px 14px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:all 0.2s ease;';
-    const cardTitle = isEn ? 'Click to inspect this item in equipment database' : 'Nhấp để tra cứu chi tiết món đồ này trong bảng Trang bị toàn game';
+    const cardTitle = isTr ? 'Bu eşyayı ekipman veri tabanında incelemek için tıklayın' : (isEn ? 'Click to inspect this item in equipment database' : 'Nhấp để tra cứu chi tiết món đồ này trong bảng Trang bị toàn game');
 
     return '<div class="gear-card" onclick="locateEquipInDatabase(' + (g.tid || 0) + ', \'' + safeName + '\')" style="' + cardStyle + '" onmouseover="this.style.borderColor=\'#58a6ff\'; this.style.transform=\'translateY(-2px)\';" onmouseout="this.style.borderColor=\'#30363d\'; this.style.transform=\'none\';" title="' + cardTitle + '">' +
       iconHtml +
@@ -16164,32 +16309,40 @@ function renderProfileGear() {
   }
 
   if (mainItems.length === 0) {
-    mainContainer.innerHTML = isEn ?
+    mainContainer.innerHTML = isTr ?
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Savaş ekipmanı verisi yüklenmedi.<br><span style="font-size:12.5px; color:#58a6ff; margin-top:6px; display:inline-block; cursor:pointer;" onclick="openSaveLocatorModal()">👉 Kayıt dosyanızı <b>🔍 Bulmak ve İçe Aktarmak</b> için buraya tıklayın!</span></div>' :
+      (isEn ?
       '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">No combat gear loaded.<br><span style="font-size:12.5px; color:#58a6ff; margin-top:6px; display:inline-block; cursor:pointer;" onclick="openSaveLocatorModal()">👉 Click here to <b>🔍 Locate & Import Save</b>!</span></div>' :
-      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu trang bị chiến đấu.<br><span style="font-size:12.5px; color:#58a6ff; margin-top:6px; display:inline-block; cursor:pointer;" onclick="openSaveLocatorModal()">👉 Bấm vào đây để <b>🔍 Định Vị & Nhập Save Game</b> của bạn!</span></div>';
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu trang bị chiến đấu.<br><span style="font-size:12.5px; color:#58a6ff; margin-top:6px; display:inline-block; cursor:pointer;" onclick="openSaveLocatorModal()">👉 Bấm vào đây để <b>🔍 Định Vị & Nhập Save Game</b> của bạn!</span></div>');
   } else {
     mainContainer.innerHTML = mainItems.map(g => renderGearCard(g, false)).join('');
   }
 
   if (accItems.length === 0) {
-    accContainer.innerHTML = isEn ?
+    accContainer.innerHTML = isTr ?
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Aksesuar verisi yok.</div>' :
+      (isEn ?
       '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">No accessory data.</div>' :
-      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu trang sức.</div>';
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu trang sức.</div>');
   } else {
     accContainer.innerHTML = accItems.map(g => renderGearCard(g, true)).join('');
   }
 }
 
 function renderProfileTraining() {
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const container = document.getElementById('profTrainingSummary');
   if (!container || !userProfile.trainingSkills) return;
 
   const entries = Object.entries(userProfile.trainingSkills);
   if (entries.length === 0) {
-    container.innerHTML = isEn ?
+    container.innerHTML = isTr ?
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Eğitim yeteneği verisi yok.</div>' :
+      (isEn ?
       '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">No training skill data.</div>' :
-      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu kỹ năng huấn luyện.</div>';
+      '<div style="color:#8b949e; font-size:13px; grid-column:1/-1;">Chưa có dữ liệu kỹ năng huấn luyện.</div>');
     return;
   }
 
@@ -16198,24 +16351,24 @@ function renderProfileTraining() {
     const s = item[1];
     const lv = s.level || 1;
 
-    let name = isEn ? ('Training Skill #' + id) : ('Kỹ Năng #' + id);
+    let name = isTr ? ('Eğitim Yeteneği #' + id) : (isEn ? ('Training Skill #' + id) : ('Kỹ Năng #' + id));
     let icon = '';
     let statDesc = '';
 
     if (typeof trainingSkills !== 'undefined') {
       const matchSkill = trainingSkills.find(t => String(t.group_id) === String(id));
       if (matchSkill) {
-        name = (isEn && matchSkill.name_en) ? matchSkill.name_en : matchSkill.name_vi;
+        name = isTr ? (I18N_TR[matchSkill.name_vi] || (isEn && matchSkill.name_en ? matchSkill.name_en : matchSkill.name_vi)) : ((isEn && matchSkill.name_en) ? matchSkill.name_en : matchSkill.name_vi);
         icon = matchSkill.icon;
         const curLvObj = matchSkill.levels.find(l => l.level === lv) || matchSkill.levels[matchSkill.levels.length - 1];
         if (curLvObj && curLvObj.stats && curLvObj.stats.length > 0) {
-          statDesc = curLvObj.stats.map(st => (isEn && st.text_en) ? st.text_en : st.text).join(', ');
+          statDesc = curLvObj.stats.map(st => isTr ? translateTurkishText(st.text) : ((isEn && st.text_en) ? st.text_en : st.text)).join(', ');
         }
       }
     }
 
     const iconHtml = getItemIconHtml(icon, '🏋️');
-    const lvLabel = isEn ? ('(Level ' + lv + ')') : ('(Cấp ' + lv + ')');
+    const lvLabel = isTr ? ('(Seviye ' + lv + ')') : (isEn ? ('(Level ' + lv + ')') : ('(Cấp ' + lv + ')'));
 
     return '<div style="background:#161b22; border:1px solid #30363d; padding:8px 12px; border-radius:8px; display:flex; align-items:center; gap:10px;">' +
       iconHtml +
@@ -16242,12 +16395,14 @@ function importSaveFile(event) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
+    const isTr = (localStorage.getItem('genesis_helper_lang') || 'tr') === 'tr';
+    const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
     try {
       const data = JSON.parse(e.target.result);
       applyUserData(data);
-      alert('Đã tải thành công hồ sơ của ' + (data.nickname || 'Lee') + '!');
+      alert(isTr ? ((data.nickname || 'Lee') + ' profili başarıyla yüklendi!') : (isEn ? ('Successfully loaded profile for ' + (data.nickname || 'Lee') + '!') : ('Đã tải thành công hồ sơ của ' + (data.nickname || 'Lee') + '!')));
     } catch(err) {
-      alert('Lỗi đọc file JSON: ' + err.message);
+      alert((isTr ? 'JSON dosyası okuma hatası: ' : (isEn ? 'JSON read error: ' : 'Lỗi đọc file JSON: ')) + err.message);
     }
   };
   reader.readAsText(file);
@@ -16263,30 +16418,42 @@ function renderTraining() {
     const curLv = (userProfile.trainingSkills && userProfile.trainingSkills[t.group_id]) ? (userProfile.trainingSkills[t.group_id].level || 1) : 1;
     const curLvObj = t.levels.find(l => l.level === curLv) || t.levels[0];
     const iconHtml = getItemIconHtml(t.icon, '🏋️');
+    const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+    const isTr = (currentLang === 'tr');
     const optionsHtml = t.levels.map(function(l) {
-      const statsText = l.stats.map(function(s){ return (isEn && s.text_en) ? s.text_en : s.text; }).join(', ');
-      const optLabel = isEn ?
-        ('Level ' + l.level + ' (Cost: ' + Number(l.cost_gold).toLocaleString() + ' Gold)') :
-        ('Cấp ' + l.level + ' (Chi phí: ' + Number(l.cost_gold).toLocaleString() + ' Vàng)');
+      const statsText = l.stats.map(function(s){ 
+        const raw = (isEn && s.text_en) ? s.text_en : s.text; 
+        return isTr ? translateTurkishText(raw) : raw;
+      }).join(', ');
+      const optLabel = isTr
+        ? ('Seviye ' + l.level + ' (Maliyet: ' + Number(l.cost_gold).toLocaleString('tr-TR') + ' Altın)')
+        : (isEn ? ('Level ' + l.level + ' (Cost: ' + Number(l.cost_gold).toLocaleString() + ' Gold)') : ('Cấp ' + l.level + ' (Chi phí: ' + Number(l.cost_gold).toLocaleString() + ' Vàng)'));
       return '<option value="' + l.level + '" data-cost="' + l.cost_gold + '" data-stats="' + statsText + '"' + (l.level === curLv ? ' selected' : '') + '>' +
         optLabel +
         '</option>';
     }).join('');
 
-    const titlePrimary = isEn ? (t.name_en || t.name_vi) : t.name_vi;
-    const titleSecondary = isEn ? t.name_vi : t.name_en;
-    const curStatsText = curLvObj.stats.map(function(s){ return (isEn && s.text_en) ? s.text_en : s.text; }).join(', ');
+    const titlePrimary = isTr ? (t.name_en || t.name_vi) : (isEn ? (t.name_en || t.name_vi) : t.name_vi);
+    const titleSecondary = isTr ? (t.name_vi !== t.name_en ? t.name_vi : '') : (isEn ? t.name_vi : t.name_en);
+    const curStatsText = curLvObj.stats.map(function(s){ 
+      const raw = (isEn && s.text_en) ? s.text_en : s.text; 
+      return isTr ? translateTurkishText(raw) : raw;
+    }).join(', ');
+
+    const costPrefix = isTr ? '💰 Yükseltme Maliyeti: ' : (isEn ? '💰 Upgrade Cost: ' : '💰 Giá nâng: ');
+    const goldSuffix = isTr ? 'Altın' : (isEn ? 'Gold' : 'Vàng');
+    const effectsPrefix = isTr ? '✨ Etkiler: ' : (isEn ? '✨ Effects: ' : '✨ Hiệu ứng: ');
 
     return '<div class="training-card">' +
       '<div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">' +
         iconHtml +
         '<div style="flex:1;">' +
-          '<h3 style="margin:0; font-size:16px;"><span>' + titlePrimary + '</span><br><span style="font-size:12px; color:#8b949e; font-weight:normal;">' + titleSecondary + '</span></h3>' +
+          '<h3 style="margin:0; font-size:16px;"><span>' + titlePrimary + '</span>' + (titleSecondary ? ('<br><span style="font-size:12px; color:#8b949e; font-weight:normal;">' + titleSecondary + '</span>') : '') + '</h3>' +
         '</div>' +
       '</div>' +
       '<select class="lv-select" onchange="changeTrainingLevel(this, \'' + t.name_vi + '\')">' + optionsHtml + '</select>' +
-      '<div class="cost-gold">' + (isEn ? '💰 Upgrade Cost: ' : '💰 Giá nâng: ') + '<span class="cost-val">' + Number(curLvObj.cost_gold).toLocaleString() + '</span> ' + (isEn ? 'Gold' : 'Vàng') + '</div>' +
-      '<div class="stats">' + (isEn ? '✨ Effects: ' : '✨ Hiệu ứng: ') + '<span class="stats-val">' + curStatsText + '</span></div>' +
+      '<div class="cost-gold">' + costPrefix + '<span class="cost-val">' + Number(curLvObj.cost_gold).toLocaleString() + '</span> ' + goldSuffix + '</div>' +
+      '<div class="stats">' + effectsPrefix + '<span class="stats-val">' + curStatsText + '</span></div>' +
       '</div>';
   }).join('');
 }
@@ -16310,7 +16477,8 @@ const STEAM_USD_TO_VND_RATE = 25400; // Tỷ giá Steam / Ngân hàng: 1 USD ≈
 
 function formatSteamPrice(priceUsd, isEn) {
   if (priceUsd === undefined || priceUsd === null || isNaN(priceUsd) || priceUsd <= 0) return '—';
-  if (isEn) {
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  if (isEn || currentLang === 'tr' || currentLang === 'en') {
     return '$' + Number(priceUsd).toFixed(2);
   } else {
     const vnd = Math.round(Number(priceUsd) * STEAM_USD_TO_VND_RATE);
@@ -16407,6 +16575,9 @@ function getFilteredEquipments() {
 function renderEquipPagination(total, containerId) {
   const el = document.getElementById(containerId);
   if (!el) return;
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const totalPages = Math.ceil(total / EQUIP_PAGE_SIZE);
   if (totalPages <= 1) { el.innerHTML = ''; return; }
 
@@ -16414,7 +16585,7 @@ function renderEquipPagination(total, containerId) {
   const prevDisabled = equipPage <= 0;
   const nextDisabled = equipPage >= totalPages - 1;
   html += '<button class="small-btn" onclick="equipPage=0;renderEquip();" ' + (prevDisabled ? 'disabled style="opacity:0.4;"' : '') + '>«</button>';
-  html += '<button class="small-btn" onclick="if(equipPage>0){equipPage--;renderEquip();}" ' + (prevDisabled ? 'disabled style="opacity:0.4;"' : '') + '>‹ Trước</button>';
+  html += '<button class="small-btn" onclick="if(equipPage>0){equipPage--;renderEquip();}" ' + (prevDisabled ? 'disabled style="opacity:0.4;"' : '') + '>' + (isTr ? '‹ Önceki' : (isEn ? '‹ Prev' : '‹ Trước')) + '</button>';
 
   // Page buttons (show up to 7 around current)
   const start = Math.max(0, equipPage - 3);
@@ -16424,9 +16595,9 @@ function renderEquipPagination(total, containerId) {
     html += '<button class="small-btn" onclick="equipPage=' + i + ';renderEquip();" style="' + (isActive ? 'background:#388bfd; color:#fff; font-weight:bold;' : '') + '">' + (i + 1) + '</button>';
   }
 
-  html += '<button class="small-btn" onclick="if(equipPage<' + (totalPages-1) + '){equipPage++;renderEquip();}" ' + (nextDisabled ? 'disabled style="opacity:0.4;"' : '') + '>Tiếp ›</button>';
+  html += '<button class="small-btn" onclick="if(equipPage<' + (totalPages-1) + '){equipPage++;renderEquip();}" ' + (nextDisabled ? 'disabled style="opacity:0.4;"' : '') + '>' + (isTr ? 'Sonraki ›' : (isEn ? 'Next ›' : 'Tiếp ›')) + '</button>';
   html += '<button class="small-btn" onclick="equipPage=' + (totalPages-1) + ';renderEquip();" ' + (nextDisabled ? 'disabled style="opacity:0.4;"' : '') + '>»</button>';
-  html += '<span style="font-size:12px; color:#8b949e; margin-left:6px;">Trang ' + (equipPage + 1) + ' / ' + totalPages + '</span>';
+  html += '<span style="font-size:12px; color:#8b949e; margin-left:6px;">' + (isTr ? 'Sayfa ' : (isEn ? 'Page ' : 'Trang ')) + (equipPage + 1) + ' / ' + totalPages + '</span>';
   el.innerHTML = html;
 }
 
@@ -16537,7 +16708,9 @@ function renderJewelLookup() {
   const tbody = document.getElementById('jewelLookupTableBody');
   if (!tbody || typeof jewelDatabase === 'undefined') return;
 
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const filtered = getFilteredJewels();
   const total = filtered.length;
   const pageItems = filtered.slice(jewelLookupPage * JEWEL_LOOKUP_PAGE_SIZE, (jewelLookupPage + 1) * JEWEL_LOOKUP_PAGE_SIZE);
@@ -16545,27 +16718,29 @@ function renderJewelLookup() {
   // Count badge
   const badge = document.getElementById('jewelCountBadge');
   if (badge) {
-    badge.innerText = isEn ? ('Showing ' + pageItems.length + ' / ' + total + ' jewels') : ('Hiển thị ' + pageItems.length + ' / ' + total + ' ngọc');
+    badge.innerText = isTr ? ('Gösterilen: ' + pageItems.length + ' / ' + total + ' mücevher') : (isEn ? ('Showing ' + pageItems.length + ' / ' + total + ' jewels') : ('Hiển thị ' + pageItems.length + ' / ' + total + ' ngọc'));
   }
 
   // Titles
   const titleEl = document.getElementById('jewelLookupTitle');
-  if (titleEl) titleEl.innerText = isEn ? 'Jewel Lookup Database' : 'Bảng Tra Cứu Ngọc Toàn Game';
+  if (titleEl) titleEl.innerText = isTr ? 'Tüm Oyun Mücevher Veritabanı' : (isEn ? 'Jewel Lookup Database' : 'Bảng Tra Cứu Ngọc Toàn Game');
   const subEl = document.getElementById('jewelLookupSub');
-  if (subEl) subEl.innerText = isEn ? 'Browse 85 jewels across weapons, armor, accessories and mana stones with stat ranges & live Steam Market prices' : 'Tra cứu toàn bộ 85 loại ngọc (Vũ khí, Áo giáp, Phụ kiện, Mana) kèm biên độ chỉ số ngẫu nhiên và giá tiền thật trên Steam Market';
+  if (subEl) subEl.innerText = isTr ? 'Silah, zırh, aksesuar ve mana taşları olmak üzere 85 mücevheri, soket istatistik aralıklarını ve canlı Steam Pazarı fiyatlarını inceleyin' : (isEn ? 'Browse 85 jewels across weapons, armor, accessories and mana stones with stat ranges & live Steam Market prices' : 'Tra cứu toàn bộ 85 loại ngọc (Vũ khí, Áo giáp, Phụ kiện, Mana) kèm biên độ chỉ số ngẫu nhiên và giá tiền thật trên Steam Market');
 
   // Headers
-  if (document.getElementById('jewelThName')) document.getElementById('jewelThName').innerText = isEn ? 'Jewel Name' : 'Tên Ngọc';
-  if (document.getElementById('jewelThCat')) document.getElementById('jewelThCat').innerText = isEn ? 'Category' : 'Phân Loại';
-  if (document.getElementById('jewelThGrade')) document.getElementById('jewelThGrade').innerText = isEn ? 'Grade' : 'Phẩm Cấp';
-  if (document.getElementById('jewelThOptions')) document.getElementById('jewelThOptions').innerText = isEn ? 'Socketed Stat Range' : 'Chỉ Số Kích Hoạt (Min ~ Max)';
-  if (document.getElementById('jewelThDesc')) document.getElementById('jewelThDesc').innerText = isEn ? 'Equip Slot / Description' : 'Vị Trí Khảm / Mô Tả';
-  if (document.getElementById('jewelThSteam')) document.getElementById('jewelThSteam').innerText = isEn ? '💵 Steam Price ($)' : '💵 Giá Steam (VND)';
+  if (document.getElementById('jewelThName')) document.getElementById('jewelThName').innerText = isTr ? 'Mücevher Adı' : (isEn ? 'Jewel Name' : 'Tên Ngọc');
+  if (document.getElementById('jewelThCat')) document.getElementById('jewelThCat').innerText = isTr ? 'Kategori' : (isEn ? 'Category' : 'Phân Loại');
+  if (document.getElementById('jewelThGrade')) document.getElementById('jewelThGrade').innerText = isTr ? 'Kademe' : (isEn ? 'Grade' : 'Phẩm Cấp');
+  if (document.getElementById('jewelThOptions')) document.getElementById('jewelThOptions').innerText = isTr ? 'Soket İstatistik Aralığı' : (isEn ? 'Socketed Stat Range' : 'Chỉ Số Kích Hoạt (Min ~ Max)');
+  if (document.getElementById('jewelThDesc')) document.getElementById('jewelThDesc').innerText = isTr ? 'Yuva / Açıklama' : (isEn ? 'Equip Slot / Description' : 'Vị Trí Khảm / Mô Tả');
+  if (document.getElementById('jewelThSteam')) document.getElementById('jewelThSteam').innerText = (isEn || isTr) ? '💵 Steam Fiyatı ($)' : '💵 Giá Steam (VND)';
 
   if (pageItems.length === 0) {
-    tbody.innerHTML = isEn
+    tbody.innerHTML = isTr
+      ? '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Filtrelere uygun mücevher bulunamadı.</td></tr>'
+      : (isEn
       ? '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">No jewels matched your filters.</td></tr>'
-      : '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Không tìm thấy viên ngọc nào phù hợp với bộ lọc.</td></tr>';
+      : '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Không tìm thấy viên ngọc nào phù hợp với bộ lọc.</td></tr>');
     renderJewelPagination(0, 'jewelPaginationTop');
     renderJewelPagination(0, 'jewelPaginationBottom');
     return;
@@ -16635,7 +16810,9 @@ function renderJewelLookup() {
 function renderJewelPagination(total, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const totalPages = Math.ceil(total / JEWEL_LOOKUP_PAGE_SIZE);
 
   if (totalPages <= 1) {
@@ -16644,11 +16821,11 @@ function renderJewelPagination(total, containerId) {
   }
 
   let html = '<div style="display:flex; align-items:center; gap:6px;">';
-  html += '<button class="small-btn" ' + (jewelLookupPage === 0 ? 'disabled' : '') + ' onclick="changeJewelPage(0)">« ' + (isEn ? 'First' : 'Đầu') + '</button>';
-  html += '<button class="small-btn" ' + (jewelLookupPage === 0 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (jewelLookupPage - 1) + ')">‹ ' + (isEn ? 'Prev' : 'Trước') + '</button>';
-  html += '<span style="font-size:13px; color:#c9d1d9; padding:0 8px;">' + (isEn ? 'Page ' : 'Trang ') + '<b>' + (jewelLookupPage + 1) + '</b> / ' + totalPages + '</span>';
-  html += '<button class="small-btn" ' + (jewelLookupPage >= totalPages - 1 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (jewelLookupPage + 1) + ')">' + (isEn ? 'Next' : 'Sau') + ' ›</button>';
-  html += '<button class="small-btn" ' + (jewelLookupPage >= totalPages - 1 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (totalPages - 1) + ')">' + (isEn ? 'Last' : 'Cuối') + ' »</button>';
+  html += '<button class="small-btn" ' + (jewelLookupPage === 0 ? 'disabled' : '') + ' onclick="changeJewelPage(0)">« ' + (isTr ? 'İlk' : (isEn ? 'First' : 'Đầu')) + '</button>';
+  html += '<button class="small-btn" ' + (jewelLookupPage === 0 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (jewelLookupPage - 1) + ')">‹ ' + (isTr ? 'Önceki' : (isEn ? 'Prev' : 'Trước')) + '</button>';
+  html += '<span style="font-size:13px; color:#c9d1d9; padding:0 8px;">' + (isTr ? 'Sayfa ' : (isEn ? 'Page ' : 'Trang ')) + '<b>' + (jewelLookupPage + 1) + '</b> / ' + totalPages + '</span>';
+  html += '<button class="small-btn" ' + (jewelLookupPage >= totalPages - 1 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (jewelLookupPage + 1) + ')">' + (isTr ? 'Sonraki' : (isEn ? 'Next' : 'Sau')) + ' ›</button>';
+  html += '<button class="small-btn" ' + (jewelLookupPage >= totalPages - 1 ? 'disabled' : '') + ' onclick="changeJewelPage(' + (totalPages - 1) + ')">' + (isTr ? 'Son' : (isEn ? 'Last' : 'Cuối')) + ' »</button>';
   html += '</div>';
 
   container.innerHTML = html;
@@ -16675,25 +16852,29 @@ function renderEquip() {
   const tbody = document.getElementById('equipTableBody') || document.querySelector('#equipTable tbody');
   if (!tbody || typeof equipments === 'undefined') return;
 
-  const isEn = (localStorage.getItem('genesis_helper_lang') === 'en');
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   const filtered = getFilteredEquipments();
   const total = filtered.length;
   const pageItems = filtered.slice(equipPage * EQUIP_PAGE_SIZE, (equipPage + 1) * EQUIP_PAGE_SIZE);
 
   // Update count badge
   const badge = document.getElementById('equipCountBadge');
-  if (badge) badge.innerText = isEn ? ('Showing ' + pageItems.length + ' / ' + total + ' items') : ('Hiển thị ' + pageItems.length + ' / ' + total + ' trang bị');
+  if (badge) badge.innerText = isTr ? ('Gösterilen: ' + pageItems.length + ' / ' + total + ' eşya') : (isEn ? ('Showing ' + pageItems.length + ' / ' + total + ' items') : ('Hiển thị ' + pageItems.length + ' / ' + total + ' trang bị'));
 
   // Update price header title
   const pHeader = document.getElementById('equipPriceHeader');
   if (pHeader) {
-    pHeader.innerHTML = isEn ? '💵 Steam Price ($)' : '💵 Giá Steam (VND)';
+    pHeader.innerHTML = (isEn || isTr) ? '💵 Steam Fiyatı ($)' : '💵 Giá Steam (VND)';
   }
 
   if (pageItems.length === 0) {
-    tbody.innerHTML = isEn ?
+    tbody.innerHTML = isTr ?
+      '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Filtrelere uygun ekipman bulunamadı.</td></tr>' :
+      (isEn ?
       '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">No equipment matched the filters.</td></tr>' :
-      '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Không tìm thấy trang bị nào phù hợp với bộ lọc.</td></tr>';
+      '<tr><td colspan="6" style="text-align:center; color:#8b949e; padding:32px;">Không tìm thấy trang bị nào phù hợp với bộ lọc.</td></tr>');
     renderEquipPagination(0, 'equipPaginationTop');
     renderEquipPagination(0, 'equipPaginationBottom');
     return;
@@ -16705,10 +16886,13 @@ function renderEquip() {
     const iconHtml = getItemIconHtml(e.icon, '⚔️', 'equip-icon-img', tierNum);
     const lv = e.level_req || 0;
     const lvColor = lv >= 90 ? '#bc8cff' : lv >= 70 ? '#f85149' : lv >= 50 ? '#f0883e' : lv >= 30 ? '#58a6ff' : '#8b949e';
-    const primaryName = isEn ? (e.name_en || e.name_vi) : e.name_vi;
-    const secondaryName = isEn ? e.name_vi : e.name_en;
-    const slotText = (isEn && typeof I18N_DICT !== 'undefined' && I18N_DICT[e.slot_name]) ? I18N_DICT[e.slot_name] : (e.slot_name || '');
-    const statsText = (e.stats || []).map(function(s){ return (isEn && s.text_en) ? s.text_en : s.text; }).join('<br>');
+    const primaryName = isTr ? (e.name_en || e.name_vi) : (isEn ? (e.name_en || e.name_vi) : e.name_vi);
+    const secondaryName = isTr ? (e.name_vi !== e.name_en ? e.name_vi : '') : (isEn ? e.name_vi : e.name_en);
+    const slotText = isTr ? (I18N_TR[e.slot_name] || e.slot_name || '') : ((isEn && typeof I18N_DICT !== 'undefined' && I18N_DICT[e.slot_name]) ? I18N_DICT[e.slot_name] : (e.slot_name || ''));
+    const statsText = (e.stats || []).map(function(s){ 
+      const raw = (isEn && s.text_en) ? s.text_en : s.text; 
+      return isTr ? translateTurkishText(raw) : raw; 
+    }).join('<br>');
 
     const mInfo = getEquipSteamPrice(e);
     let priceCellHtml = '';
@@ -16783,9 +16967,12 @@ function clearJewelLogs() {
 function renderJewelLogs() {
   const box = document.getElementById('jewelLogBox');
   if (!box) return;
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
   box.innerHTML = jewelActivityLogs.map(function(l) {
     const cls = l.type === 'success' ? 'jewel-log-success' : l.type === 'info' ? 'jewel-log-info' : '';
-    return '<div class="jewel-log-item"><span class="jewel-log-time">[' + l.time + ']</span> <span class="' + cls + '">' + l.text + '</span></div>';
+    const displayedText = isTr ? translateTurkishText(l.text) : l.text;
+    return '<div class="jewel-log-item"><span class="jewel-log-time">[' + l.time + ']</span> <span class="' + cls + '">' + displayedText + '</span></div>';
   }).join('');
 }
 
@@ -17217,7 +17404,18 @@ function renderTierOverview(jewels) {
     6: 'Tier 6 (Divine)'
   };
 
-  const tierLabels = isEn ? tierLabelsEn : tierLabelsVi;
+  const tierLabelsTr = {
+    1: 'Kademe 1 (Temel)',
+    2: 'Kademe 2 (Yaygın)',
+    3: 'Kademe 3 (Gelişmiş)',
+    4: 'Kademe 4 (Üstün)',
+    5: 'Kademe 5 (Nadir)',
+    6: 'Kademe 6 (Kutsal)'
+  };
+
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const tierLabels = isTr ? tierLabelsTr : (isEn ? tierLabelsEn : tierLabelsVi);
 
   // Aggregate by rating
   const stats = {
@@ -17365,9 +17563,11 @@ function renderJewelTable() {
   groups.sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name));
 
   if (groups.length === 0) {
-    tbody.innerHTML = isEn ?
+    tbody.innerHTML = isTr ?
+      '<tr><td colspan="8" style="text-align:center; color:#8b949e; padding:24px;">Filtreyle eşleşen mücevher bulunamadı.</td></tr>' :
+      (isEn ?
       '<tr><td colspan="8" style="text-align:center; color:#8b949e; padding:24px;">No jewels matched the filter.</td></tr>' :
-      '<tr><td colspan="8" style="text-align:center; color:#8b949e; padding:24px;">Không tìm thấy viên ngọc nào phù hợp với bộ lọc.</td></tr>';
+      '<tr><td colspan="8" style="text-align:center; color:#8b949e; padding:24px;">Không tìm thấy viên ngọc nào phù hợp với bộ lọc.</td></tr>');
     return;
   }
 
@@ -17401,7 +17601,19 @@ function renderJewelTable() {
     7: 'Tier 7 (Legendary)'
   };
 
-  const tierLabels = isEn ? tierLabelsEn : tierLabelsVi;
+  const tierLabelsTr = {
+    1: 'Kademe 1 (Temel)',
+    2: 'Kademe 2 (Yaygın)',
+    3: 'Kademe 3 (Gelişmiş)',
+    4: 'Kademe 4 (Üstün)',
+    5: 'Kademe 5 (Nadir)',
+    6: 'Kademe 6 (Kutsal)',
+    7: 'Kademe 7 (Efsanevi)'
+  };
+
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const tierLabels = isTr ? tierLabelsTr : (isEn ? tierLabelsEn : tierLabelsVi);
 
   tbody.innerHTML = groups.map(function(g, idx) {
     const tStyle = getTierStyle(g.rating);
@@ -17411,15 +17623,15 @@ function renderJewelTable() {
 
     let actionBtns = [];
     if (g.inv > 0) {
-      const storeLabel = isEn ? ('📦 Store (' + g.inv + ')') : ('📦 Cất (' + g.inv + ')');
+      const storeLabel = isTr ? ('📦 Depola (' + g.inv + ')') : (isEn ? ('📦 Store (' + g.inv + ')') : ('📦 Cất (' + g.inv + ')'));
       actionBtns.push('<button class="small-btn" style="background:#1f6feb; color:#fff; padding:2px 8px; font-size:11px;" onclick="triggerDepositSingleType(' + g.itemTid + ', \'' + g.name.replace(/'/g, "\\'") + '\')">' + storeLabel + '</button>');
     }
     if (g.storage > 0) {
-      const takeLabel = isEn ? ('📥 Take (' + g.storage + ')') : ('📥 Rút (' + g.storage + ')');
+      const takeLabel = isTr ? ('📥 Çek (' + g.storage + ')') : (isEn ? ('📥 Take (' + g.storage + ')') : ('📥 Rút (' + g.storage + ')'));
       actionBtns.push('<button class="small-btn" style="background:#8957e5; color:#fff; padding:2px 8px; font-size:11px;" onclick="triggerWithdrawSingleType(' + g.itemTid + ', \'' + g.name.replace(/'/g, "\\'") + '\')">' + takeLabel + '</button>');
     }
     if (actionBtns.length === 0) {
-      actionBtns.push(isEn ? '<span style="font-size:11.5px; color:#484f58;">Inlaid</span>' : '<span style="font-size:11.5px; color:#484f58;">Đang khảm</span>');
+      actionBtns.push(isTr ? '<span style="font-size:11.5px; color:#484f58;">Takılı</span>' : (isEn ? '<span style="font-size:11.5px; color:#484f58;">Inlaid</span>' : '<span style="font-size:11.5px; color:#484f58;">Đang khảm</span>'));
     }
 
     return '<tr>' +
@@ -17573,9 +17785,12 @@ function closeSaveLocatorModal() {
 }
 
 function copyPathToClipboard(pathText, btnEl) {
+  const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+  const isTr = (currentLang === 'tr');
+  const isEn = (currentLang === 'en');
   navigator.clipboard.writeText(pathText).then(function() {
     const orig = btnEl.innerText;
-    btnEl.innerText = '✓ Đã chép!';
+    btnEl.innerText = isTr ? '✓ Kopyalandı!' : (isEn ? '✓ Copied!' : '✓ Đã chép!');
     btnEl.style.background = '#238636';
     btnEl.style.color = '#fff';
     setTimeout(function() {
@@ -17584,7 +17799,7 @@ function copyPathToClipboard(pathText, btnEl) {
       btnEl.style.color = '';
     }, 2000);
   }).catch(function() {
-    prompt('Sao chép đường dẫn thủ công:', pathText);
+    prompt(isTr ? 'Yolu manuel olarak kopyalayın:' : (isEn ? 'Copy path manually:' : 'Sao chép đường dẫn thủ công:'), pathText);
   });
 }
 
@@ -17655,16 +17870,29 @@ function processSaveProfileFile(file) {
       const resetBtn = document.getElementById('resetCustomProfileBtn');
       if (resetBtn) resetBtn.style.display = 'inline-block';
 
+      const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+      const isTr = (currentLang === 'tr');
+      const isEn = (currentLang === 'en');
       // Show success notification in modal
       if (statusBox) {
         statusBox.style.display = 'block';
         statusBox.style.background = 'rgba(46,160,67,0.15)';
         statusBox.style.border = '1px solid #2ea043';
         statusBox.style.color = '#7ee787';
-        statusBox.innerHTML = '<b>✓ Đồng bộ dữ liệu thành công!</b><br>' +
+        statusBox.innerHTML = isTr ?
+          ('<b>✓ Veri senkronizasyonu başarılı!</b><br>' +
+          '• Karakter: <b>' + (data.nickname || 'Lee') + '</b> | Seviye: <b>Lv.' + (data.level || 33) + '</b><br>' +
+          '• Savaş Gücü: <b>' + Number(data.combatPower || 0).toLocaleString() + '</b><br>' +
+          '• <i>Veriler tarayıcınıza kaydedildi (sonraki ziyaretlerde otomatik yüklenecektir).</i>') :
+          (isEn ?
+          ('<b>✓ Profile loaded successfully!</b><br>' +
+          '• Character: <b>' + (data.nickname || 'Lee') + '</b> | Level: <b>Lv.' + (data.level || 33) + '</b><br>' +
+          '• Combat Power: <b>' + Number(data.combatPower || 0).toLocaleString() + '</b><br>' +
+          '• <i>Profile cached in your browser for future visits.</i>') :
+          ('<b>✓ Đồng bộ dữ liệu thành công!</b><br>' +
           '• Nhân vật: <b>' + (data.nickname || 'Lee') + '</b> | Cấp độ: <b>Lv.' + (data.level || 33) + '</b><br>' +
           '• Lực chiến: <b>' + Number(data.combatPower || 0).toLocaleString() + '</b><br>' +
-          '• <i>Dữ liệu đã được lưu vào trình duyệt của bạn (tự động tải lại ở các lần sau).</i>';
+          '• <i>Dữ liệu đã được lưu vào trình duyệt của bạn (tự động tải lại ở các lần sau).</i>'));
       }
 
       setTimeout(function() {
@@ -17672,12 +17900,19 @@ function processSaveProfileFile(file) {
       }, 2500);
 
     } catch(err) {
+      const currentLang = localStorage.getItem('genesis_helper_lang') || 'tr';
+      const isTr = (currentLang === 'tr');
+      const isEn = (currentLang === 'en');
       if (statusBox) {
         statusBox.style.display = 'block';
         statusBox.style.background = 'rgba(248,81,73,0.15)';
         statusBox.style.border = '1px solid #f85149';
         statusBox.style.color = '#ff7b72';
-        statusBox.innerHTML = '<b>❌ Lỗi đọc file Save:</b> ' + err.message + '<br><small>Vui lòng kiểm tra lại file .json có đúng định dạng hồ sơ nhân vật không.</small>';
+        statusBox.innerHTML = isTr ?
+          ('<b>❌ Kayıt dosyası okuma hatası:</b> ' + err.message + '<br><small>Lütfen .json dosyasının doğru karakter profili formatında olduğunu kontrol edin.</small>') :
+          (isEn ?
+          ('<b>❌ Save file read error:</b> ' + err.message + '<br><small>Please check if this .json file is a valid character profile.</small>') :
+          ('<b>❌ Lỗi đọc file Save:</b> ' + err.message + '<br><small>Vui lòng kiểm tra lại file .json có đúng định dạng hồ sơ nhân vật không.</small>'));
       }
     }
   };
@@ -17685,7 +17920,7 @@ function processSaveProfileFile(file) {
 }
 
 function resetToDefaultProfile() {
-  if (confirm('Bạn có muốn khôi phục lại hồ sơ nhân vật mặc định ban đầu không?')) {
+  const cLang = localStorage.getItem('genesis_helper_lang') || 'tr'; if (confirm(cLang === 'tr' ? 'Varsayılan başlangıç karakter profilini geri yüklemek istiyor musunuz?' : (cLang === 'en' ? 'Do you want to restore the default initial character profile?' : 'Bạn có muốn khôi phục lại hồ sơ nhân vật mặc định ban đầu không?'))) {
     localStorage.removeItem('genesis_custom_save_profile');
     location.reload();
   }
@@ -18337,6 +18572,121 @@ const I18N_DICT = {
 
 // Türkçe arayüz çevirileri (Vietnamca kaynak metinlerden)
 const I18N_TR = {
+  // Missing keys & Extended UI Translations
+  'USDT, BUSD, BNB, BTC, ETH... (0% phí nội bộ Binance)': 'USDT, BUSD, BNB, BTC, ETH... (Binance Pay ile %0 komisyon)',
+  'Mở App Binance ➔ Bấm biểu tượng <b>Pay</b> hoặc <b>Quét mã QR</b> góc trên màn hình ➔ Quét mã hoặc nhập Pay ID: <b>User-9e11c</b>.': 'Binance uygulamasını açın ➔ Üst köşedeki <b>Pay</b> veya <b>QR Tara</b> simgesine dokunun ➔ QR kodu tarayın veya Pay ID girin: <b>User-9e11c</b>.',
+  '💵 Giá Steam (cao → thấp)': '💵 Steam: Yüksek → Düşük',
+  '💵 Giá Steam (thấp → cao)': '💵 Steam: Düşük → Yüksek',
+  '💵 Giá Steam ($)': '💵 Steam Fiyatı ($)',
+  '💵 Giá Steam (VND)': '💵 Steam Fiyatı ($)',
+  'Trâm / Huy hiệu': 'Broş / Rozet',
+  '📍 ẢI HIỆN TẠI CỦA BẠN': '📍 MEVCUT BÖLÜMÜNÜZ',
+  'Tối ưu: Nhanh hơn +5% Vàng': 'En İyi: +%5 Daha Fazla Altın',
+  'so với treo máy ở ải cao nhất 2-8 Rất khó!': 'en yüksek bölüm 2-8 Çok Zor ile karşılaştırıldığında!',
+  '~17,038 Vàng / Phút': '~17.038 Altın / Dakika',
+  '~1,225,800 EXP / Giờ': '~1.225.800 EXP / Saat',
+  'Đã định danh chuẩn xác theo Chapter & Độ Khó trong game (ví dụ': 'Oyundaki Bölüm & Zorluk derecesine göre tam olarak tanımlandı (örneğin',
+  'Ải 2-2 Rất khó (Rừng dây leo)': 'Bölüm 2-2 Çok Zor (Sarmaşık Ormanı)',
+  'Ải 2-8 Rất khó (Rừng sâu)': 'Bölüm 2-8 Çok Zor (Derin Orman)',
+  'Tự động ghi lại 20 lần chạy ải gần nhất từ game. Giữ nguyên định dạng cột của BXH, phân loại màu sắc:': 'Oyundan son 20 bölüm turunu otomatik kaydeder. Sıralama sütun biçimini ve renk kodlamasını korur:',
+  'sát thương cao nhất đến thấp nhất': 'en yüksek hasardan en düşüğe',
+  'và': 've',
+  'Tự động phân tích và gợi ý tối ưu hóa dựa trên dữ liệu real-time từ game — cập nhật mỗi lần đồng bộ': 'Oyundan alınan gerçek zamanlı verilere göre otomatik analiz ve optimizasyon önerileri — her senkronizasyonda güncellenir',
+  '• Class chưa từng được ghi nhận thông tin sẽ để trống (không ghi gì cả).': '• Bilgisi henüz kaydedilmemiş sınıflar boş bırakılır.',
+  '• Dữ liệu DPS và chỉ số chiến đấu được tự động lưu lại mỗi khi bạn đăng nhập hoặc chuyển sang chơi class đó trong game.': '• Oyuna giriş yaptığınızda veya o sınıfa geçtiğinizde DPS ve savaş istatistikleri otomatik olarak kaydedilir.',
+  'Tự động đưa 6 trang bị cùng Tier 3 trong Balo và Kho đồ (Kho 1, 2, 3) vào lò rèn để nâng lên Tier 4.': 'Çanta ve Depodaki (1, 2, 3) aynı Kademe 3 ekipmanları (6 adet) otomatik olarak ocağa koyarak Kademe 4 yapar.',
+  'Tự động đưa 3 trang sức cùng Tier 3 trong Balo và Kho đồ (Kho 1, 2, 3) vào lò rèn để nâng lên Tier 4.': 'Çanta ve Depodaki (1, 2, 3) aynı Kademe 3 takıları (3 adet) otomatik olarak ocağa koyarak Kademe 4 yapar.',
+  'Lắp ngay vũ khí chính & phụ mạnh nhất phù hợp với Class hiện tại': 'Mevcut Sınıfa uygun en güçlü ana ve ikincil silahı hemen kuşan',
+  'Hệ thống sẽ tự động quét toàn bộ Balo và Kho đồ để tìm món trang bị có Lực Chiến / Sát Thương cao nhất, sau đó gửi lệnh trang bị ngay lập tức.': 'Sistem tüm Çanta ve Depoyu tarayarak en yüksek Savaş Gücüne / Hasara sahip eşyayı bulur ve hemen kuşanma komutu gönderir.',
+  'Lắp ngay bộ 6 kỹ năng chuẩn mạnh nhất cho Class hiện tại': 'Mevcut Sınıf için en güçlü 6 standart yeteneği hemen kuşan',
+  'Gợi Ý Nâng Cấp Kỹ Năng Hiệu Quả Nhất': 'En Verimli Yetenek Yükseltme Önerileri',
+  'Chưa có đủ dữ liệu để phân tích!': 'Analiz için yeterli veri yok!',
+  'Hãy vào tab ⚔️ Thống Kê DPS và tab 👤 Hồ Sơ & Tiến Độ để đồng bộ dữ liệu trước, rồi quay lại bấm "🔄 Làm Mới Phân Tích".': 'Lütfen önce ⚔️ Yetenek DPS ve 👤 Profil & İlerleme sekmelerine girerek verileri senkronize edin, ardından "🔄 Analizi Yenile"ye tıklayın.',
+  'Tối Ưu Cây Kỹ Năng (Nâng Cấp Nào Tăng Dame Nhất)': 'Yetenek Ağacı Optimizasyonu (En Çok DPS Artışı Sağlayan)',
+  'Cày Vàng & EXP Tối Ưu': 'En Verimli Altın & EXP Farmı',
+  'Tổng Quan Tài Khoản': 'Genel Hesap Özeti',
+  'Phân Tích DPS Thực Tế': 'Gerçek DPS Analizi',
+  'Top Kỹ Năng Hiện Tại': 'En Yüksek Hasarlı Yetenekler',
+  'Xếp Hạng Theo Mức Tăng DPS Khi Nâng 1 Cấp': '1 Seviye Yükseltmede En Çok DPS Kazandıran Yetenekler',
+  'Tất cả kỹ năng đã Max Level': 'Tüm yetenekler Maksimum Seviyede',
+  'Không còn kỹ năng nào có thể nâng thêm!': 'Yükseltilebilecek başka yetenek kalmadı!',
+  'Lời Khuyên': 'Tavsiye',
+  'Ải đang farm': 'Farm yapılan bölüm',
+  'Gợi Ý Ải Vàng Tốt Hơn': 'Daha İyi Altın Veren Bölüm Önerisi',
+  'Đang Cày Ải Vàng Tối Ưu': 'Zaten En İyi Altın Bölümünde Kasılıyor',
+  'Ải EXP Tốt Nhất Đã Mở': 'Açık En İyi EXP Bölümü',
+  'Dữ liệu từ lần đồng bộ gần nhất · Bấm 🔄 Đồng Bộ Ngay ở tab Hồ Sơ → quay lại bấm 🔄 Làm Mới Phân Tích': 'Son senkronizasyon verileri · Profil sekmesinden 🔄 Şimdi Senkronize Et ardından 🔄 Analizi Yenileye tıklayın',
+
+  // 54 Game Stat Prefixes
+  'Đòn Chí mạng trúng đích': 'Kritik Vuruş Oranı',
+  'Sát thương Chí mạng': 'Kritik Hasar',
+  'Sức tấn công PvE': 'PvE Saldırı Gücü',
+  'Phòng thủ PvE': 'PvE Savunma',
+  'Sát thương Boss': 'Boss Hasarı',
+  'Sát thương nhận vào': 'Alınan Hasar',
+  'Sức tấn công PvP': 'PvP Saldırı Gücü',
+  'Phòng thủ PvP': 'PvP Savunma',
+  'Kháng sát thương Chí mạng': 'Kritik Hasar Direnci',
+  'Kháng sát thương Điện': 'Yıldırım Hasarı Direnci',
+  'Kháng sát thương Lửa': 'Ateş Hasarı Direnci',
+  'Kháng sát thương Độc': 'Zehir Hasarı Direnci',
+  'Kháng Chí mạng': 'Kritik Direnci',
+  'Kháng Choáng': 'Sersemletme Direnci',
+  'Kháng Sét': 'Yıldırım Direnci',
+  'Kháng Lửa': 'Ateş Direnci',
+  'Kháng Độc': 'Zehir Direnci',
+  'Hồi chiêu Kỹ năng': 'Yetenek Bekleme Süresi',
+  'Bỏ qua đỡ đòn:': 'Blok Delme:',
+  'Kháng Điện Giật': 'Şok Direnci',
+  'Kháng Thiêu Đốt': 'Yanma Direnci',
+  'Kháng Trúng Độc': 'Zehirlenme Direnci',
+  'Hồi phục tự nhiên': 'Doğal Yenilenme',
+  'Ô Túi đồ': 'Çanta Yuvası',
+  'Trang Kho': 'Depo Sekmesi',
+  'Tăng Giới Hạn Lưu Trữ Vàng': 'Maks. Altın Depolama Artışı',
+  'Số Quái cần Diệt để Triệu hồi Boss': 'Boss İçin Gereken Canavar Sayısı',
+  'Tiền tệ phân rã trang bị': 'Ekipman Ayrıştırma Parası',
+  'Tiền tệ phân rã phụ kiện': 'Takı Ayrıştırma Parası',
+  'Tiền tệ phân rã cánh': 'Kanat Ayrıştırma Parası',
+  'Tiền tệ phân rã rune': 'Rün Ayrıştırma Parası',
+  'Tiền tệ phân rã pet': 'Pet Ayrıştırma Parası',
+  'Sét trúng đích': 'Yıldırım Vuruşu',
+  'Sát thương Điện': 'Yıldırım Hasarı',
+  'Độc trúng đích': 'Zehir Vuruşu',
+  'Sát thương Độc': 'Zehir Hasarı',
+  'Lửa trúng đích': 'Ateş Vuruşu',
+  'Sát thương Lửa': 'Ateş Hasarı',
+  'Chặn': 'Bloklama',
+  'Kháng Sát Thương Tất Cả Nguyên Tố': 'Tüm Element Hasar Direnci',
+  'Choáng trúng đích': 'Sersemletme Vuruşu',
+  'Kháng Tất Cả Nguyên Tố': 'Tüm Element Direnci',
+  'Vàng từ quái': 'Canavarlardan Düşen Altın',
+  'EXP từ quái': 'Canavarlardan Gelen EXP',
+  'EXP từ boss': 'Boss\'tan Gelen EXP',
+  'Vàng từ boss': 'Boss\'tan Düşen Altın',
+  'Tốc độ Đánh': 'Saldırı Hızı',
+  'Tốc độ Di chuyển': 'Hareket Hızı',
+  'Chính xác': 'İsabet',
+  'Né tránh': 'Kaçınma',
+  'Tấn công': 'Saldırı',
+  'Phòng thủ': 'Savunma',
+  'HP': 'Can (HP)',
+
+  // Equipment & Jewel Categories
+  'Vũ Khí': 'Silah',
+  'Giáp': 'Zırh',
+  'Phụ Kiện': 'Aksesuar',
+  'Mana / Bổ Trợ': 'Mana / Destek',
+  'Cấp Thấp (1★)': 'Düşük Kademe (1★)',
+  'Thường (2★)': 'Yaygın (2★)',
+  'Cao Cấp (3★)': 'Gelişmiş (3★)',
+  'Hiếm (4★)': 'Nadir (4★)',
+  'Anh Hùng (5★)': 'Kahraman (5★)',
+  'Thần Thoại (6★)': 'Efsanevi (6★)',
+  'Ngọc Vũ Khí': 'Silah Mücevheri',
+  'Ngọc Giáp': 'Zırh Mücevheri',
+  'Ngọc Phụ Kiện': 'Aksesuar Mücevheri',
+  'Ngọc Mana / Bổ Trợ': 'Mana / Destek Mücevheri',
   'Khi game bị ngắt kết nối và hiện hộp thoại "Kết nối lại thất bại", tự động ấn "Xác nhận" để kết nối lại máy chủ mà không bị gián đoạn treo máy.': 'Oyun bağlantısı kesilip "Yeniden bağlanma başarısız" penceresi çıktığında, AFK sürecini kesmeden sunucuya yeniden bağlanmak için "Onayla" düğmesine otomatik bas.',
   'Lò rèn sẽ tự động gom cả trang bị, trang sức và ngọc trong Balo lẫn Kho đồ (Kho 1, 2, 3).': 'Ocak, Çanta ve Depo (1, 2, 3) içindeki ekipman, takı ve mücevherleri otomatik olarak toplar.',
   'Đưa 6 viên cùng cấp (không phân biệt loại ngọc) vào Lò rèn để lên cấp cao hơn.': 'Aynı kademedeki 6 mücevheri (tür fark etmeksizin) birleştirerek üst kademeye yükselt.',
@@ -18622,6 +18972,56 @@ const I18N_TR = {
   '🔄 Bỏ lọc': '🔄 Filtreyi Sıfırla',
   '❌ FAILED': '❌ BAŞARISIZ',
   'Tên Ngọc': 'Mücevher Adı',
+  'Đã xóa toàn bộ nhật ký.': 'Tüm günlükler temizlendi.',
+  'Đã BẬT tự động ghép Trang Bị Tier 3 khi đủ 6 món.': '6 parça olduğunda Kademe 3 Ekipman otomatik birleştirme AÇIK.',
+  'Đã TẮT tự động ghép Trang Bị Tier 3.': 'Kademe 3 Ekipman otomatik birleştirme KAPALI.',
+  'Đã BẬT tự động ghép Trang Sức Tier 3 khi đủ 3 món.': '3 parça olduğunda Kademe 3 Aksesuar otomatik birleştirme AÇIK.',
+  'Đã TẮT tự động ghép Trang Sức Tier 3.': 'Kademe 3 Aksesuar otomatik birleştirme KAPALI.',
+  'Đã BẬT: Chỉ ghép trang bị/trang sức Tier 3 CÙNG CẤP ĐỘ (Level).': 'AÇIK: Sadece AYNI SEVİYEDEKİ Kademe 3 ekipman/aksesuarlar birleştirilir.',
+  'Đã TẮT: Ghép trang bị/trang sức Tier 3 mọi cấp độ (có thể trộn cấp).': 'KAPALI: Farklı seviyelerdeki Kademe 3 ekipman/aksesuarlar birleştirilebilir.',
+  'Đã BẬT tự động ghép ngọc khi đủ 3 viên.': 'Otomatik mücevher birleştirme AÇIK.',
+  'Đã TẮT tự động ghép ngọc.': 'Otomatik mücevher birleştirme KAPALI.',
+  'Cho phép lò rèn gom ngọc trong cả Balo lẫn Kho đồ.': 'Demircinin hem Çanta hem Depodaki mücevherleri kullanmasına izin ver.',
+  'Chỉ cho phép lò rèn dùng ngọc trong Balo.': 'Demircinin yalnızca Çantadaki mücevherleri kullanmasına izin ver.',
+  'Đã BẬT tự động cất ngọc lẻ vào kho khi farm.': 'Farm yaparken boşta kalan mücevherleri depoya aktarma AÇIK.',
+  'Đã TẮT tự động cất ngọc vào kho.': 'Mücevherleri depoya aktarma KAPALI.',
+  'Đã BẬT tự động lắp vũ khí mạnh nhất khi đổi Class.': 'Sınıf değiştiğinde en güçlü silahı otomatik kuşanma AÇIK.',
+  'Đã TẮT tự động lắp vũ khí khi đổi Class.': 'Sınıf değiştiğinde silahı otomatik kuşanma KAPALI.',
+  'Đã BẬT tự động đổi kỹ năng chuẩn khi đổi Class.': 'Sınıf değiştiğinde standart yetenekleri kuşanma AÇIK.',
+  'Đã TẮT tự động đổi kỹ năng khi đổi Class.': 'Sınıf değiştiğinde yetenekleri otomatik değiştirme KAPALI.',
+  'Đã gửi lệnh tối ưu và lắp vũ khí mạnh nhất cho Class hiện tại (tìm cả Balo & Kho)...': 'Mevcut Sınıf için en güçlü silahı kuşanma komutu gönderildi (Çanta & Depo taranıyor)...',
+  'Đã gửi lệnh trang bị bộ kỹ năng chuẩn cho Class hiện tại...': 'Mevcut Sınıf için standart yetenek seti kuşanma komutu gönderildi...',
+  'Đã gửi lệnh yêu cầu Lò Rèn ghép ngay Trang Bị & Trang Sức Tier 3': 'Demirciye Kademe 3 Ekipman ve Aksesuarları hemen birleştirme komutu gönderildi',
+  'chỉ ghép cùng cấp độ': 'yalnızca aynı seviye',
+  'Đã chọn TẤT CẢ các bậc (Tier 1-7) để auto ghép.': 'TÜM kademeler (Kademe 1-7) otomatik birleştirme için seçildi.',
+  'Đã BỎ CHỌN toàn bộ bậc ngọc.': 'Tüm mücevher kademelerinin seçimi kaldırıldı.',
+  'Đang yêu cầu Lò rèn gom 6 viên Cấp': 'Demirciye 6 adet Kademe birleştirme komutu gönderiliyor:',
+  'để ghép lên Cấp': '-> Üst Kademe:',
+  'Bạn chưa chọn bậc ngọc nào trong cài đặt! Hãy tích chọn ít nhất 1 bậc để ghép.': 'Ayarlarda hiçbir mücevher kademesi seçilmedi! Birleştirmek için en az 1 kademe seçin.',
+  'Đang yêu cầu Lò rèn quét và tự động ghép các bậc đã chọn': 'Demirci seçilen kademeleri tarayıp otomatik birleştiriyor',
+  'Đang chuyển toàn bộ ngọc rời từ Balo vào Kho đồ...': 'Çantadaki tüm boşta mücevherler Depoya aktarılıyor...',
+  'Đang rút toàn bộ ngọc rời từ Kho đồ về Balo...': 'Depodaki tüm mücevherler Çantaya çekiliyor...',
+  'Đang cất ngọc': 'Mücevher depolanıyor',
+  'Đang rút ngọc': 'Mücevher çekiliyor',
+  'từ Balo vào Kho...': 'çantadan depoya...',
+  'từ Kho ra Balo...': 'depodan çantaya...',
+  'Phát hiện đổi sang Class': 'Sınıf değişikliği algılandı:',
+  'trong game.': 'oyunda.',
+  'Tự động tối ưu vũ khí:': 'Silah otomatik optimize edildi:',
+  'Tự động lắp bộ kỹ năng chuẩn cho Class:': 'Standart sınıf yetenekleri otomatik kuşandı:',
+  'Tự động ấn nút': 'Otomatik tıklandı:',
+  'kết nối lại game sau sự cố mạng!': 'ağ kopması sonrası oyuna yeniden bağlandı!',
+  'Lò rèn đã ghép thành công 6 viên ngọc -> 1x': 'Demirci 6 mücevheri birleştirdi -> 1x',
+  'Đã cất': 'Depolandı:',
+  'viên ngọc vào Kho đồ an toàn!': 'adet mücevher depoya aktarıldı!',
+  'Đã rút': 'Çekildi:',
+  'viên ngọc từ Kho đồ về Balo!': 'adet mücevher çantaya aktarıldı!',
+  'Cài đặt bậc auto ghép:': 'Otomatik birleştirme kademeleri:',
+  'Không ghép bậc nào': 'Hiçbiri',
+  'Đã thiết lập dung lượng kho đồ:': 'Depo kapasitesi ayarlandı:',
+  'Tự động nhận diện': 'Otomatik algılama',
+  'Kho': 'Depo',
+  'ô': 'yuva',
   'Thao Tác': 'İşlemler',
   'Giáp vai': 'Omuzluk',
   'Găng tay': 'Eldiven',
@@ -18679,128 +19079,24 @@ const I18N_TR = {
   'Ải': 'Bölüm',
 };
 
-// Extended Turkish localization for skill names, equipment names, English UI terms,
-// and common Vietnamese fragments that can appear in dynamically generated content.
-const I18N_TR_EXTRA = {
-  // Skill names
-  'First Strike': 'İlk Vuruş', 'Rapid Fire': 'Hızlı Ateş', 'Arrow Rain': 'Ok Yağmuru',
-  'Stone Arrow': 'Taş Oku', 'Bleed': 'Kanama', 'Counterattack': 'Karşı Saldırı',
-  'Ghost Steps': 'Hayalet Adımlar', 'Quick Step': 'Hızlı Adım', 'Quick Reload': 'Hızlı Yenileme',
-  'Hawk Eye': 'Şahin Gözü', 'Full Focus Shot': 'Tam Odak Atışı', 'Snipe': 'Keskin Nişan',
-  'Hit Mark': 'İsabet İşareti', 'Poisoned': 'Zehirlenme', 'Combat Focus': 'Savaş Odağı',
-  'Fire Jester': 'Ateş Soytarısı', 'Poison Blood': 'Zehirli Kan', 'Shadow Step': 'Gölge Adımı',
-  'Expose Weakness': 'Zayıf Noktayı Açığa Çıkar', 'Sharpshooter': 'Keskin Nişancı',
-  'Take Cover': 'Siper Al', 'Limit Break': 'Sınır Aşımı', 'Bloody Battle': 'Kanlı Savaş',
-  'Lethal Poison': 'Ölümcül Zehir', 'Poison': 'Zehir', 'One More Time!': 'Bir Kez Daha!',
-  'Poison Arrow': 'Zehirli Ok', 'Deadly Poison': 'Ölümcül Zehir', 'Precision Aim': 'Hassas Nişan',
-  'Long Shot': 'Uzun Menzilli Atış', 'Special Bullet': 'Özel Mermi', 'Giant Hunter': 'Dev Avcısı',
-  'Dark Blast': 'Karanlık Patlama', 'Flame Storm': 'Alev Fırtınası', 'Arcane Burst': 'Gizemli Patlama',
-  'Titan Seal': 'Titan Mührü', 'Roar': 'Kükreme', 'Mind Control': 'Zihin Kontrolü',
-  'Divine Judgment': 'İlahi Hüküm', 'Holy Blow': 'Kutsal Darbe', 'Fireball': 'Ateş Topu',
-  'Lava Swamp': 'Lav Bataklığı', 'Mental Breakdown': 'Zihinsel Çöküş', 'Meteor Summon': 'Meteor Çağırma',
-  'Omnipotence': 'Mutlak Kudret', 'Breath of Fire': 'Ateş Nefesi', 'Prayer': 'Dua', 'Brand': 'Damga',
-  'Mana Drain': 'Mana Emme', 'Breath of Life': 'Yaşam Nefesi', 'Mana Circulation': 'Mana Dolaşımı',
-  'Spell Chain': 'Büyü Zinciri', 'Heat Amplification': 'Isı Artışı', 'Chain Casting': 'Zincirleme Büyü',
-  'Mana Pierce': 'Mana Delme', 'Barrier Break': 'Bariyer Kırma', 'Inferno': 'Cehennem Ateşi',
-  'Execution': 'İnfaz', 'Willpower': 'İrade', 'Resurrection': 'Diriliş', 'Master\'s Staff': 'Ustanın Asası',
-  'Battle Experience': 'Savaş Tecrübesi', 'Sharp Strike': 'Keskin Darbe', 'Ignition': 'Tutuşturma',
-  'Mana Amplification': 'Mana Güçlendirmesi', 'Elemental Convergence': 'Elementlerin Birleşimi',
-  'Strength': 'Güç', 'Sprint': 'Sprint', 'Precision': 'İsabet', 'Critical Strike': 'Kritik Vuruş',
-  'Focus': 'Odak', 'Agility': 'Çeviklik', 'Subjugation': 'Boyun Eğdirme',
-  'Expedition Defense': 'Sefer Savunması', 'Giant Slayer': 'Dev Katili', 'Amplification': 'Güçlendirme',
-  'Protection': 'Koruma', 'Duel': 'Düello', 'Combat Defense': 'Savaş Savunması',
-  'Critical Defense': 'Kritik Savunma', 'Insulation': 'Yalıtım', 'Heat Resistance': 'Isı Direnci',
-  'Antidote': 'Panzehir', 'Iron Skin': 'Demir Deri', 'Indomitable': 'Boyun Eğmez', 'Immunity': 'Bağışıklık',
-  'Cooldown Acceleration': 'Bekleme Süresi Hızlandırma', 'Piercing': 'Delme', 'Shock Defense': 'Şok Savunması',
-  'Burn Defense': 'Yanma Savunması', 'Poison Defense': 'Zehir Savunması', 'Regeneration': 'Yenilenme',
-  'Inventory Expansion': 'Çanta Genişletme', 'Storage Expansion': 'Depo Genişletme',
-  'Vault Expansion': 'Kasa Genişletme', 'Hunt Time Reduction': 'Av Süresi Azaltma',
-  'Equipment Recycling': 'Ekipman Geri Dönüşümü', 'Accessory Recycling': 'Aksesuar Geri Dönüşümü',
-  'Wing Recycling': 'Kanat Geri Dönüşümü', 'Rune Recycling': 'Rün Geri Dönüşümü',
-  'Pet Summon Ticket Recycling': 'Evcil Hayvan Çağırma Bileti Geri Dönüşümü',
-  'Moon Cleave': 'Ay Biçişi', 'Formation Flame': 'Formasyon Alevi', 'Divine Spear': 'İlahi Mızrak',
-  'Moon Slash': 'Ay Kesmesi', 'Shield Charge': 'Kalkan Hücumu', 'Earth Smash': 'Toprak Darbesi',
-  'Boiling Blood': 'Kaynar Kan', 'High-Speed Flurry': 'Yüksek Hızlı Seri Saldırı', 'Barricade': 'Barikat',
-  'Godslayer Spear': 'Tanrı Katili Mızrağı', 'Titan\'s Fist': 'Titanın Yumruğu', 'Time Reversal': 'Zamanı Geri Alma',
-  'Vanguard': 'Öncü', 'Lightning Armor': 'Yıldırım Zırhı', 'Fighting Spirit': 'Savaş Ruhu',
-  'Vitality': 'Canlılık', 'Thunderbolt': 'Yıldırım', 'Fierce Assault': 'Şiddetli Hücum',
-  'Lightning Boost': 'Yıldırım Güçlendirmesi', 'Pursuit': 'Takip', 'Battle Spirit': 'Savaş Ruhu',
-  'Shield of Conviction': 'İnanç Kalkanı', 'Endurance': 'Dayanıklılık', 'Fortitude': 'Metanet',
-  'Perfect Defense': 'Kusursuz Savunma', 'Life Drain': 'Yaşam Emme', 'Survival Instinct': 'Hayatta Kalma İçgüdüsü',
-  'Immortality': 'Ölümsüzlük', 'Iron Wall Defense': 'Demir Duvar Savunması', 'Tough Body': 'Sağlam Beden',
-  'Deflect': 'Saptırma', 'Lethal Lightning': 'Ölümcül Yıldırım', 'Swiftness': 'Çeviklik',
-  'Healing Touch': 'İyileştirici Dokunuş', 'Artisan\'s Armor': 'Ustanın Zırhı', 'Watcher': 'Gözcü',
-  'Double Down': 'İkiye Katla', 'Boom Shot': 'Patlayıcı Atış', 'Sharp Strike': 'Keskin Darbe',
-  // Common English UI / data terms
-  'Active': 'Aktif', 'Passive': 'Pasif', 'Ranged': 'Menzilli', 'Melee': 'Yakın Dövüş',
-  'Skill Name': 'Yetenek Adı', 'Available Skill Points': 'Mevcut Yetenek Puanı', 'Allocated Pts': 'Verilen Puan',
-  'Current Stage': 'Mevcut Bölüm', 'Unlocked Stages Only': 'Yalnızca Açılmış Bölümler', 'Equipment Database': 'Ekipman Veritabanı',
-  'Jewel Lookup Database': 'Mücevher Veritabanı', 'Equipment Level Requirement': 'Ekipman Gereken Seviyesi',
-  'Equipment Drop Rate': 'Ekipman Düşme Oranı', 'Item Name': 'Eşya Adı', 'Jewel Name': 'Mücevher Adı',
-  'Price': 'Fiyat', 'Category': 'Kategori', 'Grade': 'Kalite', 'Slot': 'Yuva', 'Stage': 'Bölüm',
-  'Stats': 'İstatistikler', 'Current': 'Mevcut', 'Next': 'Sonraki', 'Prev': 'Önceki', 'Last': 'Son',
-  'Total': 'Toplam', 'TOTAL': 'TOPLAM', 'Total Damage': 'Toplam Hasar', 'Damage': 'Hasar',
-  'Critical Damage': 'Kritik Hasar', 'Critical Hit': 'Kritik İsabet', 'Critical Resistance': 'Kritik Direnç',
-  'Attack': 'Saldırı', 'Attack Speed': 'Saldırı Hızı', 'Defense': 'Savunma', 'Accuracy': 'İsabet',
-  'Evasion': 'Kaçınma', 'Movement Speed': 'Hareket Hızı', 'Gold': 'Altın', 'Gold Gain': 'Altın Kazancı',
-  'EXP Gain': 'EXP Kazancı', 'HP': 'HP', 'Mana': 'Mana', 'Cooldown Acceleration': 'Bekleme Süresi Hızlandırma',
-  'Damage Taken': 'Alınan Hasar', 'Fire Damage': 'Ateş Hasarı', 'Lightning Damage': 'Yıldırım Hasarı',
-  'Poison Damage': 'Zehir Hasarı', 'Fire Resistance': 'Ateş Direnci', 'Lightning Resistance': 'Yıldırım Direnci',
-  'Poison Resistance': 'Zehir Direnci', 'All Elemental Resistance': 'Tüm Element Direnci',
-  'Boss DMG': 'Boss Hasarı', 'DPS': 'DPS', 'Easy': 'Kolay', 'Hard': 'Zor', 'Very Hard': 'Çok Zor',
-  'Hell': 'Cehennem', 'Nightmare': 'Kâbus', 'Normal': 'Normal', 'Recommended': 'Önerilen',
-  'Recommended AFK': 'Önerilen AFK', 'Cleared': 'Temizlendi', 'Abandoned': 'Terk Edildi',
-  'Combat Breakdown': 'Savaş Analizi', 'Quick Guide': 'Hızlı Rehber', 'Confirm': 'Onayla', 'Close': 'Kapat',
-  'Clear Log': 'Günlüğü Temizle', 'In Development': 'Geliştiriliyor', 'Fusion': 'Birleştirme',
-  'Auto': 'Otomatik', 'Actions': 'İşlemler', 'Support Me': 'Beni Destekle', 'Support Genesis Helper': 'Genesis Helper\'ı Destekle',
-  'Vault': 'Kasa', 'Vault Capacity': 'Kasa Kapasitesi', 'Bag': 'Çanta', 'Storage': 'Depo', 'Weapon Jewel': 'Silah Mücevheri',
-  'Armor Jewel': 'Zırh Mücevheri', 'Mana Jewel': 'Mana Mücevheri', 'Accessory Jewel': 'Aksesuar Mücevheri',
-  'All Slots': 'Tüm Yuvalar', 'All Tiers': 'Tüm Kademeler', 'Tier': 'Kademe', 'Basic Attack': 'Temel Saldırı',
-  'Main Weapon': 'Ana Silah', 'Sub Weapon': 'Yan Silah', 'Weapon': 'Silah', 'Armor': 'Zırh', 'Helmet': 'Kask',
-  'Gloves': 'Eldiven', 'Boots': 'Çizme', 'Cloak': 'Pelerin', 'Pauldrons': 'Omuzluk', 'Shield': 'Kalkan',
-  'Quiver': 'Sadak', 'Spellbook': 'Büyü Kitabı', 'Belt': 'Kemer', 'Necklace': 'Kolye', 'Ring': 'Yüzük',
-  'Bracelet': 'Bilezik', 'Earrings': 'Küpe', 'Brooch': 'Broş', 'Sword': 'Kılıç', 'Bow': 'Yay',
-  'Staff': 'Asa', 'Spear': 'Mızrak', 'Crossbow': 'Tatar Yayı', 'Pistol': 'Tabanca', 'Rounds': 'Mermi',
-  'Ammo': 'Mühimmat', 'Bullet': 'Mermi', 'Quiver': 'Sadak', 'Worn': 'Yıpranmış', 'Sturdy': 'Sağlam',
-  'Rare': 'Nadir', 'Radiant': 'Işıltılı', 'Ancient': 'Kadim', 'Heroic': 'Kahramansı', 'Epic': 'Destansı',
-  'Legendary': 'Efsanevi', 'Mythic': 'Mistik', 'Primordial': 'İlksel', 'Eternal': 'Ebedi', 'Common': 'Sıradan',
-  'Superior': 'Üstün', 'Advanced': 'Gelişmiş', 'Special': 'Özel', 'High-Grade': 'Yüksek Kalite', 'Mid-Grade': 'Orta Kalite',
-  'Low-Grade': 'Düşük Kalite', 'Elemental': 'Element', 'Resistance': 'Direnç', 'Recovery': 'Yenilenme',
-  'Natural Recovery Amount': 'Doğal Yenilenme Miktarı', 'Socketed Stat Range': 'Takılı İstatistik Aralığı',
-  // Common Vietnamese fragments for dynamically generated descriptions
-  'Yêu cầu': 'Gereksinim', 'Cấp': 'Seviye', 'cấp': 'seviye', 'Gây': 'Verir', 'gây': 'verir',
-  'sát thương': 'hasar', 'Sát thương': 'Hasar', 'tăng': 'artırır', 'Tăng': 'Artırır', 'giảm': 'azaltır',
-  'Giảm': 'Azaltır', 'trong': 'boyunca', 'giây': 'saniye', 'phút': 'dakika', 'lần': 'kez', 'mỗi': 'her',
-  'khi': 'iken', 'Khi': 'iken', 'sau khi': 'sonra', 'Sau khi': 'Sonra', 'địch': 'düşman', 'Địch': 'Düşman',
-  'toàn bộ': 'tüm', 'Toàn bộ': 'Tüm', 'nhận': 'alır', 'Nhận': 'Alır', 'hồi phục': 'iyileşme',
-  'né tránh': 'kaçınma', 'tốc đánh': 'saldırı hızı', 'tốc chạy': 'hareket hızı', 'cộng dồn': 'yığın',
-  'tối đa': 'en fazla', 'Tối đa': 'En fazla', 'không có': 'yok', 'Không có': 'Yok', 'đã mở khóa': 'açıldı',
-  'chưa mở khóa': 'kilitli', 'trang bị': 'ekipman', 'Trang bị': 'Ekipman', 'vũ khí': 'silah', 'Vũ khí': 'Silah',
-  'ngọc': 'mücevher', 'Ngọc': 'Mücevher', 'trang sức': 'takı', 'Trang sức': 'Takı', 'balo': 'çanta', 'Balo': 'Çanta',
-  'kho': 'depo', 'Kho': 'Depo', 'giá': 'fiyat', 'Giá': 'Fiyat', 'thời gian': 'süre', 'Thời gian': 'Süre',
-  'đang': 'şu anda', 'Đang': 'Şu anda', 'đã': '', 'Đã': '', 'chưa': 'henüz değil', 'và': 've', 'hoặc': 'veya',
-  'với': 'ile', 'cho': 'için', 'của': 'ait', 'từ': 'itibaren', 'đến': 'kadar', 'một': 'bir', 'hai': 'iki',
-  'ba': 'üç', 'bốn': 'dört', 'năm': 'beş', 'sáu': 'altı', 'bảy': 'yedi', 'tám': 'sekiz', 'chín': 'dokuz',
-  'mười': 'on'
-};
-
-function translateTurkishExtra(value) {
-  let result = value;
-  const entries = Object.entries(I18N_TR_EXTRA).sort((a, b) => b[0].length - a[0].length);
-  for (const [from, to] of entries) {
-    if (result.includes(from)) result = result.split(from).join(to);
+let _cachedI18nTrEntries = null;
+function getSortedTrEntries() {
+  if (!_cachedI18nTrEntries) {
+    _cachedI18nTrEntries = Object.entries(I18N_TR).sort((a, b) => b[0].length - a[0].length);
   }
-  // Apply the extended dictionary after the main phrase dictionary so
-  // longer, curated translations take precedence over individual words.
-  return translateTurkishExtra(result);
+  return _cachedI18nTrEntries;
 }
 
 function translateTurkishText(value) {
-  if (!value) return value;
+  if (!value || typeof value !== 'string') return value;
   let result = value;
-  const entries = Object.entries(I18N_TR).sort((a, b) => b[0].length - a[0].length);
-  for (const [from, to] of entries) {
-    if (result.includes(from)) result = result.split(from).join(to);
+  const entries = getSortedTrEntries();
+  for (let i = 0; i < entries.length; i++) {
+    const from = entries[i][0];
+    const to = entries[i][1];
+    if (result.indexOf(from) !== -1) {
+      result = result.split(from).join(to);
+    }
   }
   return result;
 }
