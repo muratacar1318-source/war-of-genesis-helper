@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>War of Genesis: Idle Loot - Dữ Liệu & Chiến Lược Toàn Diện v4.1</title>
+<title>War of Genesis: Idle Loot - Kapsamlı Veri & Strateji v4.1</title>
 <style>
   :root {
     --bg-primary: #0d1117;
@@ -669,6 +669,9 @@ body {
               <path d="M30,0 v30 M0,15 h60" stroke="#ce1124" stroke-width="6"/>
             </svg>
             <span>Tiếng Anh</span>
+          </button>
+          <button type="button" class="lang-btn notranslate" id="langBtnTr" onclick="switchLanguage('tr')" translate="no" title="Türkçe">
+            <span>Türkçe</span>
           </button>
         </div>
       </div>
@@ -18332,15 +18335,372 @@ const I18N_DICT = {
   '🔍 Tìm theo tên trang bị...': '🔍 Search equipment by name...'
 };
 
+// Türkçe arayüz çevirileri (Vietnamca kaynak metinlerden)
+const I18N_TR = {
+  'Khi game bị ngắt kết nối và hiện hộp thoại "Kết nối lại thất bại", tự động ấn "Xác nhận" để kết nối lại máy chủ mà không bị gián đoạn treo máy.': 'Oyun bağlantısı kesilip "Yeniden bağlanma başarısız" penceresi çıktığında, AFK sürecini kesmeden sunucuya yeniden bağlanmak için "Onayla" düğmesine otomatik bas.',
+  'Lò rèn sẽ tự động gom cả trang bị, trang sức và ngọc trong Balo lẫn Kho đồ (Kho 1, 2, 3).': 'Ocak, Çanta ve Depo (1, 2, 3) içindeki ekipman, takı ve mücevherleri otomatik olarak toplar.',
+  'Đưa 6 viên cùng cấp (không phân biệt loại ngọc) vào Lò rèn để lên cấp cao hơn.': 'Aynı kademedeki 6 mücevheri (tür fark etmeksizin) birleştirerek üst kademeye yükselt.',
+  'Tự động giám sát & bật lại Genesis.exe khi bị crash hoặc mất mạng': 'Genesis.exe çöktüğünde veya bağlantı koptuğunda otomatik olarak izler ve yeniden başlatır',
+  '💎 Quản Lý Lò Rèn & Kho Ngọc Tự Động (Auto Jewel Forge & Storage)': '💎 Otomatik Mücevher Ocağı & Depo Yönetimi',
+  'Tự động đọc thông tin nhân vật, cấp độ, trang bị và ải đang farm': 'Karakter, seviye, ekipman ve farm yapılan bölümü otomatik oku',
+  'Đang tự động thử kết nối lại hoặc kích hoạt Steam mở lại game...': 'Otomatik olarak yeniden bağlanılıyor veya Steam üzerinden oyun yeniden başlatılıyor...',
+  'War of Genesis Idle Loot Helper — 100% Miễn Phí & Phi Lợi Nhuận': 'War of Genesis Idle Loot Helper — %100 Ücretsiz ve Kâr Amacı Gütmez',
+  '🏆 Bảng Xếp Hạng Hiệu Suất Cày Vàng & EXP AFK (Money/s & EXP/s)': '🏆 AFK Altın & EXP Kasma Sıralaması (Altın/sn & EXP/sn)',
+  'Bấm vào đây để chọn file Save hoặc Kéo thả file vào khung này': 'Kayıt dosyasını seçmek için tıklayın veya dosyayı buraya sürükleyip bırakın',
+  'Tự động đọc dữ liệu qua cổng kết nối engine 127.0.0.1:10998': 'Verileri 127.0.0.1:10998 motor bağlantı portundan otomatik oku',
+  'Tra cứu 85 loại ngọc, chỉ số ngẫu nhiên & giá Steam Market': '85 mücevheri, rastgele istatistikleri ve Steam Market fiyatlarını incele',
+  '🌟 Chúc bạn chơi game vui vẻ & săn được nhiều đồ giá trị!': '🌟 İyi oyunlar ve bolca değerli ganimetler!',
+  '📊 So Sánh DPS & Chỉ Số Giữa 3 Class (Dữ Liệu Đã Ghi Nhớ)': '📊 3 Sınıf DPS & İstatistik Karşılaştırması',
+  '⚔️ Thống Kê DPS & Sát Thương Chi Tiết Từng Kỹ Năng Hero': '⚔️ Yetenek DPS & Hasar Analizi',
+  '🌐 Đã BẬT tự động xác nhận kết nối lại khi lỗi mạng.': '🌐 Ağ hatasında otomatik yeniden bağlanma onayı AÇILDI.',
+  '🌐 Đã TẮT tự động xác nhận kết nối lại khi lỗi mạng.': '🌐 Ağ hatasında otomatik yeniden bağlanma onayı KAPATILDI.',
+  '🔮 Tự động đổi Kỹ Năng (Skill) chuẩn khi đổi Class': '🔮 Sınıf değişince Standart Yetenekleri Otomatik Kuşan',
+  'Gõ tên ải (2-2, 2-8, rất khó, địa ngục, rừng)...': 'Bölüm ara (2-2, 2-8, çok zor, cehennem, orman)...',
+  '⏳ Thời Gian Lên Cấp Dự Kiến: Đang tính toán...': '⏳ Tahmini Seviye Atlama Süresi: Hesaplanıyor...',
+  '🏋️ Kỹ Năng Huấn Luyện Đã Học (Training Skills)': '🏋️ Öğrenilen Eğitim Yetenekleri',
+  '🏆 Xếp hạng theo Lịch sử chạy (Đo đạc thực tế)': '🏆 Çalışma Geçmişine Göre Sıralama (Gerçek Ölçümler)',
+  '🎯 Giới Hạn Bậc Auto Ghép (Chỉ Dành Cho Ngọc):': '🎯 Otomatik Birleştirme Seviyeleri (Mücevher):',
+  '⚔️ Tự động lắp Vũ Khí Mạnh Nhất khi đổi Class': '⚔️ Sınıf değişince En İyi Silahı Otomatik Kuşan',
+  '💡 Gợi Ý Đường Dẫn File Save Trên Máy Của Bạn:': '💡 Bilgisayarınızdaki Kayıt Dosyası Yolları:',
+  'Treo Đêm 24/7 Không Lo Mất Kết Nối (Watchdog)': 'Bağlantı kopmadan 7/24 AFK (Watchdog)',
+  'Tra cứu 1.872 trang bị & lọc theo cấp / slot': '1.872 eşyayı incele ve seviye / yuva ile filtrele',
+  '📍 1. Thư mục dữ liệu Game (AppData Windows):': '📍 1. Oyun Veri Klasörü (Windows AppData):',
+  '🌐 Tự động xác nhận kết nối lại khi lỗi mạng': '🌐 Ağ hatasında yeniden bağlanmayı otomatik onayla',
+  '⚔️ Thống Kê DPS Kỹ Năng (Combat Breakdown)': '⚔️ Yetenek DPS İstatistikleri (Savaş Analizi)',
+  'Tra Cứu Ngọc & Giá Steam Community Market': 'Mücevher Ara & Steam Community Market Fiyatları',
+  'Đang nạp danh sách ngọc từ Genesis.exe...': 'Mücevher listesi Genesis.exe üzerinden yükleniyor...',
+  '☕ Ủng Hộ Tác Giả / Support the Developer': '☕ Geliştiriciyi Destekle / Bağış Yap',
+  'Gõ tên kỹ năng để tìm vị trí trên Cây...': 'Ağaçta bulmak için yetenek adını yazın...',
+  'Tự động ghép ngọc khi đủ 6 viên cùng bậc': 'Aynı kademeden 6 mücevher olduğunda otomatik birleştir',
+  '🛡️ Ghép Trang Bị Tier 3 (Yêu cầu 6 món)': '🛡️ Kademe 3 Ekipmanı Birleştir (6 eşya gerekir)',
+  '💍 Ghép Trang Sức Tier 3 (Yêu cầu 3 món)': '💍 Kademe 3 Takıları Birleştir (3 eşya gerekir)',
+  'Nâng cấp các chỉ số cơ bản của nhân vật': 'Karakterin temel istatistiklerini yükselt',
+  'Ủng Hộ Tác Giả / Support the Developer': 'Geliştiriciyi Destekle / Bağış Yap',
+  '🏆 BXH Cày Vàng & EXP (Money/s & EXP/s)': '🏆 Altın & EXP Kasma Sıralaması (Altın/sn & EXP/sn)',
+  '🔒 Chỉ ghép các món CÙNG CẤP ĐỘ (Level)': '🔒 YALNIZCA AYNI SEVİYE eşyaları birleştir',
+  '📈 TỐI ƯU CÀY EXP NHẤT (LÊN CẤP NHANH)': '📈 EXP İÇİN EN İYİSİ (HIZLI SEVİYE)',
+  'Định Vị & Nhập File Dữ Liệu Save Game': 'Kayıt Dosyasını Bul & İçe Aktar',
+  'Tự động nhận diện & ghép ngọc khi đủ': 'Yeterli olduğunda mücevherleri otomatik algıla ve birleştir',
+  'Kỹ Năng Huấn Luyện (Training Skills)': 'Eğitim Yetenekleri',
+  '📍 2. Thư mục cài đặt Steam mặc định:': '📍 2. Varsayılan Steam Kurulum Klasörü:',
+  'Mô tả chi tiết hiệu ứng của kỹ năng.': 'Yetenek etkisinin ayrıntılı açıklaması.',
+  'Quét bằng ứng dụng Ngân hàng bất kỳ': 'Herhangi bir bankacılık uygulamasıyla tara',
+  'Quét bằng App Binance (Binance Pay)': 'Binance uygulamasıyla tara (Binance Pay)',
+  '💰 Vàng / Giây (Money/s) [Cao nhất]': '💰 Altın / Saniye (Altın/sn) [En Yüksek]',
+  'Xếp hạng Lịch sử chạy (Đo thực tế)': 'Çalışma Geçmişine Göre Sıralama (Gerçek Veriler)',
+  '📜 Lịch Sử Chạy Ải (20 Ải Gần Nhất)': '📜 Bölüm Geçmişi (Son 20 Tur)',
+  '🛡️ Bảng Tra Cứu Trang Bị Toàn Game': '🛡️ Tüm Oyun Ekipman Veritabanı',
+  '🌳 Cây Kỹ Năng (Tự Lưu & Điểm Cấp)': '🌳 Yetenek Ağacı (Otomatik Kayıt & Puanlar)',
+  'không bao giờ bị đầy Balo khi AFK': 'AFK sırasında Çantanın dolmasını önler',
+  'Tra Cứu Ngọc (Jewels & Giá Steam)': 'Mücevher Ara (Mücevherler & Steam Fiyatı)',
+  'TIỀN TỆ HỖ TRỢ (SUPPORTED COINS)': 'DESTEKLENEN KRİPTO PARALAR',
+  '🌟 TỐI ƯU CÀY VÀNG NHẤT (CHO BẠN)': '🌟 ALTIN İÇİN EN İYİSİ (SİZİN İÇİN)',
+  '⏱️ Thời gian dọn ải [Nhanh nhất]': '⏱️ Bölüm Temizleme Süresi [En Hızlı]',
+  '⏱️ Thời Gian Dọn Ải (Nhanh nhất)': '⏱️ Bölüm Temizleme Süresi (En Hızlı)',
+  '⚔️ Kỹ Năng / Đòn Đánh (Ảnh Game)': '⚔️ Yetenek / Saldırı (Oyun Görseli)',
+  '📜 Nhật Ký Hoạt Động Lò Rèn & Kho': '📜 Ocak & Depo İşlem Günlüğü',
+  '📍 3. File JSON đã xuất trước đó:': '📍 3. Daha Önce Dışa Aktarılan JSON Dosyası:',
+  '💎 Lò Rèn & Kho Ngọc (Auto Fuse)': '💎 Mücevher Ocağı & Depo (Otomatik Birleştirme)',
+  '📈 EXP / Giây (EXP/s) [Cao nhất]': '📈 EXP / Saniye (EXP/sn) [En Yüksek]',
+  'Binance Pay (Quốc Tế / Crypto)': 'Binance Pay (Uluslararası / Kripto)',
+  'CHỦ TÀI KHOẢN (ACCOUNT HOLDER)': 'HESAP SAHİBİ',
+  '⚙️ Thiết Lập Tính Năng Tự Động': '⚙️ Otomasyon Ayarları',
+  'Tự động cất ngọc lẻ vào Kho đồ': 'Artan mücevherleri otomatik olarak Depoya koy',
+  'Kỹ Năng Huấn Luyện (Nâng Vàng)': 'Eğitim Yetenekleri (Altın Yükseltmesi)',
+  'Tính năng đang được phát triển': 'Özellik geliştiriliyor',
+  '⚔️ Trang Bị Chiến Đấu Đang Mặc': '⚔️ Kuşanılmış Savaş Ekipmanları',
+  'SỐ TÀI KHOẢN (ACCOUNT NUMBER)': 'HESAP NUMARASI',
+  '📈 EXP / Giây (Tăng cấp nhanh)': '📈 EXP / Saniye (Hızlı Seviye)',
+  'HƯỚNG DẪN NHANH (HOW TO PAY)': 'HIZLI ÖDEME REHBERİ',
+  '🎯 Chế độ: Đánh Boss (Single)': '🎯 Mod: Boss Savaşı (Tek Hedef)',
+  '⚡ Cấp Ngọc Đủ Điều Kiện Ghép': '⚡ Birleştirmeye Hazır Seviyeler',
+  'Gõ tên kỹ năng huấn luyện...': 'Eğitim yeteneği adını yazın...',
+  'Mất kết nối tới Genesis.exe!': 'Genesis.exe bağlantısı kesildi!',
+  'Tier Trang Bị Tối Đa: Tier 5': 'Maks. Ekipman Kademesi: Kademe 5',
+  'Chỉ Số Kích Hoạt (Min ~ Max)': 'Takılabilir İstatistik Aralığı (Min ~ Maks)',
+  '⚡ Sát Thương / Lần Ra Chiêu': '⚡ Hasar / Kullanım',
+  'Game đang mở trên máy tính?': 'Oyun bilgisayarınızda açık mı?',
+  '🛠️ Treo Đêm 24/7 (Watchdog)': '🛠️ 7/24 AFK (Watchdog)',
+  '💰 Vàng / Giây (Tối ưu AFK)': '💰 Altın / Saniye (En İyi AFK)',
+  '🎁 Thưởng Vàng (Nhiều nhất)': '🎁 Altın Ödülü (En Yüksek)',
+  '🔍 Tìm theo tên trang bị...': '🔍 Eşya adına göre ara...',
+  '🚀 Khởi Động Game Qua Steam': '🚀 Oyunu Steam Üzerinden Başlat',
+  'Đồng Bộ Trực Tiếp (2s/lần)': 'Canlı Senkronizasyon (2 sn)',
+  '🔄 Đồng Bộ Trực Tiếp (Live)': '🔄 Canlı Senkronizasyon',
+  '🔍 Định Vị & Nhập Save Game': '🔍 Kayıt Dosyasını Bul & İçe Aktar',
+  'BINANCE PAY ID / USERNAME': 'BINANCE PAY ID / KULLANICI ADI',
+  'Toàn bộ 400 ải trong Game': 'Oyundaki Tüm 400 Bölüm',
+  '🪙 Vàng / Phút (Thu hoạch)': '🪙 Altın / Dakika (Toplama)',
+  '⭐ Thưởng EXP (Nhiều nhất)': '⭐ EXP Ödülü (En Yüksek)',
+  '🎁 Thưởng Vàng (Ải + Boss)': '🎁 Altın (Bölüm + Boss)',
+  '🌾 Chế độ: Quét Lính (AoE)': '🌾 Mod: Kalabalık Temizleme (AoE)',
+  '🤖 Trạng Thái Lò Rèn & Kho': '🤖 Ocak & Depo Durumu',
+  '🪙 Vàng / Phút [Cao nhất]': '🪙 Altın / Dakika [En Yüksek]',
+  'Tất cả 400 Ải trong Game': 'Oyundaki Tüm 400 Bölüm',
+  'Đang kết nối Genesis.exe': 'Genesis.exe bağlantısı kuruluyor',
+  '↩️ Khôi phục gốc từ Game': '↩️ Oyun Varsayılanını Geri Yükle',
+  'Khôi phục hồ sơ mặc định': 'Varsayılan profili geri yükle',
+  '⭐ Tổng EXP mỗi lần Clear': '⭐ Temizleme Başına Toplam EXP',
+  'Ngân Hàng MB (Việt Nam)': 'MB Bank (Vietnam / VietQR)',
+  '⭐ TỐI ƯU NHẤT (NÊN AFK)': '⭐ EN İYİ BÖLÜM (AFK)',
+  '🔮 Lắp Skill Chuẩn Class': '🔮 Standart Sınıf Yeteneklerini Kuşan',
+  '🚀 Bật Game Ngay (Steam)': '🚀 Oyunu Şimdi Aç (Steam)',
+  'Tân Thủ (Chưa nạp save)': 'Yeni Oyuncu (Kayıt yüklenmedi)',
+  'Tiến độ cấp độ hiện tại': 'Mevcut seviye ilerlemesi',
+  '🌐 Tất cả (85 loại ngọc)': '🌐 Tümü (85 mücevher)',
+  '💵 Chỉ ngọc có giá Steam': '💵 Yalnızca Steam fiyatı olanlar',
+  'Chỉ hiện Ải đã mở khóa': 'Yalnızca Açılmış Bölümleri Göster',
+  'TỔNG DAME TRONG 1 PHÚT': '1 DAKİKADAKİ TOPLAM HASAR',
+  '🗑️ Xóa Lịch Sử So Sánh': '🗑️ Karşılaştırma Geçmişini Temizle',
+  'Tất cả ngọc (Tier 1-7)': 'Tüm mücevherler (Kademe 1-7)',
+  '⚔️ Tối Ưu Vũ Khí Class': '⚔️ En İyi Sınıf Silahlarını Kuşan',
+  '🎁 Phần Thưởng Lên Cấp:': '🎁 Seviye Atlama Ödülleri:',
+  '💍 Trang Sức & Phụ Kiện': '💍 Takılar & Aksesuarlar',
+  '6★ Thượng Hạng (Steam)': '6★ En Üst Kalite (Steam)',
+  'Ủng hộ Genesis Helper': 'Genesis Helper\'ı Destekle',
+  '👤 Hồ Sơ & Tiến Độ EXP': '👤 Profil & EXP İlerlemesi',
+  '📍 Ải HIỆN TẠI CỦA BẠN': '📍 MEVCUT BÖLÜMÜNÜZ',
+  'Khuếch Đại Sát Thương': 'Hasar Artışı',
+  '💎 Tổng Số Ngọc Sở Hữu': '💎 Sahip Olunan Toplam Mücevher',
+  '🔨 Ghép Ngay Đồ Tier 3': '🔨 Kademe 3 Eşyaları Şimdi Birleştir',
+  '📦 Cất Toàn Bộ Vào Kho': '📦 Hepsini Depoya Koy',
+  '📥 Rút Toàn Bộ Về Balo': '📥 Hepsini Çantaya Çek',
+  '↑ Cấp YC (thấp → cao)': '↑ Gereken Seviye (düşük → yüksek)',
+  '↓ Cấp YC (cao → thấp)': '↓ Gereken Seviye (yüksek → düşük)',
+  'Hỗ trợ file định dạng': 'Desteklenen dosya biçimi:',
+  'Phân Tích DPS Thực Tế': 'Gerçek DPS Analizi',
+  'Lời Nhắn Từ Tác Giả:': 'Geliştiriciden Not:',
+  'Điểm kỹ năng có sẵn:': 'Mevcut yetenek puanı:',
+  'Quét live mỗi 2 giây': '2 saniyede bir canlı tarama',
+  '📦 Tổng EXP Tích Lũy:': '📦 Kazanılan Toplam EXP:',
+  'Thời gian hồi chiêu:': 'Bekleme süresi:',
+  '🔮 Ngọc Mana / Bổ Trợ': '🔮 Mana / Destek Mücevheri',
+  '⭐ Phẩm cấp (6★ → 1★)': '⭐ Kalite (6★ → 1★)',
+  '⭐ Phẩm cấp (1★ → 6★)': '⭐ Kalite (1★ → 6★)',
+  'Không có mô tả thêm.': 'Ek açıklama yok.',
+  'Top Kỹ Năng Hiện Tại': 'Mevcut En İyi Yetenekler',
+  'NỀN TẢNG (PLATFORM)': 'PLATFORM',
+  '🔄 Làm Mới Phân Tích': '🔄 Analizi Yenile',
+  '⏹️ Bỏ dở giữa chừng': '⏹️ Yarım Bırakıldı',
+  '⚡ Ghép Ngọc Tự Động': '⚡ Otomatik Mücevher Birleştirme',
+  'Tier 6 (Thần thánh)': 'Kademe 6 (İlahi)',
+  '↓ Tier (cao → thấp)': '↓ Kademe (yüksek → düşük)',
+  '↑ Tier (thấp → cao)': '↑ Kademe (düşük → yüksek)',
+  'Điểm Kỹ Năng Sẵn Có': 'Mevcut Yetenek Puanı',
+  '🔄 Đồng Bộ Trực Tiếp': '🔄 Canlı Senkronizasyon',
+  '🏹 Cung thủ (Ranged)': '🏹 Okçu (Menzilli)',
+  '5★ Đặc Biệt (Steam)': '5★ Özel Kalite (Steam)',
+  'Vị Trí Khảm / Mô Tả': 'Takı Yuvası / Açıklama',
+  '💰 Tổng Dame / Phút': '💰 Toplam Hasar / Dakika',
+  '📊 Tỷ Lệ % Đóng Góp': '📊 Katkı Oranı %',
+  'Trang Bị Toàn Game': 'Tüm Oyun Ekipmanları',
+  '🛡️ Hiệp sĩ (Melee)': '🛡️ Şövalye (Yakın Dövüş)',
+  '📌 Tất cả Loại Ngọc': '📌 Tüm Mücevher Türleri',
+  '3★ Cấp Cao (Steam)': '3★ Yüksek Kalite (Steam)',
+  '4★ Cao Cấp (Steam)': '4★ Üstün Kalite (Steam)',
+  'ℹ️ Quy tắc Lò rèn:': 'ℹ️ Ocak Kuralları:',
+  'Kỹ Năng Huấn Luyện': 'Eğitim Yetenekleri',
+  '📜 Lịch Sử Chạy Ải': '📜 Bölüm Geçmişi',
+  '⏱️ Hồi Chiêu (CD)': '⏱️ Bekleme Süresi (CD)',
+  '🔄 Tần Suất / Phút': '🔄 Dakikadaki Kullanım',
+  '💥 Đòn đánh thường': '💥 Normal Saldırı',
+  'Tự động nhận diện': 'Otomatik algıla',
+  'Dung Lượng Kho Đồ': 'Depo Kapasitesi',
+  'XEM TRƯỚC CHỈ SỐ:': 'İSTATİSTİK ÖNİZLEMESİ:',
+  '🏅 Tất cả Phẩm Cấp': '🏅 Tüm Kaliteler',
+  'Tự động kích hoạt': 'Otomatik tetiklenir',
+  'Đang ngắt kết nối': 'Bağlantı kesiliyor',
+  '☕ Ủng Hộ Tác Giả': '☕ Geliştiriciyi Destekle',
+  'NGÂN HÀNG (BANK)': 'BANKA',
+  '🗺️ Ải Trong Game': '🗺️ Bölüm',
+  '⏱️ Thời Gian Dọn': '⏱️ Temizleme Süresi',
+  '❤️ Máu Quái (HP)': '❤️ Canavar HP',
+  'Bỏ dở giữa chừng': 'Yarım Bırakıldı',
+  'TỔNG DPS THỰC TẾ': 'GERÇEK TOPLAM DPS',
+  '⚡ DPS Chiến Đấu:': '⚡ Savaş DPS:',
+  'Tier 3 (Cấp cao)': 'Kademe 3 (Gelişmiş)',
+  'Tier 4 (Cao cấp)': 'Kademe 4 (Üstün)',
+  '💾 Xuất File JSON': '💾 JSON Dışa Aktar',
+  '🧙 Pháp sư (Mage)': '🧙 Büyücü (Büyü)',
+  'Yêu cầu mở khóa:': 'Açma gereksinimi:',
+  'LỜI NHẮN (NOTE)': 'NOT',
+  '📊 Sắp Xếp Theo:': '📊 Sıralama:',
+  'Khuyên Dùng AFK': 'AFK İçin Önerilen',
+  'Tier 1 (Cơ bản)': 'Kademe 1 (Temel)',
+  'Tier 2 (Thường)': 'Kademe 2 (Yaygın)',
+  'Kim Cương (Dia)': 'Elmas',
+  'Đang phát triển': 'Geliştiriliyor',
+  '📈 EXP Hiện Tại:': '📈 Mevcut EXP:',
+  'Tấn Công Cơ Bản': 'Temel Saldırı',
+  '💍 Ngọc Phụ Kiện': '💍 Aksesuar Mücevheri',
+  'Giá Steam (VND)': 'Steam Fiyatı (VND)',
+  'Đòn đánh thường': 'Normal Saldırı',
+  'Kỹ năng (Skill)': 'Yetenek',
+  'Khuếch đại tổng': 'Toplam Hasar Artışı',
+  'Class đang chơi': 'Oynanan Sınıf',
+  'Ủng Hộ Tác Giả': 'Geliştiriciyi Destekle',
+  '🔎 Tìm Kiếm Ải:': '🔎 Bölüm Ara:',
+  '🗑️ Xóa Lịch Sử': '🗑️ Geçmişi Temizle',
+  '⚡ DPS Thực Tế:': '⚡ Gerçek DPS:',
+  '💥 DPS Đóng Góp': '💥 Katkı DPS',
+  'Tất cả cấp bậc': 'Tüm Kademeler',
+  'hồ sơ nhân vật': 'karakter profili',
+  'Đang hoạt động': 'Aktif',
+  'Không có (Gốc)': 'Yok (Başlangıç)',
+  '⚔️ Ngọc Vũ Khí': '⚔️ Silah Mücevheri',
+  '🔍 Phạm Vi Ải:': '🔍 Bölüm Aralığı:',
+  '📍 Ải HIỆN TẠI': '📍 MEVCUT BÖLÜM',
+  '💰 Vàng / Giây': '💰 Altın / Saniye',
+  '🪙 Vàng / Phút': '🪙 Altın / Dakika',
+  '🎯 Khuyên Dùng': '🎯 Öneri',
+  'Dây thắt lưng': 'Kemer',
+  'Tier 5 (Hiếm)': 'Kademe 5 (Nadir)',
+  'Tất cả Cấp YC': 'Tüm Gereken Seviyeler',
+  'Vị Trí (Slot)': 'Yuva',
+  'Loại kỹ năng:': 'Yetenek türü:',
+  'Sát thương %:': 'Hasar %:',
+  'Theo hiệu ứng': 'Etkisine göre',
+  '📈 EXP / Giây': '📈 EXP / Saniye',
+  '⭐ Thưởng EXP': '⭐ EXP Ödülü',
+  '📊 Trạng Thái': '📊 Durum',
+  '⚔️ Đang chạy': '⚔️ Çalışıyor',
+  '✅ Thành công': '✅ Başarılı',
+  'Vũ khí chính': 'Ana Silah',
+  'Tên Trang Bị': 'Eşya Adı',
+  '↩️ Hồ sơ gốc': '↩️ Varsayılan Profil',
+  'Vũ Khí Chính': 'Ana Silah',
+  'Điểm Đã Cộng': 'Verilen Puan',
+  '🛡️ Ngọc Giáp': '🛡️ Zırh Mücevheri',
+  '2★ Cấp Trung': '2★ Orta Kalite',
+  'Có hồi chiêu': 'Bekleme süreli',
+  'Điểm Kỹ Năng': 'Yetenek Puanı',
+  'Đang kết nối': 'Bağlanıyor',
+  'Khuyên Dùng': 'Önerilen',
+  'Ải Hiện Tại': 'Mevcut Bölüm',
+  'Bình thường': 'Normal',
+  'Tốc Độ Đánh': 'Saldırı Hızı',
+  'Tất cả Slot': 'Tüm Yuvalar',
+  'Tất cả Tier': 'Tüm Kademeler',
+  'Tiến độ: Ải': 'İlerleme: Bölüm',
+  'Vàng Dự Trữ': 'Altın Rezervi',
+  'Mũ Bảo Hiểm': 'Kask',
+  'Tên Kỹ Năng': 'Yetenek Adı',
+  '1★ Cấp Thấp': '1★ Düşük Kalite',
+  'Hiển thị 85': '85 gösteriliyor',
+  'Tốc độ đánh': 'Saldırı Hızı',
+  'Công cơ bản': 'Temel Saldırı Gücü',
+  'Ngoại tuyến': 'Çevrimdışı',
+  'Tiếng Việt': 'Vietnamca',
+  'Thành công': 'Başarılı',
+  'Vũ khí phụ': 'Yan Silah',
+  'Khuyên tai': 'Küpe',
+  'Dây chuyền': 'Kolye',
+  '↓ Giá Vàng': '↓ Altın Fiyatı',
+  '📋 Sao chép': '📋 Kopyala',
+  'Đang farm:': 'Farm yapılıyor:',
+  'Lực chiến:': 'Savaş Gücü:',
+  'Vũ Khí Phụ': 'Yan Silah',
+  'Giày / Ủng': 'Bot',
+  'Khuyên Tai': 'Küpe',
+  'Dây Chuyền': 'Kolye',
+  '🛡️ Hiệp Sĩ': '🛡️ Şövalye',
+  '🏹 Cung Thủ': '🏹 Okçu',
+  'Trạng thái': 'Durum',
+  'Trực tuyến': 'Çevrimiçi',
+  'Tiếng Anh': 'İngilizce',
+  '🔄 Làm Mới': '🔄 Yenile',
+  '🌲 Khu Vực': '🌲 Bölge',
+  'ĐANG ĐÁNH': 'SAVAŞIYOR',
+  '💥 Kỹ năng': '💥 Yetenek',
+  'Tổng Dame': 'Toplam Hasar',
+  'Áo choàng': 'Pelerin',
+  'Áo Choàng': 'Pelerin',
+  'Thắt Lưng': 'Kemer',
+  '🧙 Pháp Sư': '🧙 Büyücü',
+  'Phân Loại': 'Kategori',
+  'Giá Steam': 'Steam Fiyatı',
+  '🔄 Bỏ lọc': '🔄 Filtreyi Sıfırla',
+  '❌ FAILED': '❌ BAŞARISIZ',
+  'Tên Ngọc': 'Mücevher Adı',
+  'Thao Tác': 'İşlemler',
+  'Giáp vai': 'Omuzluk',
+  'Găng tay': 'Eldiven',
+  'Vòng tay': 'Bilezik',
+  'Trâm cài': 'Broş',
+  'Nón / Mũ': 'Kask',
+  'Găng Tay': 'Eldiven',
+  'Giáp Vai': 'Omuzluk',
+  'Vòng Tay': 'Bilezik',
+  'Trâm Cài': 'Broş',
+  'Phẩm Cấp': 'Kalite',
+  'Hiển thị': 'Gösteriliyor',
+  'Trang bị': 'Ekipman',
+  'Đang tải': 'Yükleniyor',
+  'Đã chép!': 'Kopyalandı!',
+  'Xác nhận': 'Onayla',
+  'Chủ động': 'Aktif',
+  'Yêu cầu:': 'Gereksinim:',
+  'Hiện tại': 'Mevcut',
+  'Chí mạng': 'Kritik',
+  'Tỷ lệ %': 'Oran %',
+  'Xóa log': 'Günlüğü Temizle',
+  'Áo giáp': 'Zırh',
+  'Giá Bán': 'Satış Fiyatı',
+  'Áo Giáp': 'Zırh',
+  'TỔNG SỐ': 'TOPLAM',
+  'Tổng Số': 'Toplam',
+  'Kỹ Năng': 'Yetenek',
+  'Kỹ năng': 'Yetenek',
+  'Bị động': 'Pasif',
+  'Cần Lv.': 'Gerekli Seviye:',
+  'Thực tế': 'Gerçek',
+  'Đồng bộ': 'Senkronizasyon',
+  '# Hạng': '# Sıra',
+  '# Lượt': '# Tur',
+  '🏆 Hạng': '🏆 Sıra',
+  'Cấp YC': 'Gerekli Seviye',
+  'Chỉ Số': 'İstatistikler',
+  'Đã lưu': 'Kaydedildi',
+  'Cơ bản': 'Temel',
+  'Balo': 'Çanta',
+  'Khảm': 'Takılı',
+  'Giày': 'Bot',
+  'Nhẫn': 'Yüzük',
+  'Auto': 'Otomatik',
+  'Đóng': 'Kapat',
+  'Vàng': 'Altın',
+  'Phút': 'Dakika',
+  'Giây': 'Saniye',
+  'Tổng': 'Toplam',
+  'Điểm': 'Puan',
+  'Kho': 'Depo',
+  'Cấp': 'Seviye',
+  'Giờ': 'Saat',
+  'Ải': 'Bölüm',
+};
+
+function translateTurkishText(value) {
+  if (!value) return value;
+  let result = value;
+  const entries = Object.entries(I18N_TR).sort((a, b) => b[0].length - a[0].length);
+  for (const [from, to] of entries) {
+    if (result.includes(from)) result = result.split(from).join(to);
+  }
+  return result;
+}
+
 function updateLangButtonUI(lang) {
   const btnVi = document.getElementById('langBtnVi');
   const btnEn = document.getElementById('langBtnEn');
+  const btnTr = document.getElementById('langBtnTr');
   if (btnVi) btnVi.classList.toggle('active', lang === 'vi');
   if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+  if (btnTr) btnTr.classList.toggle('active', lang === 'tr');
 }
 
 function updateDOMTranslations(lang) {
   const isEn = (lang === 'en');
+  const isTr = (lang === 'tr');
 
   // 1. Walk text nodes in document.body
   const walker = document.createTreeWalker(
@@ -18365,15 +18725,19 @@ function updateDOMTranslations(lang) {
     if (node.__viText === undefined) {
       node.__viText = node.nodeValue;
     }
-    if (isEn) {
+    if (isEn || isTr) {
       const orig = node.__viText;
       const leadingMatch = orig.match(/^\s*/);
       const trailingMatch = orig.match(/\s*$/);
       const leading = leadingMatch ? leadingMatch[0] : '';
       const trailing = trailingMatch ? trailingMatch[0] : '';
       const trimmed = orig.trim();
-      if (trimmed && I18N_DICT[trimmed]) {
-        node.nodeValue = leading + I18N_DICT[trimmed] + trailing;
+      if (trimmed) {
+        if (isEn && I18N_DICT[trimmed]) {
+          node.nodeValue = leading + I18N_DICT[trimmed] + trailing;
+        } else if (isTr) {
+          node.nodeValue = leading + translateTurkishText(trimmed) + trailing;
+        }
       }
     } else {
       if (node.__viText !== undefined) {
@@ -18388,10 +18752,12 @@ function updateDOMTranslations(lang) {
     if (el.__viPlaceholder === undefined) {
       el.__viPlaceholder = el.placeholder;
     }
-    if (isEn) {
+    if (isEn || isTr) {
       const trimmed = el.__viPlaceholder.trim();
-      if (trimmed && I18N_DICT[trimmed]) {
+      if (isEn && trimmed && I18N_DICT[trimmed]) {
         el.placeholder = I18N_DICT[trimmed];
+      } else if (isTr && trimmed) {
+        el.placeholder = translateTurkishText(trimmed);
       }
     } else {
       if (el.__viPlaceholder !== undefined) {
@@ -18406,10 +18772,12 @@ function updateDOMTranslations(lang) {
     if (el.__viTitle === undefined) {
       el.__viTitle = el.title;
     }
-    if (isEn) {
+    if (isEn || isTr) {
       const trimmed = el.__viTitle.trim();
-      if (trimmed && I18N_DICT[trimmed]) {
+      if (isEn && trimmed && I18N_DICT[trimmed]) {
         el.title = I18N_DICT[trimmed];
+      } else if (isTr && trimmed) {
+        el.title = translateTurkishText(trimmed);
       }
     } else {
       if (el.__viTitle !== undefined) {
@@ -18450,11 +18818,17 @@ function switchLanguage(lang) {
   if (typeof updateLiveSyncStatus === 'function') {
     updateLiveSyncStatus(typeof isLiveSyncActive !== 'undefined' && isLiveSyncActive ? 'online' : 'paused');
   }
+
+  // Dynamic render fonksiyonları Türkçe kaynak metinleri yeniden oluşturduğu için
+  // tüm ekranı tekrar Türkçeleştir.
+  if (lang === 'tr') {
+    updateDOMTranslations('tr');
+  }
 }
 
 // Startup language initialization
 document.addEventListener('DOMContentLoaded', function() {
-  const savedLang = localStorage.getItem('genesis_helper_lang') || 'vi';
+  const savedLang = localStorage.getItem('genesis_helper_lang') || 'tr';
   switchLanguage(savedLang);
 });
 </script>
